@@ -54,7 +54,7 @@ export function Work() {
           <p className="mb-2 font-mono text-xs uppercase tracking-[0.3em] text-accent">
             // selected_output
           </p>
-          <h2 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl">
+          <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
             Recent shipments
           </h2>
         </div>

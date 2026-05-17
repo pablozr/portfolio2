@@ -33,7 +33,7 @@ export function Services() {
           <p className="mb-2 font-mono text-xs uppercase tracking-[0.3em] text-accent">
             // capabilities.json
           </p>
-          <h2 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl">
+          <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
             What I build
           </h2>
         </div>
