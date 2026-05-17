@@ -1,54 +1,62 @@
 export function Contact() {
   return (
-    <section id="contact" className="relative mx-auto max-w-7xl px-6 py-32">
-      <div className="relative overflow-hidden border border-accent bg-accent p-10 text-accent-foreground sm:p-16 lg:p-24">
-        <div className="grid-bg pointer-events-none absolute inset-0 opacity-20" aria-hidden />
-        <div className="relative flex flex-col items-start gap-10">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.3em]">
-            [ READY_TO_DEPLOY ]
-          </p>
-          <h2 className="max-w-4xl text-balance text-5xl font-bold uppercase leading-[0.95] tracking-tighter sm:text-6xl md:text-7xl">
-            Let's build something
-            <br />
-            that <span className="italic">doesn't</span> break.
-          </h2>
-          <p className="max-w-xl text-base leading-relaxed text-accent-foreground/80">
-            Tell me about the project — even a rough idea works. I reply within
-            24h with honest feedback on scope, timeline and price.
-          </p>
+    <section id="contact" className="relative border-t border-border">
+      <div className="mx-auto max-w-6xl px-6 py-32">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.25em] text-accent">
+              Get in touch
+            </p>
+            <h2 className="max-w-2xl text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+              Have a project in mind?
+              <br />
+              <span className="font-serif italic text-muted-foreground">
+                Let&rsquo;s talk.
+              </span>
+            </h2>
+            <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
+              Tell me about the project — even a rough idea works. I reply
+              within 24 hours with honest feedback on scope, timeline and
+              price.
+            </p>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <a
-              href="mailto:hello@err-studio.dev"
-              className="inline-flex items-center gap-3 border border-accent-foreground bg-background px-6 py-4 font-mono text-sm font-bold uppercase tracking-widest text-foreground shadow-[6px_6px_0_0_currentColor] transition-transform hover:-translate-x-1 hover:-translate-y-1"
-            >
-              hello@err-studio.dev
-              <span>↗</span>
-            </a>
-            <a
-              href="https://cal.com"
-              className="font-mono text-xs uppercase tracking-widest underline underline-offset-4 hover:no-underline"
-            >
-              or book a 30-min intro call →
-            </a>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a
+                href="mailto:hello@err-studio.dev"
+                className="group inline-flex items-center gap-3 rounded-md bg-foreground px-6 py-4 text-sm font-medium text-background transition-colors hover:bg-accent hover:text-accent-foreground"
+              >
+                hello@err-studio.dev
+                <span className="transition-transform group-hover:translate-x-0.5">↗</span>
+              </a>
+              <a
+                href="https://cal.com"
+                className="text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                or book a 30-min intro call
+              </a>
+            </div>
           </div>
 
-          <div className="mt-8 grid w-full grid-cols-2 gap-6 border-t border-accent-foreground/20 pt-8 font-mono text-[11px] uppercase tracking-widest sm:grid-cols-4">
-            <div>
-              <div className="opacity-60">Response time</div>
-              <div className="mt-1 font-bold">&lt; 24h</div>
-            </div>
-            <div>
-              <div className="opacity-60">Based in</div>
-              <div className="mt-1 font-bold">Remote / GMT-3</div>
-            </div>
-            <div>
-              <div className="opacity-60">Engagement</div>
-              <div className="mt-1 font-bold">Fixed price</div>
-            </div>
-            <div>
-              <div className="opacity-60">Status</div>
-              <div className="mt-1 font-bold">Accepting Q3</div>
+          <div className="lg:col-span-5">
+            <div className="rounded-md border border-border bg-card/40 p-8">
+              <dl className="space-y-6">
+                {[
+                  { k: "Response time", v: "Under 24 hours" },
+                  { k: "Engagement", v: "Fixed-price milestones" },
+                  { k: "Timezone", v: "Remote · GMT-3" },
+                  { k: "Status", v: "Accepting Q3 projects" },
+                ].map((row) => (
+                  <div
+                    key={row.k}
+                    className="flex items-baseline justify-between border-b border-border pb-4 last:border-0 last:pb-0"
+                  >
+                    <dt className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                      {row.k}
+                    </dt>
+                    <dd className="text-sm text-foreground">{row.v}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </div>

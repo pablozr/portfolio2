@@ -14,7 +14,7 @@ export function Process() {
             <p className="mb-2 font-mono text-xs uppercase tracking-[0.3em] text-accent">
               // how_we_work
             </p>
-            <h2 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl">
+            <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
               Lean. Async. Shipped.
             </h2>
           </div>
