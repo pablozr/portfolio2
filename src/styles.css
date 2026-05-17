@@ -66,8 +66,8 @@
     97% { opacity: 1; }
   }
   @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 oklch(var(--accent) / 0.6); }
-    50%      { box-shadow: 0 0 32px 4px oklch(var(--accent) / 0.35); }
+    0%, 100% { box-shadow: 0 0 0 0 oklch(0.92 0.22 128 / 0.6); }
+    50%      { box-shadow: 0 0 32px 4px oklch(0.92 0.22 128 / 0.35); }
   }
 }
 
