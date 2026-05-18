@@ -50,24 +50,6 @@ export function Hero() {
             </a>
           </div>
 
-          <div
-            className="mt-20 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-border pt-8 sm:max-w-2xl sm:grid-cols-4 animate-reveal"
-            style={{ animationDelay: "320ms" }}
-          >
-            {[
-              { k: "30+", v: "Projects shipped" },
-              { k: "<24h", v: "Reply window" },
-              { k: "5★", v: "Client feedback" },
-              { k: "100%", v: "Remote / async" },
-            ].map((s) => (
-              <div key={s.v}>
-                <div className="font-serif text-2xl text-foreground sm:text-3xl">{s.k}</div>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  {s.v}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
