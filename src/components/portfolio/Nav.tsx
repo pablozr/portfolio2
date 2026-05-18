@@ -21,10 +21,12 @@ export function Nav() {
         <a href="#top" className="font-mono text-sm tracking-tighter">
           <span className="text-accent">ERR_</span>STUDIO<span className="text-muted-foreground">/v01</span>
         </a>
-        <div className="hidden gap-8 font-mono text-[11px] uppercase tracking-widest text-muted-foreground md:flex">
+        <div className="hidden gap-7 font-mono text-[11px] uppercase tracking-widest text-muted-foreground md:flex">
           <a href="#work" className="transition-colors hover:text-accent">// work</a>
           <a href="#services" className="transition-colors hover:text-accent">// services</a>
           <a href="#process" className="transition-colors hover:text-accent">// process</a>
+          <a href="#about" className="transition-colors hover:text-accent">// about</a>
+          <a href="#faq" className="transition-colors hover:text-accent">// faq</a>
           <a href="#contact" className="transition-colors hover:text-accent">// ping</a>
         </div>
         <div className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
