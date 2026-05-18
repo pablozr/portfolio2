@@ -2,9 +2,26 @@ import { useLanguage } from "@/i18n/language";
 
 export function Hero() {
   const { copy } = useLanguage();
+  const heroVideoUrl =
+    "https://res.cloudinary.com/dfonotyfb/video/upload/v1775585556/dds3_1_rqhg7x.mp4";
+  const heroVideoFallbackUrl =
+    "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260330_145725_08886141-ed95-4a8e-8d6d-b75eaadce638.mp4";
 
   return (
     <section id="top" className="relative overflow-hidden border-b border-border">
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+      >
+        <source src={heroVideoUrl} type="video/mp4" />
+        <source src={heroVideoFallbackUrl} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-background/35" aria-hidden />
       <div className="absolute inset-0 grid-bg opacity-50" aria-hidden />
       <div
         className="pointer-events-none absolute inset-0"

@@ -24,7 +24,13 @@ type SiteCopy = {
   services: {
     title: string;
     itemsLabel: string;
-    items: Array<{ code: string; title: string; body: string; bullets: string[] }>;
+    items: Array<{
+      code: string;
+      title: string;
+      body: string;
+      bullets: string[];
+      prices: string[];
+    }>;
   };
   work: {
     title: string;
@@ -148,24 +154,31 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           title: "Landing Pages",
           body: "Superficies de marketing para alta conversao. Design customizado, motion e estrutura pensada para copy. Feitas para performance e Lighthouse 95+.",
           bullets: ["Design + dev custom", "Com CMS ou estatico", "Pronto para A/B"],
+          prices: [
+            "Simples: a partir de R$600",
+            "Personalizada: a partir de R$1.000",
+          ],
         },
         {
           code: "02 / SYS",
           title: "Sistemas Sob Medida",
           body: "Aplicacoes fullstack ponta a ponta. Auth, pagamentos, dashboards e jobs. Arquitetura limpa para sua equipe manter sem caos.",
           bullets: ["Auth + perfis", "Stripe / cobranca", "APIs tipadas"],
+          prices: ["A partir de R$2.000"],
         },
         {
           code: "03 / INT",
           title: "Ferramentas Internas",
           body: "Painel admin e dashboards operacionais no lugar da planilha fragil. Rapidos para evoluir, dificeis de quebrar.",
           bullets: ["UI por permissao", "CRUD + relatorios", "Logs de auditoria"],
+          prices: ["A partir de R$1.500"],
         },
         {
           code: "04 / AUTO",
           title: "Automacao e Integracoes",
           body: "Webhooks, filas e colagem de API entre ferramentas que voce ja usa. Menos trabalho manual, mais alavancagem.",
           bullets: ["n8n / Make", "Workers custom", "CRM / Stripe / GPT"],
+          prices: ["A partir de R$1.500"],
         },
       ],
     },
@@ -282,7 +295,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       items: [
         {
           q: "Quanto custa um projeto?",
-          a: "A maioria dos projetos fica entre US$3k e US$25k dependendo do escopo. Landing pages comecam em torno de US$3k; sistemas e ferramentas internas costumam ficar entre US$8k e US$20k; automacoes entre US$2k e US$8k.",
+          a: "Trabalho com valores base para dar previsibilidade desde o inicio. Landing page simples comeca em R$600 e personalizada em R$1.000; sistemas sob medida em R$2.000; ferramentas internas e automacoes em R$1.500. O valor final varia conforme escopo, prazo e integracoes.",
         },
         {
           q: "Em quanto tempo vejo resultado?",
@@ -385,24 +398,28 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           title: "Landing Pages",
           body: "High-conversion marketing surfaces. Custom design, motion, and copy-aware structure. Built for speed and Lighthouse 95+.",
           bullets: ["Custom design + dev", "CMS or static", "A/B ready"],
+          prices: ["Simple: from US$200", "Custom: from US$400"],
         },
         {
           code: "02 / SYS",
           title: "Custom Systems",
           body: "End-to-end fullstack apps. Auth, payments, dashboards, jobs. Clean architecture you can hand off without panic.",
           bullets: ["Auth + roles", "Stripe / billing", "Typed APIs"],
+          prices: ["From US$600"],
         },
         {
           code: "03 / INT",
           title: "Internal Tools",
           body: "Admin panels and ops dashboards that replace your fragile spreadsheet. Fast to iterate, hard to break.",
           bullets: ["Role-based UI", "CRUD + reports", "Audit logs"],
+          prices: ["From US$400"],
         },
         {
           code: "04 / AUTO",
           title: "Automation & Integrations",
           body: "Webhooks, queues and API glue between the tools you already use. Less manual work, more leverage.",
           bullets: ["n8n / Make", "Custom workers", "CRM / Stripe / GPT"],
+          prices: ["From US$400"],
         },
       ],
     },
@@ -519,7 +536,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       items: [
         {
           q: "How much does a project cost?",
-          a: "Most engagements land between US$3k and US$25k depending on scope. Landing pages start around US$3k; custom systems and internal tools usually 8k-20k; automation flows 2k-8k.",
+          a: "I use base prices to set expectations early. Simple landing pages start at US$200 and custom ones at US$400; custom systems start at US$600; internal tools and automation start at US$400. Final pricing depends on scope, timeline and integrations.",
         },
         {
           q: "How long until I see results?",
