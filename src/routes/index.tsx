@@ -41,7 +41,10 @@ function Index() {
         <Marquee />
         <Services />
         <Work />
+        <Testimonials />
         <Process />
+        <About />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
