@@ -1,4 +1,8 @@
+import { useLanguage } from "@/i18n/language";
+
 export function About() {
+  const { copy } = useLanguage();
+
   return (
     <section id="about" className="relative border-t border-border">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-6 py-32 lg:grid-cols-12">
@@ -24,38 +28,27 @@ export function About() {
             // about
           </p>
           <h2 className="text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">
-            One developer.
+            {copy.about.titleLine1}
             <br />
             <span className="font-serif italic text-muted-foreground">
-              Six years of shipping.
+              {copy.about.titleLine2}
             </span>
           </h2>
 
           <div className="mt-10 space-y-5 text-base leading-relaxed text-muted-foreground">
             <p>
-              I&rsquo;m a freelance fullstack developer working with founders,
-              product teams and ops leads who need software that actually
-              ships — not slide decks and missed deadlines.
+              {copy.about.p1}
             </p>
             <p>
-              Before going solo I led engineering at two early-stage startups
-              and shipped systems used by tens of thousands of users daily.
-              Now I bring that same standard to small, focused freelance
-              engagements.
+              {copy.about.p2}
             </p>
             <p className="text-foreground">
-              No agency layers. No junior hand-offs. You talk to the person
-              writing the code.
+              {copy.about.p3}
             </p>
           </div>
 
           <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-4">
-            {[
-              { k: "Years", v: "6+" },
-              { k: "Projects", v: "40+" },
-              { k: "Avg NPS", v: "9.4" },
-              { k: "On-time", v: "100%" },
-            ].map((s) => (
+            {copy.about.stats.map((s) => (
               <div key={s.k} className="bg-background p-5">
                 <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                   {s.k}

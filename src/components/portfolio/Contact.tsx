@@ -1,22 +1,26 @@
 import { useState } from "react";
 import { z } from "zod";
+import { useLanguage } from "@/i18n/language";
 
-const schema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Invalid email").max(255),
-  budget: z.string().max(50).optional(),
-  message: z
-    .string()
-    .trim()
-    .min(10, "Tell me a bit more (10+ chars)")
-    .max(2000),
-});
+const getSchema = (messages: {
+  nameRequired: string;
+  invalidEmail: string;
+  messageMin: string;
+}) =>
+  z.object({
+    name: z.string().trim().min(1, messages.nameRequired).max(100),
+    email: z.string().trim().email(messages.invalidEmail).max(255),
+    budget: z.string().max(50).optional(),
+    message: z.string().trim().min(10, messages.messageMin).max(2000),
+  });
 
 type FormState = "idle" | "sending" | "sent" | "error";
 
 export function Contact() {
+  const { copy } = useLanguage();
   const [state, setState] = useState<FormState>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const schema = getSchema(copy.contact.errors);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,10 +43,12 @@ export function Contact() {
     setErrors({});
     setState("sending");
     // Compose a mailto with the structured info as a graceful fallback
-    const subject = encodeURIComponent(`New project — ${parsed.data.name}`);
+    const subject = encodeURIComponent(
+      `${copy.contact.mail.subjectPrefix} - ${parsed.data.name}`
+    );
     const body = encodeURIComponent(
-      `Name: ${parsed.data.name}\nEmail: ${parsed.data.email}\nBudget: ${
-        parsed.data.budget || "—"
+      `${copy.contact.mail.fieldName}: ${parsed.data.name}\n${copy.contact.mail.fieldEmail}: ${parsed.data.email}\n${copy.contact.mail.fieldBudget}: ${
+        parsed.data.budget || copy.contact.mail.budgetFallback
       }\n\n${parsed.data.message}`
     );
     window.location.href = `mailto:hello@err-studio.dev?subject=${subject}&body=${body}`;
@@ -58,23 +64,18 @@ export function Contact() {
               // get in touch
             </p>
             <h2 className="text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-              Have a project
+              {copy.contact.titleLine1}
               <br />
               <span className="font-serif italic text-muted-foreground">
-                in mind?
+                {copy.contact.titleLine2}
               </span>
             </h2>
             <p className="mt-8 max-w-md text-base leading-relaxed text-muted-foreground">
-              Tell me about it — even a rough idea works. I reply within 24h
-              with honest feedback on scope, timeline and price.
+              {copy.contact.body}
             </p>
 
             <dl className="mt-10 space-y-5">
-              {[
-                { k: "Email", v: "hello@err-studio.dev" },
-                { k: "Response", v: "Under 24h" },
-                { k: "Status", v: "Accepting Q3 projects" },
-              ].map((r) => (
+              {copy.contact.details.map((r) => (
                 <div
                   key={r.k}
                   className="flex items-baseline justify-between border-b border-border pb-3"
@@ -96,36 +97,36 @@ export function Contact() {
             >
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <Field
-                  label="Name"
+                  label={copy.contact.labels.name}
                   name="name"
-                  placeholder="Your name"
+                  placeholder={copy.contact.placeholders.name}
                   error={errors.name}
                 />
                 <Field
-                  label="Email"
+                  label={copy.contact.labels.email}
                   name="email"
                   type="email"
-                  placeholder="you@company.com"
+                  placeholder={copy.contact.placeholders.email}
                   error={errors.email}
                 />
               </div>
               <div className="mt-6">
                 <Field
-                  label="Budget"
+                  label={copy.contact.labels.budget}
                   name="budget"
-                  placeholder="e.g. 5k — 10k (optional)"
+                  placeholder={copy.contact.placeholders.budget}
                   error={errors.budget}
                 />
               </div>
               <div className="mt-6">
                 <label className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  Project
+                  {copy.contact.labels.project}
                 </label>
                 <textarea
                   name="message"
                   rows={6}
                   maxLength={2000}
-                  placeholder="What are you trying to build?"
+                  placeholder={copy.contact.placeholders.project}
                   className="w-full resize-none rounded-md border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-accent focus:outline-none"
                 />
                 {errors.message && (
@@ -138,15 +139,17 @@ export function Contact() {
               <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                 <p className="font-mono text-[11px] text-muted-foreground">
                   {state === "sent"
-                    ? "✓ Opened your mail client — see you on the other side."
-                    : "Opens your mail client with everything filled in."}
+                    ? copy.contact.statusSent
+                    : copy.contact.statusIdle}
                 </p>
                 <button
                   type="submit"
                   disabled={state === "sending"}
                   className="group inline-flex items-center gap-3 rounded-md bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-accent hover:text-accent-foreground disabled:opacity-60"
                 >
-                  {state === "sending" ? "Sending…" : "Send message"}
+                  {state === "sending"
+                    ? copy.contact.submitSending
+                    : copy.contact.submitIdle}
                   <span className="transition-transform group-hover:translate-x-0.5">
                     →
                   </span>

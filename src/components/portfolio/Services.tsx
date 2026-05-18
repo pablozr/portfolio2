@@ -1,31 +1,8 @@
-const SERVICES = [
-  {
-    code: "01 / LP",
-    title: "Landing Pages",
-    body: "High-conversion marketing surfaces. Custom design, motion, and copy-aware structure. Built for speed and Lighthouse 95+.",
-    bullets: ["Custom design + dev", "CMS or static", "A/B ready"],
-  },
-  {
-    code: "02 / SYS",
-    title: "Custom Systems",
-    body: "End-to-end fullstack apps. Auth, payments, dashboards, jobs. Clean architecture you can hand off without panic.",
-    bullets: ["Auth + roles", "Stripe / billing", "Typed APIs"],
-  },
-  {
-    code: "03 / INT",
-    title: "Internal Tools",
-    body: "Admin panels and ops dashboards that replace your fragile spreadsheet. Fast to iterate, hard to break.",
-    bullets: ["Role-based UI", "CRUD + reports", "Audit logs"],
-  },
-  {
-    code: "04 / AUTO",
-    title: "Automation & Integrations",
-    body: "Webhooks, queues and API glue between the tools you already use. Less manual work, more leverage.",
-    bullets: ["n8n / Make", "Custom workers", "CRM / Stripe / GPT"],
-  },
-];
+import { useLanguage } from "@/i18n/language";
 
 export function Services() {
+  const { copy } = useLanguage();
+
   return (
     <section id="services" className="relative mx-auto max-w-7xl px-6 py-32">
       <div className="mb-12 flex items-end justify-between border-b border-border pb-6">
@@ -34,16 +11,16 @@ export function Services() {
             // capabilities.json
           </p>
           <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
-            What I build
+            {copy.services.title}
           </h2>
         </div>
         <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
-          [ 04 / SERVICES ]
+          {copy.services.itemsLabel}
         </span>
       </div>
 
       <div className="grid grid-cols-1 border-l border-t border-border md:grid-cols-2 lg:grid-cols-4">
-        {SERVICES.map((s) => (
+        {copy.services.items.map((s) => (
           <article
             key={s.code}
             className="group relative flex flex-col gap-6 border-b border-r border-border p-8 transition-colors hover:bg-card/60"

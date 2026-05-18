@@ -1,25 +1,8 @@
-const QUOTES = [
-  {
-    body: "Shipped our internal ops dashboard in three weeks. Replaced a fragile spreadsheet that was costing us hours every day. Communication was async, sharp, zero drama.",
-    name: "Marina Costa",
-    role: "Head of Ops",
-    company: "Vanguard Logistics",
-  },
-  {
-    body: "Rare combo of taste and engineering rigor. The landing page he built converted 3.2x better than our previous one, and the codebase is something we can actually maintain.",
-    name: "Daniel Reis",
-    role: "Founder",
-    company: "Nexus AI",
-  },
-  {
-    body: "Took a messy automation idea and turned it into a clean pipeline between Stripe, our CRM and GPT. Saved us roughly 15 hours a week. Worth every penny.",
-    name: "Júlia Mendes",
-    role: "COO",
-    company: "Flux Studio",
-  },
-];
+import { useLanguage } from "@/i18n/language";
 
 export function Testimonials() {
+  const { copy } = useLanguage();
+
   return (
     <section
       id="testimonials"
@@ -33,16 +16,16 @@ export function Testimonials() {
               // signal
             </p>
             <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
-              What clients say
+              {copy.testimonials.title}
             </h2>
           </div>
           <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
-            [ 05 / TESTIMONIALS ]
+            {copy.testimonials.itemsLabel}
           </span>
         </div>
 
         <div className="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
-          {QUOTES.map((q, i) => (
+          {copy.testimonials.quotes.map((q, i) => (
             <figure
               key={q.name}
               className="flex flex-col justify-between gap-8 bg-background p-8 animate-reveal"

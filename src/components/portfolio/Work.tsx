@@ -1,6 +1,7 @@
 import vanguard from "@/assets/project-vanguard.jpg";
 import nexus from "@/assets/project-nexus.jpg";
 import flux from "@/assets/project-flux.jpg";
+import { useLanguage } from "@/i18n/language";
 
 type Project = {
   index: string;
@@ -47,6 +48,13 @@ const PROJECTS: Project[] = [
 ];
 
 export function Work() {
+  const { copy } = useLanguage();
+  const projects: Project[] = copy.work.projects.map((project, i) => ({
+    ...project,
+    stack: PROJECTS[i]?.stack ?? [],
+    image: PROJECTS[i]?.image ?? vanguard,
+  }));
+
   return (
     <section id="work" className="relative mx-auto max-w-7xl px-6 py-32">
       <div className="mb-16 flex items-end justify-between border-b border-border pb-6">
@@ -55,16 +63,16 @@ export function Work() {
             // selected_output
           </p>
           <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
-            Recent shipments
+            {copy.work.title}
           </h2>
         </div>
         <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
-          [ 03 / CASE_STUDIES ]
+          {copy.work.itemsLabel}
         </span>
       </div>
 
       <div className="space-y-28">
-        {PROJECTS.map((p, i) => {
+        {projects.map((p, i) => {
           const reverse = i % 2 === 1;
           return (
             <article key={p.title} className="group grid grid-cols-1 gap-10 lg:grid-cols-12">

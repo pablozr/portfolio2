@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/i18n/language";
 
 export function Nav() {
+  const { locale, setLocale, copy } = useLanguage();
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -22,14 +24,36 @@ export function Nav() {
           <span className="text-accent">ERR_</span>STUDIO<span className="text-muted-foreground">/v01</span>
         </a>
         <div className="hidden gap-7 font-mono text-[11px] uppercase tracking-widest text-muted-foreground md:flex">
-          <a href="#work" className="transition-colors hover:text-accent">// work</a>
-          <a href="#services" className="transition-colors hover:text-accent">// services</a>
-          <a href="#process" className="transition-colors hover:text-accent">// process</a>
-          <a href="#about" className="transition-colors hover:text-accent">// about</a>
-          <a href="#faq" className="transition-colors hover:text-accent">// faq</a>
-          <a href="#contact" className="transition-colors hover:text-accent">// ping</a>
+          <a href="#work" className="transition-colors hover:text-accent">// {copy.nav.work}</a>
+          <a href="#services" className="transition-colors hover:text-accent">// {copy.nav.services}</a>
+          <a href="#process" className="transition-colors hover:text-accent">// {copy.nav.process}</a>
+          <a href="#about" className="transition-colors hover:text-accent">// {copy.nav.about}</a>
+          <a href="#faq" className="transition-colors hover:text-accent">// {copy.nav.faq}</a>
+          <a href="#contact" className="transition-colors hover:text-accent">// {copy.nav.ping}</a>
         </div>
-        <div className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
+        <div className="flex items-center gap-3 font-mono text-[11px] text-muted-foreground">
+          <div className="flex items-center gap-1 rounded border border-border px-1 py-1">
+            <button
+              type="button"
+              onClick={() => setLocale("pt-BR")}
+              className={`rounded px-1.5 py-0.5 transition-colors ${
+                locale === "pt-BR" ? "bg-accent text-accent-foreground" : "hover:text-foreground"
+              }`}
+              aria-label={`${copy.nav.languageLabel}: Portugues`}
+            >
+              PT
+            </button>
+            <button
+              type="button"
+              onClick={() => setLocale("en")}
+              className={`rounded px-1.5 py-0.5 transition-colors ${
+                locale === "en" ? "bg-accent text-accent-foreground" : "hover:text-foreground"
+              }`}
+              aria-label={`${copy.nav.languageLabel}: English`}
+            >
+              EN
+            </button>
+          </div>
           <span className="size-1.5 animate-pulse rounded-full bg-accent" aria-hidden />
           <span className="hidden sm:inline">{time} UTC</span>
         </div>

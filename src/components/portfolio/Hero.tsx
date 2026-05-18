@@ -1,4 +1,8 @@
+import { useLanguage } from "@/i18n/language";
+
 export function Hero() {
+  const { copy } = useLanguage();
+
   return (
     <section id="top" className="relative overflow-hidden border-b border-border">
       <div className="absolute inset-0 grid-bg opacity-50" aria-hidden />
@@ -15,20 +19,18 @@ export function Hero() {
         <div className="animate-reveal">
           <div className="mb-10 inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-            <span>Available for projects · Q3 — Q4 2025</span>
+            <span>{copy.hero.availability}</span>
           </div>
 
           <h1 className="max-w-4xl text-balance text-4xl font-medium leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-[5rem]">
-            Fullstack development
+            {copy.hero.titleLine1}
             <br />
-            for teams that need it{" "}
-            <span className="font-serif italic text-accent">built right.</span>
+            {copy.hero.titleLine2}{" "}
+            <span className="font-serif italic text-accent">{copy.hero.titleAccent}</span>
           </h1>
 
           <p className="mt-10 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            I&rsquo;m a freelance developer designing and shipping landing
-            pages, custom systems, internal tools and automation flows —
-            crafted with care, delivered on time.
+            {copy.hero.body}
           </p>
 
           <div
@@ -39,14 +41,14 @@ export function Hero() {
               href="#contact"
               className="group inline-flex items-center gap-3 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              Start a project
+              {copy.hero.ctaStart}
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </a>
             <a
               href="#work"
               className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-3 text-sm text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
             >
-              View selected work
+              {copy.hero.ctaWork}
             </a>
           </div>
 

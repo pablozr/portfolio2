@@ -10,29 +10,54 @@ import { Testimonials } from "@/components/portfolio/Testimonials";
 import { FAQ } from "@/components/portfolio/FAQ";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
+import { useLanguage } from "@/i18n/language";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "ERR_STUDIO — Freelance Fullstack Developer" },
-      {
-        name: "description",
-        content:
-          "Freelance fullstack developer building landing pages, custom systems, internal tools and automation. Premium, dark, brutalist craft.",
-      },
-      { property: "og:title", content: "ERR_STUDIO — Freelance Fullstack Developer" },
-      {
-        property: "og:description",
-        content:
-          "Landing pages, custom systems, internal tools and automation. Premium dark craft, shipped lean.",
-      },
-      { property: "og:type", content: "website" },
-    ],
+    meta: [{ property: "og:type", content: "website" }],
   }),
-  component: Index,
+  component: Page,
 });
 
-function Index() {
+function Page() {
+  const { copy } = useLanguage();
+
+  useEffect(() => {
+    document.title = copy.meta.title;
+
+    const upsertMeta = (selector: string, attrs: Record<string, string>) => {
+      let node = document.head.querySelector(selector) as HTMLMetaElement | null;
+      if (!node) {
+        node = document.createElement("meta");
+        Object.entries(attrs).forEach(([k, v]) => node?.setAttribute(k, v));
+        document.head.appendChild(node);
+      }
+      if (attrs.name) {
+        node.setAttribute("name", attrs.name);
+      }
+      if (attrs.property) {
+        node.setAttribute("property", attrs.property);
+      }
+      if (attrs.content) {
+        node.setAttribute("content", attrs.content);
+      }
+    };
+
+    upsertMeta('meta[name="description"]', {
+      name: "description",
+      content: copy.meta.description,
+    });
+    upsertMeta('meta[property="og:title"]', {
+      property: "og:title",
+      content: copy.meta.ogTitle,
+    });
+    upsertMeta('meta[property="og:description"]', {
+      property: "og:description",
+      content: copy.meta.ogDescription,
+    });
+  }, [copy]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
