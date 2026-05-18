@@ -5,6 +5,9 @@ import { Marquee } from "@/components/portfolio/Marquee";
 import { Services } from "@/components/portfolio/Services";
 import { Work } from "@/components/portfolio/Work";
 import { Process } from "@/components/portfolio/Process";
+import { About } from "@/components/portfolio/About";
+import { Testimonials } from "@/components/portfolio/Testimonials";
+import { FAQ } from "@/components/portfolio/FAQ";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
 
