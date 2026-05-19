@@ -38,6 +38,9 @@
 
   --animate-reveal: reveal 1s var(--ease-out-expo) both;
   --animate-marquee: marquee 48s linear infinite;
+  --animate-hero-video-in: hero-video-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-hero-overlay-in: hero-overlay-in 1.5s var(--ease-out-expo) both;
+  --animate-hero-accent-in: hero-accent-in 2.3s var(--ease-out-expo) both;
 
   @keyframes reveal {
     from { opacity: 0; transform: translateY(16px); }
@@ -46,6 +49,26 @@
   @keyframes marquee {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
+  }
+  @keyframes hero-video-in {
+    0% {
+      opacity: 0;
+      transform: scale(1.05) translate3d(1.1%, -0.35%, 0);
+      filter: saturate(0.94) contrast(1.05) brightness(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translate3d(0, 0, 0);
+      filter: saturate(1) contrast(1) brightness(1);
+    }
+  }
+  @keyframes hero-overlay-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes hero-accent-in {
+    0% { opacity: 0; transform: translate3d(0, -10px, 0) scale(1.08); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
   }
 }
 

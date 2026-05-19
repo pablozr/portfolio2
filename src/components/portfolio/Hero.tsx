@@ -1,16 +1,16 @@
 import { useLanguage } from "@/i18n/language";
+import heroVideo from "@/assets/eclipse-over-silent-falls.1920x1080.mp4";
 
-export function Hero() {
+export function Hero({ className = "" }: { className?: string }) {
   const { copy } = useLanguage();
-  const heroVideoUrl =
-    "https://res.cloudinary.com/dfonotyfb/video/upload/v1775585556/dds3_1_rqhg7x.mp4";
-  const heroVideoFallbackUrl =
-    "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260330_145725_08886141-ed95-4a8e-8d6d-b75eaadce638.mp4";
 
   return (
-    <section id="top" className="relative overflow-hidden border-b border-border">
+    <section
+      id="top"
+      className={`relative overflow-hidden border-b border-border ${className}`.trim()}
+    >
       <video
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 z-0 h-full w-full animate-hero-video-in object-cover object-[72%_center] md:object-[68%_center]"
         autoPlay
         muted
         loop
@@ -18,35 +18,52 @@ export function Hero() {
         preload="metadata"
         aria-hidden
       >
-        <source src={heroVideoUrl} type="video/mp4" />
-        <source src={heroVideoFallbackUrl} type="video/mp4" />
+        <source src={heroVideo} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-background/35" aria-hidden />
-      <div className="absolute inset-0 grid-bg opacity-50" aria-hidden />
+      <div className="absolute inset-0 bg-background/18 animate-hero-overlay-in" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-0"
+        className="absolute inset-0 animate-hero-overlay-in"
         style={{
           background:
-            "radial-gradient(70% 60% at 20% 0%, oklch(0.78 0.09 70 / 0.06), transparent 70%)",
+            "linear-gradient(90deg, oklch(0.14 0.01 250 / 0.48) 0%, oklch(0.14 0.01 250 / 0.36) 38%, oklch(0.14 0.01 250 / 0.16) 62%, oklch(0.14 0.01 250 / 0.3) 100%)",
+        }}
+        aria-hidden
+      />
+      <div className="absolute inset-0 grid-bg opacity-35" aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-0 animate-hero-accent-in"
+        style={{
+          background:
+            "radial-gradient(72% 62% at 18% 0%, oklch(0.78 0.09 70 / 0.13), transparent 68%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 animate-hero-accent-in"
+        style={{
+          background:
+            "radial-gradient(46% 34% at 78% 18%, oklch(0.88 0.07 95 / 0.2), transparent 74%)",
         }}
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-6xl px-6 pt-40 pb-32 sm:pt-48 sm:pb-40">
         <div className="animate-reveal">
-          <div className="mb-10 inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-            <span>{copy.hero.availability}</span>
-          </div>
+          {copy.hero.availability ? (
+            <div className="mb-10 inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+              <span>{copy.hero.availability}</span>
+            </div>
+          ) : null}
 
-          <h1 className="max-w-4xl text-balance text-4xl font-medium leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-[5rem]">
+          <h1 className="max-w-4xl text-balance text-4xl font-semibold leading-[1.03] tracking-tight text-white [text-shadow:0_3px_20px_rgba(0,0,0,0.55)] sm:text-6xl md:text-[5rem]">
             {copy.hero.titleLine1}
             <br />
             {copy.hero.titleLine2}{" "}
-            <span className="font-serif italic text-accent">{copy.hero.titleAccent}</span>
+            <span className="font-serif italic text-accent [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]">{copy.hero.titleAccent}</span>
           </h1>
 
-          <p className="mt-10 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-10 max-w-xl text-base leading-relaxed text-zinc-200/92 [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-lg">
             {copy.hero.body}
           </p>
 
@@ -63,7 +80,7 @@ export function Hero() {
             </a>
             <a
               href="#work"
-              className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-3 text-sm text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-md border border-white/45 bg-white/8 px-5 py-3 text-sm font-medium text-zinc-100 shadow-[0_10px_24px_rgba(0,0,0,0.28)] transition-colors hover:border-accent/70 hover:bg-white/14 hover:text-white"
             >
               {copy.hero.ctaWork}
             </a>
