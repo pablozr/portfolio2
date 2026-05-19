@@ -51,7 +51,7 @@ export function Contact() {
         parsed.data.budget || copy.contact.mail.budgetFallback
       }\n\n${parsed.data.message}`
     );
-    window.location.href = `mailto:hello@err-studio.dev?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@pablofarina.dev?subject=${subject}&body=${body}`;
     setTimeout(() => setState("sent"), 600);
   }
 

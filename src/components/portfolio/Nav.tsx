@@ -1,21 +1,7 @@
-import { useEffect, useState } from "react";
 import { useLanguage } from "@/i18n/language";
 
 export function Nav() {
   const { locale, setLocale, copy } = useLanguage();
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const fmt = () =>
-      new Date().toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
-    setTime(fmt());
-    const id = setInterval(() => setTime(fmt()), 1000);
-    return () => clearInterval(id);
-  }, []);
 
   return (
     <nav className="fixed top-3 z-50 w-full px-3 sm:px-5">
@@ -42,7 +28,7 @@ export function Nav() {
         />
         <div className="relative mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-7">
           <a href="#top" className="font-mono text-base tracking-tight">
-          <span className="text-accent">ERR_</span>STUDIO<span className="text-muted-foreground">/v01</span>
+          <span className="text-accent">PABLO</span> FARINA<span className="text-muted-foreground">/v01</span>
           </a>
           <div className="hidden gap-8 font-mono text-xs uppercase tracking-[0.2em] text-zinc-300 md:flex">
             <a href="#work" className="transition-colors hover:text-accent">// {copy.nav.work}</a>
@@ -80,7 +66,6 @@ export function Nav() {
               </button>
             </div>
             <span className="size-1.5 animate-pulse rounded-full bg-accent" aria-hidden />
-            <span className="hidden sm:inline">{time} UTC</span>
           </div>
         </div>
       </div>

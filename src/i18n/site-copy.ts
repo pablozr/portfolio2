@@ -137,7 +137,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       languageLabel: "Idioma",
     },
     hero: {
-      availability: "Disponivel para projetos · Q3 — Q4 2025",
+      availability: "",
       titleLine1: "Desenvolvimento fullstack",
       titleLine2: "para times que precisam de tudo",
       titleAccent: "bem feito.",
@@ -324,7 +324,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine2: "em mente?",
       body: "Me conta sobre ele, mesmo que ainda esteja embrionario. Eu respondo em ate 24h com feedback honesto de escopo, prazo e investimento.",
       details: [
-        { k: "Email", v: "hello@err-studio.dev" },
+        { k: "Email", v: "hello@pablofarina.dev" },
         { k: "Resposta", v: "Em ate 24h" },
         { k: "Status", v: "Aceitando projetos para Q3" },
       ],
@@ -362,10 +362,10 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       status: "Status: aceitando clientes",
     },
     meta: {
-      title: "ERR_STUDIO — Desenvolvedor Fullstack Freelancer",
+      title: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
       description:
         "Desenvolvedor fullstack freelancer criando landing pages, sistemas sob medida, ferramentas internas e automacoes.",
-      ogTitle: "ERR_STUDIO — Desenvolvedor Fullstack Freelancer",
+      ogTitle: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
       ogDescription:
         "Landing pages, sistemas sob medida, ferramentas internas e automacoes.",
     },
@@ -381,7 +381,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       languageLabel: "Language",
     },
     hero: {
-      availability: "Available for projects · Q3 — Q4 2025",
+      availability: "",
       titleLine1: "Fullstack development",
       titleLine2: "for teams that need it",
       titleAccent: "built right.",
@@ -565,7 +565,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine2: "in mind?",
       body: "Tell me about it, even if it is still rough. I reply within 24h with honest feedback on scope, timeline and price.",
       details: [
-        { k: "Email", v: "hello@err-studio.dev" },
+        { k: "Email", v: "hello@pablofarina.dev" },
         { k: "Response", v: "Under 24h" },
         { k: "Status", v: "Accepting Q3 projects" },
       ],
@@ -603,10 +603,10 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       status: "Status: accepting clients",
     },
     meta: {
-      title: "ERR_STUDIO — Freelance Fullstack Developer",
+      title: "Pablo Farina — Freelance Fullstack Developer",
       description:
         "Freelance fullstack developer building landing pages, custom systems, internal tools and automation.",
-      ogTitle: "ERR_STUDIO — Freelance Fullstack Developer",
+      ogTitle: "Pablo Farina — Freelance Fullstack Developer",
       ogDescription:
         "Landing pages, custom systems, internal tools and automation.",
     },
