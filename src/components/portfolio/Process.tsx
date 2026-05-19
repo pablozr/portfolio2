@@ -18,7 +18,7 @@ export function Process() {
       <div className="relative mx-auto max-w-7xl px-6 py-28">
         <div className="mb-20 grid grid-cols-1 gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-accent">
+            <p className="mb-4 font-mono text-sm uppercase tracking-[0.26em] text-accent">
               // how_we_work
             </p>
             <h2 className="text-4xl font-medium leading-[1.05] tracking-tight sm:text-6xl">
@@ -29,10 +29,10 @@ export function Process() {
             </h2>
           </div>
           <div className="flex flex-col justify-end gap-4 lg:col-span-5">
-            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+            <p className="max-w-md text-base leading-relaxed text-zinc-200/95 sm:text-[1.05rem]">
               {copy.process.body}
             </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-4 font-mono text-xs uppercase tracking-[0.16em] text-zinc-300/95 sm:text-[13px]">
               {copy.process.meta.map((item) => (
                 <span key={item}><span className="text-accent">●</span> {item}</span>
               ))}
@@ -70,19 +70,19 @@ export function Process() {
                       {s.k}
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-zinc-300/95 sm:text-[13px]">
                     {s.meta}
                   </span>
                 </div>
 
-                <h3 className="mb-3 text-2xl font-medium tracking-tight">
+                <h3 className="mb-3 text-[1.75rem] font-medium tracking-tight sm:text-[1.9rem]">
                   {s.t}
                 </h3>
-                <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                <p className="mb-6 text-base leading-relaxed text-zinc-200/90 sm:text-[1.04rem]">
                   {s.d}
                 </p>
 
-                <ul className="space-y-1.5 border-t border-border pt-4 font-mono text-[11px] text-muted-foreground">
+                <ul className="space-y-2 border-t border-border pt-4 font-mono text-xs text-zinc-300/95 sm:text-[13px]">
                   {s.deliver.map((d) => (
                     <li key={d} className="flex items-center gap-2">
                       <span className="text-accent">→</span> {d}

@@ -10,6 +10,7 @@ import { Testimonials } from "@/components/portfolio/Testimonials";
 import { FAQ } from "@/components/portfolio/FAQ";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
+import { SectionDivider } from "@/components/portfolio/SectionDivider";
 import { useLanguage } from "@/i18n/language";
 import { useEffect } from "react";
 
@@ -66,12 +67,19 @@ function Page() {
           <Hero className="flex-1" />
           <Marquee />
         </section>
+        <SectionDivider tone="amber" />
         <Services />
+        <SectionDivider tone="blue" />
         <Work />
+        <SectionDivider tone="amber" />
         <Testimonials />
+        <SectionDivider tone="blue" />
         <Process />
+        <SectionDivider tone="amber" />
         <About />
+        <SectionDivider tone="blue" />
         <FAQ />
+        <SectionDivider tone="amber" />
         <Contact />
       </main>
       <Footer />

@@ -1,36 +1,32 @@
 import { useLanguage } from "@/i18n/language";
+import GlassSurface from "@/components/ui/GlassSurface";
 
 export function Nav() {
   const { locale, setLocale, copy } = useLanguage();
 
   return (
-    <nav className="fixed top-3 z-50 w-full px-3 sm:px-5">
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(130deg,rgba(38,42,51,0.58),rgba(12,14,20,0.5)_42%,rgba(6,8,12,0.64))] shadow-[0_14px_48px_rgba(0,0,0,0.52),0_0_0_1px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.45),inset_0_-18px_32px_rgba(0,0,0,0.28)] backdrop-blur-2xl">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(180% 110% at 14% -30%, rgba(255,255,255,0.42), rgba(255,255,255,0.05) 30%, rgba(255,255,255,0) 58%), radial-gradient(125% 90% at 86% 130%, rgba(0,0,0,0.34), rgba(0,0,0,0) 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-70"
-          style={{
-            background:
-              "linear-gradient(115deg, rgba(255,255,255,0) 18%, rgba(255,255,255,0.24) 30%, rgba(255,255,255,0.06) 36%, rgba(255,255,255,0) 47%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/65"
-          aria-hidden
-        />
-        <div className="relative mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-7">
-          <a href="#top" className="font-mono text-base tracking-tight">
+    <nav className="fixed top-5 z-50 w-full px-3 sm:px-6">
+      <GlassSurface
+        width="100%"
+        height={72}
+        borderRadius={18}
+        backgroundOpacity={0.2}
+        saturation={1.5}
+        brightness={44}
+        opacity={0.94}
+        displace={0.72}
+        distortionScale={-165}
+        redOffset={1}
+        greenOffset={11}
+        blueOffset={22}
+        className="relative mx-auto max-w-7xl border border-white/18 shadow-[0_18px_56px_rgba(0,0,0,0.62)]"
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(180%_115%_at_12%_-36%,rgba(255,255,255,0.24),rgba(255,255,255,0.04)_28%,rgba(255,255,255,0)_58%),radial-gradient(130%_100%_at_86%_130%,rgba(0,0,0,0.42),rgba(0,0,0,0.1)_52%,rgba(0,0,0,0)_70%)]" aria-hidden />
+        <div className="relative mx-auto flex h-22 max-w-7xl items-center justify-between px-7 sm:px-10">
+          <a href="#top" className="mr-8 font-mono text-base tracking-[0.05em]">
           <span className="text-accent">PABLO</span> FARINA<span className="text-muted-foreground">/v01</span>
           </a>
-          <div className="hidden gap-8 font-mono text-xs uppercase tracking-[0.2em] text-zinc-300 md:flex">
+          <div className="hidden flex-1 items-center justify-center gap-12 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-100 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] lg:flex">
             <a href="#work" className="transition-colors hover:text-accent">// {copy.nav.work}</a>
             <a href="#services" className="transition-colors hover:text-accent">// {copy.nav.services}</a>
             <a href="#process" className="transition-colors hover:text-accent">// {copy.nav.process}</a>
@@ -38,15 +34,15 @@ export function Nav() {
             <a href="#faq" className="transition-colors hover:text-accent">// {copy.nav.faq}</a>
             <a href="#contact" className="transition-colors hover:text-accent">// {copy.nav.ping}</a>
           </div>
-          <div className="flex items-center gap-3 font-mono text-xs text-zinc-300">
-            <div className="flex items-center gap-1 rounded-lg border border-white/15 bg-black/25 p-1">
+          <div className="ml-8 flex shrink-0 items-center gap-5 font-mono text-xs text-zinc-100 [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
+            <div className="flex items-center gap-1 rounded-lg border border-white/20 bg-black/30 p-1">
               <button
                 type="button"
                 onClick={() => setLocale("pt-BR")}
                 className={`rounded-md px-2 py-1 transition-colors ${
                   locale === "pt-BR"
                     ? "bg-accent text-accent-foreground"
-                    : "text-zinc-300 hover:text-foreground"
+                    : "text-zinc-100 hover:text-foreground"
                 }`}
                 aria-label={`${copy.nav.languageLabel}: Portugues`}
               >
@@ -58,7 +54,7 @@ export function Nav() {
                 className={`rounded-md px-2 py-1 transition-colors ${
                   locale === "en"
                     ? "bg-accent text-accent-foreground"
-                    : "text-zinc-300 hover:text-foreground"
+                    : "text-zinc-100 hover:text-foreground"
                 }`}
                 aria-label={`${copy.nav.languageLabel}: English`}
               >
@@ -68,7 +64,7 @@ export function Nav() {
             <span className="size-1.5 animate-pulse rounded-full bg-accent" aria-hidden />
           </div>
         </div>
-      </div>
+      </GlassSurface>
     </nav>
   );
 }
