@@ -62,8 +62,10 @@ function Page() {
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <main>
-        <Hero />
-        <Marquee />
+        <section className="flex min-h-screen flex-col">
+          <Hero className="flex-1" />
+          <Marquee />
+        </section>
         <Services />
         <Work />
         <Testimonials />
