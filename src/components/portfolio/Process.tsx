@@ -2,7 +2,8 @@ import { useLanguage } from "@/i18n/language";
 import { useEffect, useRef, useState } from "react";
 
 export function Process() {
-  const { copy } = useLanguage();
+  const { copy, locale } = useLanguage();
+  const isPt = locale === "pt-BR";
   const sectionRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -73,7 +74,7 @@ export function Process() {
         <div className="mb-20 grid grid-cols-1 gap-10 lg:mb-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="mb-4 font-mono text-sm uppercase tracking-[0.26em] text-accent">
-              // how_we_work
+              {isPt ? "// processo" : "// how_we_work"}
             </p>
             <h2 className="text-4xl font-medium leading-[1.05] tracking-tight sm:text-6xl">
               {copy.process.titleLine1}{" "}

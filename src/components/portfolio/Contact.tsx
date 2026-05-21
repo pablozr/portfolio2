@@ -17,7 +17,8 @@ const getSchema = (messages: {
 type FormState = "idle" | "sending" | "sent" | "error";
 
 export function Contact() {
-  const { copy } = useLanguage();
+  const { copy, locale } = useLanguage();
+  const isPt = locale === "pt-BR";
   const [state, setState] = useState<FormState>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const schema = getSchema(copy.contact.errors);
@@ -61,7 +62,7 @@ export function Contact() {
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.25em] text-accent">
-              // get in touch
+              {isPt ? "// contato" : "// get in touch"}
             </p>
             <h2 className="text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               {copy.contact.titleLine1}

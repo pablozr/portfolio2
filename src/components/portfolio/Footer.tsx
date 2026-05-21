@@ -3,7 +3,6 @@ import { useLanguage } from "@/i18n/language";
 export function Footer() {
   const { copy, locale } = useLanguage();
   const isPt = locale === "pt-BR";
-  const links = ["GitHub", "LinkedIn", "X/Twitter", "Read.cv"];
 
   return (
     <footer className="relative overflow-hidden border-t border-border bg-card/20">
@@ -18,7 +17,7 @@ export function Footer() {
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.24em] text-accent">
-              // end_transmission
+              {isPt ? "// fim" : "// end_transmission"}
             </p>
             <a
               href="#top"
@@ -40,8 +39,8 @@ export function Footer() {
               </div>
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                 {isPt
-                  ? "Se a ideia precisa sair do papel com bom gosto e engenharia solida, me chama."
-                  : "If the idea needs to ship with taste and solid engineering, reach out."}
+                  ? "Se você precisa tirar uma landing page, dashboard ou sistema do papel, me chama."
+                  : "If you need to take a landing page, dashboard, or system from idea to launch, reach out."}
               </p>
               <a
                 href="#contact"
@@ -57,16 +56,13 @@ export function Footer() {
         <div className="mt-10 grid gap-4 border-t border-border/80 pt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground md:grid-cols-3 md:items-center">
           <div>© {new Date().getFullYear()} Pablo Farina — {copy.footer.rights}</div>
 
-          <div className="flex flex-wrap gap-2 md:justify-center">
-            {links.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="rounded-full border border-border/70 bg-background/40 px-3 py-2 transition-colors hover:border-accent/50 hover:text-accent"
-              >
-                {link}
-              </a>
-            ))}
+          <div className="md:text-center">
+            <a
+              href="mailto:hello@pablofarina.dev"
+              className="rounded-full border border-border/70 bg-background/40 px-3 py-2 transition-colors hover:border-accent/50 hover:text-accent"
+            >
+              hello@pablofarina.dev
+            </a>
           </div>
 
           <a href="#top" className="transition-colors hover:text-accent md:text-right">

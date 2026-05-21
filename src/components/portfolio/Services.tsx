@@ -21,7 +21,7 @@ export function Services() {
         <div className="flex flex-wrap items-end justify-between gap-6 border-b border-white/15 pb-6">
           <div>
             <p className="mb-2 font-mono text-xs uppercase tracking-[0.3em] text-accent/90">
-              // entregas.premium
+              // {copy.services.eyebrow}
             </p>
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
               {copy.services.title}
@@ -33,8 +33,7 @@ export function Services() {
         </div>
 
         <p className="mt-6 max-w-3xl text-sm leading-relaxed text-zinc-300/90 sm:text-base">
-          Produtos digitais com visual forte, codigo limpo e foco em conversao. Cada bloco abaixo
-          representa um tipo de entrega que posso assumir de ponta a ponta.
+          {copy.services.intro}
         </p>
       </div>
 
@@ -61,7 +60,7 @@ export function Services() {
                 {s.code}
               </span>
               <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
-                entrega
+                {copy.services.badge}
               </span>
             </div>
 
@@ -96,6 +95,33 @@ export function Services() {
             </div>
           </article>
         ))}
+      </div>
+
+      <div className="mt-12 rounded-3xl border border-white/15 bg-[linear-gradient(140deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02)_35%,rgba(0,0,0,0.1)_100%)] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/12 pb-5">
+          <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            {copy.services.fitTitle}
+          </h3>
+          <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-200/85">
+            fit
+          </span>
+        </div>
+
+        <p className="mt-5 max-w-3xl text-sm leading-relaxed text-zinc-300/90 sm:text-base">
+          {copy.services.fitIntro}
+        </p>
+
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          {copy.services.fitItems.map((item) => (
+            <li
+              key={item}
+              className="rounded-xl border border-white/12 bg-black/20 px-4 py-3 text-sm leading-relaxed text-zinc-200/95"
+            >
+              <span className="mr-2 text-accent">▸</span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

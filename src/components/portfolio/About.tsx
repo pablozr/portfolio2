@@ -4,25 +4,25 @@ export function About() {
   const { copy, locale } = useLanguage();
   const isPt = locale === "pt-BR";
   const aboutMeta = isPt
-    ? "operador solo / fullstack / produto"
-    : "solo operator / fullstack / product-minded";
+    ? "stack com propósito"
+    : "purpose-driven stack";
   const profileRows = isPt
     ? [
-        ["funcao", "fullstack"],
-        ["modo", "async-first"],
-        ["handover", "zero lock-in"],
+        ["quem", "desenvolvedor full stack"],
+        ["atua", "web, backend e integrações"],
+        ["fluxo", "escopo, staging e handoff"],
       ]
     : [
-        ["role", "fullstack"],
-        ["mode", "async-first"],
-        ["handover", "zero lock-in"],
+        ["who", "full stack developer"],
+        ["focus", "web, backend, integrations"],
+        ["flow", "scope, staging, handoff"],
       ];
   const profileNote = isPt
-    ? "Engenharia de produto pratica para times que precisam executar sem ruido de agencia."
-    : "Practical product engineering for teams that need execution without agency noise.";
+    ? "Stack com propósito para resolver gargalos reais de operação."
+    : "Purpose-driven stack focused on operational bottlenecks.";
   const principles = isPt
-    ? ["acesso direto", "foco em producao", "handoff limpo"]
-    : ["direct access", "production focus", "clean handoff"];
+    ? ["APIs documentadas", "staging para validar", "deploy e handoff claros"]
+    : ["documented APIs", "staging for validation", "clear deploy and handoff"];
 
   return (
     <section id="about" className="relative overflow-hidden border-t border-border">
@@ -92,7 +92,9 @@ export function About() {
 
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <div className="rounded-2xl border border-border/80 bg-background/70 p-5 backdrop-blur-md">
-                  <p className="font-serif text-4xl italic leading-none text-accent">ship / think / own</p>
+                  <p className="font-serif text-4xl italic leading-none text-accent">
+                    {isPt ? "planejar / construir / manter" : "plan / build / maintain"}
+                  </p>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                     {profileNote}
                   </p>
@@ -107,7 +109,8 @@ export function About() {
                 <div className="space-y-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
                   <p>{copy.about.p1}</p>
                   <p>{copy.about.p2}</p>
-                  <p className="text-foreground">{copy.about.p3}</p>
+                  <p>{copy.about.p3}</p>
+                  {copy.about.p4 ? <p className="text-foreground">{copy.about.p4}</p> : null}
                 </div>
               </div>
 
@@ -126,7 +129,7 @@ export function About() {
                     <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                       {s.k}
                     </dt>
-                    <dd className="mt-3 font-serif text-4xl italic text-foreground sm:text-5xl">
+                    <dd className="mt-3 text-sm leading-relaxed text-foreground sm:text-base">
                       {s.v}
                     </dd>
                   </div>

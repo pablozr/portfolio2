@@ -82,7 +82,7 @@ export function Hero({ className = "" }: { className?: string }) {
               href="#work"
               className="inline-flex items-center gap-2 rounded-md border border-white/45 bg-white/8 px-5 py-3 text-sm font-medium text-zinc-100 shadow-[0_10px_24px_rgba(0,0,0,0.28)] transition-colors hover:border-accent/70 hover:bg-white/14 hover:text-white"
             >
-              {copy.hero.ctaWork}
+              {copy.hero.ctaServices}
             </a>
           </div>
 

@@ -19,10 +19,16 @@ type SiteCopy = {
     titleAccent: string;
     body: string;
     ctaStart: string;
-    ctaWork: string;
+    ctaServices: string;
   };
   services: {
+    eyebrow: string;
     title: string;
+    intro: string;
+    badge: string;
+    fitTitle: string;
+    fitIntro: string;
+    fitItems: string[];
     itemsLabel: string;
     items: Array<{
       code: string;
@@ -31,23 +37,6 @@ type SiteCopy = {
       bullets: string[];
       prices: string[];
     }>;
-  };
-  work: {
-    title: string;
-    itemsLabel: string;
-    projects: Array<{
-      index: string;
-      tag: string;
-      title: string;
-      year: string;
-      body: string;
-      alt: string;
-    }>;
-  };
-  testimonials: {
-    title: string;
-    itemsLabel: string;
-    quotes: Array<{ body: string; name: string; role: string; company: string }>;
   };
   process: {
     titleLine1: string;
@@ -69,7 +58,23 @@ type SiteCopy = {
     p1: string;
     p2: string;
     p3: string;
+    p4?: string;
     stats: Array<{ k: string; v: string }>;
+  };
+  work: {
+    title: string;
+    intro: string;
+    itemsLabel: string;
+    projects: Array<{
+      title: string;
+      tag: string;
+      year: string;
+      status: string;
+      body: string;
+      stack: string[];
+      repoUrl: string;
+      liveUrl?: string;
+    }>;
   };
   faq: {
     titleLine1: string;
@@ -129,7 +134,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
   "pt-BR": {
     nav: {
       work: "projetos",
-      services: "servicos",
+      services: "serviços",
       process: "processo",
       about: "sobre",
       faq: "faq",
@@ -138,22 +143,36 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     hero: {
       availability: "",
-      titleLine1: "Desenvolvimento fullstack",
-      titleLine2: "para times que precisam de tudo",
-      titleAccent: "bem feito.",
-      body: "Sou desenvolvedor freelancer e entrego landing pages, sistemas sob medida, ferramentas internas e automacoes com cuidado e prazo respeitado.",
+      titleLine1: "Landing pages, dashboards e sistemas",
+      titleLine2: "sob medida com backend",
+      titleAccent: "confiável.",
+      body: "Desenvolvo interfaces, APIs e deploy com FastAPI, Angular, PostgreSQL, Java e Spring Boot para projetos web que precisam rodar em produção.",
       ctaStart: "Iniciar projeto",
-      ctaWork: "Ver projetos selecionados",
+      ctaServices: "Ver projetos",
     },
     services: {
+      eyebrow: "serviços",
       title: "O que eu construo",
-      itemsLabel: "[ 04 / SERVICOS ]",
+      intro:
+        "Desenvolvimento de landing pages, sistemas, dashboards e integrações com foco em confiabilidade, boa experiência de uso e manutenção no longo prazo.",
+      badge: "serviço",
+      fitTitle: "Quando faz sentido me chamar",
+      fitIntro:
+        "Trabalho bem em cenários onde você precisa transformar uma necessidade operacional em software utilizável.",
+      fitItems: [
+        "validar uma ideia com landing page ou MVP simples",
+        "trocar planilhas e processos manuais por painel interno",
+        "criar dashboard administrativo para acompanhar operação",
+        "integrar usuários, pagamentos, dados ou ferramentas externas",
+        "organizar um backend que consiga crescer sem virar remendo",
+      ],
+      itemsLabel: "[ 04 / SERVIÇOS ]",
       items: [
         {
           code: "01 / LP",
           title: "Landing Pages",
-          body: "Superficies de marketing para alta conversao. Design customizado, motion e estrutura pensada para copy. Feitas para performance e Lighthouse 95+.",
-          bullets: ["Design + dev custom", "Com CMS ou estatico", "Pronto para A/B"],
+          body: "Superfícies de marketing para alta conversão. Design customizado, motion e estrutura pensada para copy. Feitas para performance e Lighthouse 95+.",
+          bullets: ["Design + dev custom", "Com CMS ou estático", "Pronto para A/B"],
           prices: [
             "Simples: a partir de R$600",
             "Personalizada: a partir de R$1.000",
@@ -162,128 +181,129 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           code: "02 / SYS",
           title: "Sistemas Sob Medida",
-          body: "Aplicacoes fullstack ponta a ponta. Auth, pagamentos, dashboards e jobs. Arquitetura limpa para sua equipe manter sem caos.",
-          bullets: ["Auth + perfis", "Stripe / cobranca", "APIs tipadas"],
+          body: "Aplicações fullstack ponta a ponta. Auth, pagamentos, dashboards e jobs. Arquitetura limpa para sua equipe manter sem caos.",
+          bullets: ["Auth + perfis", "Stripe / cobrança", "APIs tipadas"],
           prices: ["A partir de R$2.000"],
         },
         {
           code: "03 / INT",
           title: "Ferramentas Internas",
-          body: "Painel admin e dashboards operacionais no lugar da planilha fragil. Rapidos para evoluir, dificeis de quebrar.",
-          bullets: ["UI por permissao", "CRUD + relatorios", "Logs de auditoria"],
+          body: "Painel admin e dashboards operacionais no lugar da planilha frágil. Rápidos para evoluir, difíceis de quebrar.",
+          bullets: ["UI por permissão", "CRUD + relatórios", "Logs de auditoria"],
           prices: ["A partir de R$1.500"],
         },
         {
           code: "04 / AUTO",
-          title: "Automacao e Integracoes",
-          body: "Webhooks, filas e colagem de API entre ferramentas que voce ja usa. Menos trabalho manual, mais alavancagem.",
-          bullets: ["n8n / Make", "Workers custom", "CRM / Stripe / GPT"],
+          title: "Automação e Integrações",
+          body: "Webhooks, filas e colagem de API entre ferramentas que você já usa. Menos trabalho manual, mais alavancagem.",
+          bullets: ["Make / Zapier", "Workers custom", "CRM / Stripe"],
           prices: ["A partir de R$1.500"],
         },
       ],
     },
     work: {
-      title: "Entregas recentes",
-      itemsLabel: "[ 03 / CASE_STUDIES ]",
+      title: "Projetos reais",
+      intro:
+        "Repositórios públicos com escopo técnico definido. Sem números inflados e sem promessas de produto final quando ainda é base ou MVP.",
+      itemsLabel: "[ 05 / PROJETOS ]",
       projects: [
         {
-          index: "01",
-          tag: "LOGISTICA / SISTEMA",
-          title: "Vanguard Logistics Engine",
+          title: "PRISMA (UNIRIO)",
+          tag: "Plataforma institucional",
           year: "2025",
-          body: "Sistema de rastreamento em tempo real para frota com mais de 200 veiculos. Mapa ao vivo, despacho e cobranca — reduziu o tempo manual de despacho em 40%.",
-          alt: "Dashboard de plataforma logistica com graficos e mapa ao vivo",
+          status: "backend em desenvolvimento",
+          body: "Base FastAPI para gestão, divulgação e consulta de projetos acadêmicos, com autenticação por perfil, sessões com tokens, recuperação de senha, fila de e-mails e validações de segurança.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ"],
+          repoUrl: "https://github.com/pablozr/PRISMA",
         },
         {
-          index: "02",
-          tag: "IA / FERRAMENTA INTERNA",
-          title: "Nexus Intelligence Hub",
+          title: "SIEPA Front",
+          tag: "Frontend institucional",
           year: "2025",
-          body: "Dashboard interno para time de pesquisa em IA monitorar custo de tokens, pipelines e incidentes em tres regioes.",
-          alt: "Visualizacao abstrata de rede neural em verde neon",
+          status: "protótipo funcional",
+          body: "Frontend Angular 19 para o ecossistema SIEPA, com organização por módulos, rotas autenticadas, reidratação de sessão e bases de catálogo/admin em evolução.",
+          stack: ["Angular 19", "TypeScript", "PrimeNG"],
+          repoUrl: "https://github.com/pablozr/siepa-front",
         },
         {
-          index: "03",
-          tag: "AUTOMACAO / INTEGRACOES",
-          title: "Flux Ops Pipeline",
+          title: "WiredApply",
+          tag: "API open source",
+          year: "2025",
+          status: "MVP técnico",
+          body: "API para rotina diária de busca de vagas: ingestão, ranking por score, tracking de aplicações, ajuste por feedback e digest diário com workers.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
+          repoUrl: "https://github.com/pablozr/wired-apply",
+        },
+        {
+          title: "Self Checkout Monolith",
+          tag: "Backend de pagamentos",
+          year: "2025",
+          status: "API em evolução",
+          body: "Backend FastAPI para autoatendimento em restaurante com carrinho por sessão Redis, checkout Stripe com idempotência, webhook de reconciliação e eventos SSE para painel admin.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
+          repoUrl: "https://github.com/pablozr/self-checkout-monolith",
+        },
+        {
+          title: "Qual é o Segredo?",
+          tag: "Projeto web publicado",
           year: "2024",
-          body: "Workflow engine custom conectando CRM, Stripe e GPT. Roteia leads automaticamente, cria respostas e atualiza cobranca sem trabalho manual.",
-          alt: "Diagrama de fluxo de automacao conectando nos de API",
-        },
-      ],
-    },
-    testimonials: {
-      title: "O que clientes dizem",
-      itemsLabel: "[ 05 / DEPOIMENTOS ]",
-      quotes: [
-        {
-          body: "Entregou nosso dashboard interno de operacoes em tres semanas. Substituiu uma planilha fragil que consumia horas por dia. Comunicacao assincrona, objetiva, zero drama.",
-          name: "Marina Costa",
-          role: "Head de Operacoes",
-          company: "Vanguard Logistics",
-        },
-        {
-          body: "Combinacao rara de bom gosto e rigor de engenharia. A landing page converteu 3,2x mais que a anterior e o codigo ficou realmente manutencivel.",
-          name: "Daniel Reis",
-          role: "Founder",
-          company: "Nexus AI",
-        },
-        {
-          body: "Pegou uma ideia de automacao confusa e transformou em pipeline limpo entre Stripe, nosso CRM e GPT. Economizamos cerca de 15 horas por semana.",
-          name: "Julia Mendes",
-          role: "COO",
-          company: "Flux Studio",
+          status: "online",
+          body: "Jogo de lógica em JavaScript com pistas e estatísticas salvas no Supabase, publicado na Vercel.",
+          stack: ["JavaScript", "Supabase", "Vercel"],
+          repoUrl: "https://github.com/pablozr/qual-e-o-segredo",
+          liveUrl: "https://qual-e-o-segredo.vercel.app",
         },
       ],
     },
     process: {
-      titleLine1: "Da primeira call ate",
-      titleAccent: "producao",
+      titleLine1: "Da primeira call até",
+      titleAccent: "produção",
       titleLine2: "em quatro etapas honestas.",
-      body: "Um desenvolvedor. Sem camada de agencia, sem repasse para junior, sem surpresa em fatura. Voce sempre sabe o que esta sendo construido, por que, e quando entrega.",
-      meta: ["media de 3-6 semanas", "preco fechado", "async por padrao"],
+      body: "Um desenvolvedor. Sem camada de agência, sem repasse para júnior, sem surpresa em fatura. Você sempre sabe o que está sendo construído, por quê e quando entrega.",
+      meta: ["média de 3-6 semanas", "preço fechado", "escopo claro"],
       steps: [
         {
           k: "01",
           t: "Descoberta",
-          d: "Uma call de 30 minutos para mapear o problema real, nao apenas o pedido superficial. Voce sai com clareza mesmo que nao fechemos.",
-          meta: "30 min · gratis",
-          deliver: ["Resumo do problema", "Direcao tecnica", "Estimativa inicial"],
+          d: "Uma call de 30 minutos para mapear o problema real, não apenas o pedido superficial. Você sai com clareza mesmo que não fechemos.",
+          meta: "30 min · grátis",
+          deliver: ["Resumo do problema", "Direção técnica", "Estimativa inicial"],
         },
         {
           k: "02",
           t: "Escopo",
-          d: "Proposta de preco fixo com marcos, entregaveis e cronograma fechado. Sem surpresas de cobranca por hora.",
+          d: "Proposta de preço fixo com marcos, entregáveis e cronograma fechado. Sem surpresas de cobrança por hora.",
           meta: "retorno em 48h",
-          deliver: ["Marcos", "Orcamento fixo", "Data de inicio"],
+          deliver: ["Marcos", "Orçamento fixo", "Data de início"],
         },
         {
           k: "03",
-          t: "Construcao",
-          d: "Demos semanais, updates async e ambiente de staging desde o primeiro dia. Nada de semanas em silencio em caixa-preta.",
+          t: "Construção",
+          d: "Demos semanais, ambiente de staging desde o primeiro dia e acompanhamento contínuo da evolução. Nada de semanas em silêncio em caixa-preta.",
           meta: "demos semanais",
           deliver: ["URL de staging", "Loom semanal", "Canal no Slack"],
         },
         {
           k: "04",
           t: "Entrega",
-          d: "Deploy, monitoramento e documentacao. Voce recebe as chaves, o codigo e o runbook sem dependencia de mim.",
+          d: "Deploy, monitoramento e documentação. Você recebe as chaves, o código e o runbook sem dependência de mim.",
           meta: "handover incluso",
-          deliver: ["Deploy em producao", "Docs + runbook", "Suporte de 30 dias"],
+          deliver: ["Deploy em produção", "Docs + runbook", "Suporte de 30 dias"],
         },
       ],
     },
     about: {
-      titleLine1: "Um desenvolvedor.",
-      titleLine2: "Seis anos entregando.",
-      p1: "Sou freelancer fullstack e trabalho com fundadores, times de produto e liderancas de operacoes que precisam de software entregue de verdade.",
-      p2: "Antes de atuar solo, liderei engenharia em duas startups early-stage e entreguei sistemas usados por dezenas de milhares de usuarios diariamente.",
-      p3: "Sem camadas de agencia. Sem repasse para junior. Voce fala com quem escreve o codigo.",
+      titleLine1: "Experiência prática",
+      titleLine2: "em produtos web e backend.",
+      p1: "Sou desenvolvedor full stack e atuo em projetos web para negócios que precisam parar de operar no improviso e colocar um sistema em produção.",
+      p2: "Normalmente entro quando é preciso tirar uma landing page do papel, organizar um painel interno ou estruturar APIs para autenticação, pagamentos, permissões e integrações entre ferramentas.",
+      p3: "No backend, trabalho com FastAPI e Spring Boot para regras de negócio, PostgreSQL e Redis para dados e performance, e RabbitMQ + Docker para filas, jobs e deploy previsível.",
+      p4: "No dia a dia com o cliente, organizo escopo em etapas curtas, entrego staging para validação e faço handoff com documentação e acesso para continuidade do time.",
       stats: [
-        { k: "Anos", v: "6+" },
-        { k: "Projetos", v: "40+" },
-        { k: "NPS Medio", v: "9.4" },
-        { k: "No prazo", v: "100%" },
+        { k: "FastAPI / Spring Boot", v: "APIs, regras de negócio e autenticação" },
+        { k: "PostgreSQL / Redis", v: "dados, cache e performance" },
+        { k: "RabbitMQ / Docker", v: "filas, jobs e deploy previsível" },
+        { k: "Angular", v: "dashboards e interfaces responsivas" },
       ],
     },
     faq: {
@@ -295,65 +315,65 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       items: [
         {
           q: "Quanto custa um projeto?",
-          a: "Trabalho com valores base para dar previsibilidade desde o inicio. Landing page simples comeca em R$600 e personalizada em R$1.000; sistemas sob medida em R$2.000; ferramentas internas e automacoes em R$1.500. O valor final varia conforme escopo, prazo e integracoes.",
+          a: "Trabalho com valores base para dar previsibilidade desde o início. Landing page simples começa em R$600 e personalizada em R$1.000; sistemas sob medida em R$2.000; ferramentas internas e automações em R$1.500. O valor final varia conforme escopo, prazo e integrações.",
         },
         {
           q: "Em quanto tempo vejo resultado?",
-          a: "Landing pages normalmente saem em 1 a 2 semanas. Sistemas e dashboards em 3 a 6 semanas. Voce recebe staging desde a primeira semana e demos recorrentes.",
+          a: "Landing pages normalmente saem em 1 a 2 semanas. Sistemas e dashboards em 3 a 6 semanas. Você recebe staging desde a primeira semana e demos recorrentes.",
         },
         {
-          q: "O codigo fica comigo?",
-          a: "Sim, 100%. Codigo, arquivos de design, acesso a infra e documentacao sao entregues no encerramento. Zero lock-in.",
+          q: "O código fica comigo?",
+          a: "Sim, 100%. Código, arquivos de design, acesso à infra e documentação são entregues no encerramento. Zero lock-in.",
         },
         {
-          q: "Qual stack voce usa?",
-          a: "TypeScript ponta a ponta. React/Next.js ou TanStack Start no frontend, Node ou Python no backend, Postgres para dados, Stripe para pagamentos e Supabase ou self-hosted conforme o projeto.",
+          q: "Qual stack você usa?",
+          a: "Uso FastAPI e Spring Boot para APIs e regras de negócio, PostgreSQL e Redis para dados e performance, RabbitMQ para filas e processamento assíncrono, Docker para ambientes previsíveis e Angular para dashboards e interfaces web.",
         },
         {
-          q: "Voce oferece suporte depois do lancamento?",
-          a: "Todo projeto inclui 30 dias de suporte gratuito pos-lancamento para correcao de bugs. Depois disso, posso atuar em retainer mensal opcional.",
+          q: "Você oferece suporte depois do lançamento?",
+          a: "Todo projeto inclui 30 dias de suporte gratuito pós-lançamento para correção de bugs. Depois disso, posso atuar em retainer mensal opcional.",
         },
         {
-          q: "Voce trabalha junto com meu time atual?",
-          a: "Sim. Integro com Slack, Linear/Jira, GitHub e rituais do time quando necessario. Async por padrao, sync quando faz diferenca.",
+          q: "Você trabalha junto com meu time atual?",
+          a: "Sim. Integro com Slack, Linear/Jira, GitHub e rituais do time quando necessário, mantendo comunicação clara e alinhamento contínuo.",
         },
       ],
     },
     contact: {
       titleLine1: "Tem um projeto",
       titleLine2: "em mente?",
-      body: "Me conta sobre ele, mesmo que ainda esteja embrionario. Eu respondo em ate 24h com feedback honesto de escopo, prazo e investimento.",
+      body: "Me conta sobre ele, mesmo que ainda esteja embrionário. Eu respondo em até 24h com feedback honesto de escopo, prazo e investimento.",
       details: [
         { k: "Email", v: "hello@pablofarina.dev" },
-        { k: "Resposta", v: "Em ate 24h" },
+        { k: "Resposta", v: "Em até 24h" },
         { k: "Status", v: "Aceitando projetos para Q3" },
       ],
       labels: {
         name: "Nome",
         email: "Email",
-        budget: "Orcamento",
+        budget: "Orçamento",
         project: "Projeto",
       },
       placeholders: {
         name: "Seu nome",
-        email: "voce@empresa.com",
+        email: "você@empresa.com",
         budget: "ex.: 5k — 10k (opcional)",
-        project: "O que voce quer construir?",
+        project: "O que você quer construir?",
       },
       statusIdle: "Abre seu cliente de email com tudo preenchido.",
       statusSent: "✓ Cliente de email aberto — nos falamos em breve.",
       submitIdle: "Enviar mensagem",
       submitSending: "Enviando...",
       errors: {
-        nameRequired: "Nome e obrigatorio",
-        invalidEmail: "Email invalido",
+        nameRequired: "Nome é obrigatório",
+        invalidEmail: "Email inválido",
         messageMin: "Conte um pouco mais (10+ caracteres)",
       },
       mail: {
         subjectPrefix: "Novo projeto",
         fieldName: "Nome",
         fieldEmail: "Email",
-        fieldBudget: "Orcamento",
+        fieldBudget: "Orçamento",
         budgetFallback: "-",
       },
     },
@@ -382,15 +402,29 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     hero: {
       availability: "",
-      titleLine1: "Fullstack development",
-      titleLine2: "for teams that need it",
-      titleAccent: "built right.",
-      body: "I am a freelance developer designing and shipping landing pages, custom systems, internal tools and automation flows with care and on-time delivery.",
+      titleLine1: "Landing pages, dashboards, and systems",
+      titleLine2: "tailored with backend",
+      titleAccent: "they can trust.",
+      body: "I build interfaces, APIs, and deployments with FastAPI, Angular, PostgreSQL, Java, and Spring Boot for web projects that need to run in production.",
       ctaStart: "Start a project",
-      ctaWork: "View selected work",
+      ctaServices: "View projects",
     },
     services: {
+      eyebrow: "services",
       title: "What I build",
+      intro:
+        "I build landing pages, systems, dashboards, and integrations with focus on reliability, strong UX, and long-term maintainability.",
+      badge: "service",
+      fitTitle: "When it makes sense to call me",
+      fitIntro:
+        "I am most useful when an operational need has to become production-ready software.",
+      fitItems: [
+        "validate an idea with a landing page or a simple MVP",
+        "replace spreadsheets and manual routines with an internal panel",
+        "build an admin dashboard to track operations",
+        "integrate users, payments, data, or external tools",
+        "organize a backend that can grow without turning into patchwork",
+      ],
       itemsLabel: "[ 04 / SERVICES ]",
       items: [
         {
@@ -418,62 +452,62 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           code: "04 / AUTO",
           title: "Automation & Integrations",
           body: "Webhooks, queues and API glue between the tools you already use. Less manual work, more leverage.",
-          bullets: ["n8n / Make", "Custom workers", "CRM / Stripe / GPT"],
+          bullets: ["Make / Zapier", "Custom workers", "CRM / Stripe"],
           prices: ["From US$400"],
         },
       ],
     },
     work: {
-      title: "Recent shipments",
-      itemsLabel: "[ 03 / CASE_STUDIES ]",
+      title: "Real projects",
+      intro:
+        "Public repositories with clear technical scope. No inflated metrics and no claims of finished products when they are still a prototype or technical base.",
+      itemsLabel: "[ 05 / PROJECTS ]",
       projects: [
         {
-          index: "01",
-          tag: "LOGISTICS / SYSTEM",
-          title: "Vanguard Logistics Engine",
+          title: "PRISMA (UNIRIO)",
+          tag: "Institutional platform",
           year: "2025",
-          body: "Real-time tracking system for a 200+ vehicle fleet. Live map, dispatch, billing — reduced manual dispatch time by 40%.",
-          alt: "Dashboard for a logistics platform with charts and a live map",
+          status: "backend in development",
+          body: "FastAPI base for managing and publishing academic projects, including role-based auth, token sessions, password recovery, email queue, and auth security validations.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ"],
+          repoUrl: "https://github.com/pablozr/PRISMA",
         },
         {
-          index: "02",
-          tag: "AI / INTERNAL TOOL",
-          title: "Nexus Intelligence Hub",
+          title: "SIEPA Front",
+          tag: "Institutional frontend",
           year: "2025",
-          body: "Internal dashboard for an AI research team to monitor LLM token spend, pipelines and incidents across three regions.",
-          alt: "Abstract neural network visualization in neon green",
+          status: "functional prototype",
+          body: "Angular 19 frontend for the SIEPA ecosystem with module-based organization, protected routes, session rehydration, and evolving catalog/admin foundations.",
+          stack: ["Angular 19", "TypeScript", "PrimeNG"],
+          repoUrl: "https://github.com/pablozr/siepa-front",
         },
         {
-          index: "03",
-          tag: "AUTOMATION / INTEGRATIONS",
-          title: "Flux Ops Pipeline",
+          title: "WiredApply",
+          tag: "Open-source API",
+          year: "2025",
+          status: "technical MVP",
+          body: "API for daily job-search operations: job ingestion, score-based ranking, application tracking, feedback tuning, and daily digest workflows with workers.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
+          repoUrl: "https://github.com/pablozr/wired-apply",
+        },
+        {
+          title: "Self Checkout Monolith",
+          tag: "Payments backend",
+          year: "2025",
+          status: "API in progress",
+          body: "FastAPI backend for restaurant self-checkout with Redis cart sessions, Stripe checkout idempotency, payment reconciliation webhook, and SSE events for admin monitoring.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
+          repoUrl: "https://github.com/pablozr/self-checkout-monolith",
+        },
+        {
+          title: "Qual é o Segredo?",
+          tag: "Published web project",
           year: "2024",
-          body: "Custom workflow engine connecting CRM, Stripe and GPT. Auto-routes leads, drafts replies and updates billing without humans in the loop.",
-          alt: "Diagram of automation workflow connecting API nodes",
-        },
-      ],
-    },
-    testimonials: {
-      title: "What clients say",
-      itemsLabel: "[ 05 / TESTIMONIALS ]",
-      quotes: [
-        {
-          body: "Shipped our internal ops dashboard in three weeks. Replaced a fragile spreadsheet that was costing us hours every day. Communication was async, sharp, zero drama.",
-          name: "Marina Costa",
-          role: "Head of Ops",
-          company: "Vanguard Logistics",
-        },
-        {
-          body: "Rare combo of taste and engineering rigor. The landing page he built converted 3.2x better than our previous one, and the codebase is something we can actually maintain.",
-          name: "Daniel Reis",
-          role: "Founder",
-          company: "Nexus AI",
-        },
-        {
-          body: "Took a messy automation idea and turned it into a clean pipeline between Stripe, our CRM and GPT. Saved us roughly 15 hours a week. Worth every penny.",
-          name: "Júlia Mendes",
-          role: "COO",
-          company: "Flux Studio",
+          status: "live",
+          body: "Logic game in JavaScript where players infer a secret number from clues, with Supabase persistence for clues, stats, and game time.",
+          stack: ["JavaScript", "Supabase", "Vercel"],
+          repoUrl: "https://github.com/pablozr/qual-e-o-segredo",
+          liveUrl: "https://qual-e-o-segredo.vercel.app",
         },
       ],
     },
@@ -482,7 +516,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleAccent: "production",
       titleLine2: "in four honest steps.",
       body: "One developer. No agency overhead, no junior hand-offs, no surprise invoices. You always know what is being built, why, and when it ships.",
-      meta: ["avg. 3-6 weeks", "fixed price", "async by default"],
+      meta: ["avg. 3-6 weeks", "fixed price", "clear scope"],
       steps: [
         {
           k: "01",
@@ -501,7 +535,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           k: "03",
           t: "Build",
-          d: "Weekly demos, async updates, shared staging from day one. You watch it come together with no black-box weeks of silence.",
+          d: "Weekly demos, shared staging from day one, and continuous visibility into progress. No black-box weeks of silence.",
           meta: "weekly demos",
           deliver: ["Staging URL", "Weekly Loom", "Slack channel"],
         },
@@ -515,16 +549,17 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       ],
     },
     about: {
-      titleLine1: "One developer.",
-      titleLine2: "Six years of shipping.",
-      p1: "I am a freelance fullstack developer working with founders, product teams and ops leads who need software that actually ships.",
-      p2: "Before going solo I led engineering at two early-stage startups and shipped systems used by tens of thousands of users daily.",
-      p3: "No agency layers. No junior hand-offs. You talk to the person writing the code.",
+      titleLine1: "Hands-on experience",
+      titleLine2: "in web products and backend systems.",
+      p1: "I am a full stack developer working on web projects for businesses that need to move from improvised processes to systems running in production.",
+      p2: "I usually step in when a team needs to launch a landing page, structure an internal panel, or build APIs for authentication, payments, permissions, and integrations.",
+      p3: "On the backend, I use FastAPI and Spring Boot for business rules, PostgreSQL and Redis for data and performance, and RabbitMQ + Docker for queues, jobs, and predictable deploys.",
+      p4: "In delivery, I break scope into short phases, provide staging for validation, and hand over code with documentation and access so the team can continue safely.",
       stats: [
-        { k: "Years", v: "6+" },
-        { k: "Projects", v: "40+" },
-        { k: "Avg NPS", v: "9.4" },
-        { k: "On-time", v: "100%" },
+        { k: "FastAPI / Spring Boot", v: "APIs, business rules, and authentication" },
+        { k: "PostgreSQL / Redis", v: "data, cache, and performance" },
+        { k: "RabbitMQ / Docker", v: "queues, jobs, and predictable deploys" },
+        { k: "Angular", v: "dashboards and responsive interfaces" },
       ],
     },
     faq: {
@@ -548,7 +583,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         },
         {
           q: "What is your stack?",
-          a: "TypeScript end to end. React/Next.js or TanStack Start on the frontend, Node or Python on the backend, Postgres for data, Stripe for payments, Supabase or self-hosted depending on the project.",
+          a: "I use FastAPI and Spring Boot for APIs and business rules, PostgreSQL and Redis for data and performance, RabbitMQ for queues and async processing, Docker for predictable environments, and Angular for dashboards and web interfaces.",
         },
         {
           q: "Do you offer support after launch?",
@@ -556,7 +591,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         },
         {
           q: "Can you work with my existing team?",
-          a: "Absolutely. I integrate into your Slack, Linear/Jira, GitHub and stand-ups as needed. Async by default, sync when it matters.",
+          a: "Absolutely. I integrate into your Slack, Linear/Jira, GitHub, and team rituals as needed, with clear communication and consistent alignment.",
         },
       ],
     },

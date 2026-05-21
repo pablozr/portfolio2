@@ -1,0 +1,485 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - img
+      - generic [ref=e6]:
+        - link "PABLO FARINA/v01" [ref=e7] [cursor=pointer]:
+          - /url: "#top"
+        - generic [ref=e518]:
+          - link "// projetos" [ref=e519] [cursor=pointer]:
+            - /url: "#work"
+          - link "// serviços" [ref=e520] [cursor=pointer]:
+            - /url: "#services"
+          - link "// processo" [ref=e521] [cursor=pointer]:
+            - /url: "#process"
+          - link "// sobre" [ref=e522] [cursor=pointer]:
+            - /url: "#about"
+          - link "// faq" [ref=e523] [cursor=pointer]:
+            - /url: "#faq"
+          - link "// contato" [ref=e524] [cursor=pointer]:
+            - /url: "#contact"
+        - generic [ref=e9]:
+          - 'button "Idioma: Portugues" [ref=e10]': PT
+          - 'button "Idioma: English" [ref=e11]': EN
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e21]:
+        - heading "Landing pages, dashboards e sistemas sob medida com backend confiável." [level=1] [ref=e22]:
+          - text: Landing pages, dashboards e sistemas
+          - text: sob medida com backend confiável.
+        - paragraph [ref=e23]: Desenvolvo interfaces, APIs e deploy com FastAPI, Angular, PostgreSQL, Java e Spring Boot para projetos web que precisam rodar em produção.
+        - generic [ref=e24]:
+          - link "Iniciar projeto →" [ref=e25] [cursor=pointer]:
+            - /url: "#contact"
+            - text: Iniciar projeto
+            - generic [ref=e26]: →
+          - link "Ver projetos" [ref=e27] [cursor=pointer]:
+            - /url: "#work"
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - img "Python" [ref=e31]
+          - generic [ref=e32]: Python
+          - generic [ref=e33]: /
+        - generic [ref=e34]:
+          - img "Java" [ref=e35]
+          - generic [ref=e36]: Java
+          - generic [ref=e37]: /
+        - generic [ref=e38]:
+          - img "TypeScript" [ref=e39]
+          - generic [ref=e40]: TypeScript
+          - generic [ref=e41]: /
+        - generic [ref=e42]:
+          - img "FastAPI" [ref=e43]
+          - generic [ref=e44]: FastAPI
+          - generic [ref=e45]: /
+        - generic [ref=e46]:
+          - img "Spring Boot" [ref=e47]
+          - generic [ref=e48]: Spring Boot
+          - generic [ref=e49]: /
+        - generic [ref=e50]:
+          - img "Angular" [ref=e51]
+          - generic [ref=e52]: Angular
+          - generic [ref=e53]: /
+        - generic [ref=e54]:
+          - img "React" [ref=e55]
+          - generic [ref=e56]: React
+          - generic [ref=e57]: /
+        - generic [ref=e58]:
+          - img "Python" [ref=e59]
+          - generic [ref=e60]: Python
+          - generic [ref=e61]: /
+        - generic [ref=e62]:
+          - img "Java" [ref=e63]
+          - generic [ref=e64]: Java
+          - generic [ref=e65]: /
+        - generic [ref=e66]:
+          - img "TypeScript" [ref=e67]
+          - generic [ref=e68]: TypeScript
+          - generic [ref=e69]: /
+        - generic [ref=e70]:
+          - img "FastAPI" [ref=e71]
+          - generic [ref=e72]: FastAPI
+          - generic [ref=e73]: /
+        - generic [ref=e74]:
+          - img "Spring Boot" [ref=e75]
+          - generic [ref=e76]: Spring Boot
+          - generic [ref=e77]: /
+        - generic [ref=e78]:
+          - img "Angular" [ref=e79]
+          - generic [ref=e80]: Angular
+          - generic [ref=e81]: /
+        - generic [ref=e82]:
+          - img "React" [ref=e83]
+          - generic [ref=e84]: React
+          - generic [ref=e85]: /
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - paragraph [ref=e90]: // serviços
+            - heading "O que eu construo" [level=2] [ref=e91]
+          - generic [ref=e92]: "[ 04 / SERVIÇOS ]"
+        - paragraph [ref=e93]: Desenvolvimento de landing pages, sistemas, dashboards e integrações com foco em confiabilidade, boa experiência de uso e manutenção no longo prazo.
+      - generic [ref=e94]:
+        - article [ref=e95]:
+          - generic [ref=e96]:
+            - generic [ref=e97]: 01 / LP
+            - generic [ref=e98]: serviço
+          - heading "Landing Pages" [level=3] [ref=e99]
+          - paragraph [ref=e100]: Superfícies de marketing para alta conversão. Design customizado, motion e estrutura pensada para copy. Feitas para performance e Lighthouse 95+.
+          - generic [ref=e101]:
+            - generic [ref=e102]:
+              - paragraph [ref=e103]: "Simples: a partir de R$600"
+              - paragraph [ref=e104]: "Personalizada: a partir de R$1.000"
+            - list [ref=e105]:
+              - listitem [ref=e106]: ▸Design + dev custom
+              - listitem [ref=e107]: ▸Com CMS ou estático
+              - listitem [ref=e108]: ▸Pronto para A/B
+        - article [ref=e109]:
+          - generic [ref=e110]:
+            - generic [ref=e111]: 02 / SYS
+            - generic [ref=e112]: serviço
+          - heading "Sistemas Sob Medida" [level=3] [ref=e113]
+          - paragraph [ref=e114]: Aplicações fullstack ponta a ponta. Auth, pagamentos, dashboards e jobs. Arquitetura limpa para sua equipe manter sem caos.
+          - generic [ref=e115]:
+            - paragraph [ref=e117]: A partir de R$2.000
+            - list [ref=e118]:
+              - listitem [ref=e119]: ▸Auth + perfis
+              - listitem [ref=e120]: ▸Stripe / cobrança
+              - listitem [ref=e121]: ▸APIs tipadas
+        - article [ref=e122]:
+          - generic [ref=e123]:
+            - generic [ref=e124]: 03 / INT
+            - generic [ref=e125]: serviço
+          - heading "Ferramentas Internas" [level=3] [ref=e126]
+          - paragraph [ref=e127]: Painel admin e dashboards operacionais no lugar da planilha frágil. Rápidos para evoluir, difíceis de quebrar.
+          - generic [ref=e128]:
+            - paragraph [ref=e130]: A partir de R$1.500
+            - list [ref=e131]:
+              - listitem [ref=e132]: ▸UI por permissão
+              - listitem [ref=e133]: ▸CRUD + relatórios
+              - listitem [ref=e134]: ▸Logs de auditoria
+        - article [ref=e135]:
+          - generic [ref=e136]:
+            - generic [ref=e137]: 04 / AUTO
+            - generic [ref=e138]: serviço
+          - heading "Automação e Integrações" [level=3] [ref=e139]
+          - paragraph [ref=e140]: Webhooks, filas e colagem de API entre ferramentas que você já usa. Menos trabalho manual, mais alavancagem.
+          - generic [ref=e141]:
+            - paragraph [ref=e143]: A partir de R$1.500
+            - list [ref=e144]:
+              - listitem [ref=e145]: ▸Make / Zapier
+              - listitem [ref=e146]: ▸Workers custom
+              - listitem [ref=e147]: ▸CRM / Stripe
+      - generic [ref=e148]:
+        - generic [ref=e149]:
+          - heading "Quando faz sentido me chamar" [level=3] [ref=e150]
+          - generic [ref=e151]: fit
+        - paragraph [ref=e152]: Trabalho bem em cenários onde você precisa transformar uma necessidade operacional em software utilizável.
+        - list [ref=e153]:
+          - listitem [ref=e154]: ▸validar uma ideia com landing page ou MVP simples
+          - listitem [ref=e155]: ▸trocar planilhas e processos manuais por painel interno
+          - listitem [ref=e156]: ▸criar dashboard administrativo para acompanhar operação
+          - listitem [ref=e157]: ▸integrar usuários, pagamentos, dados ou ferramentas externas
+          - listitem [ref=e158]: ▸organizar um backend que consiga crescer sem virar remendo
+    - generic [ref=e159]:
+      - generic [ref=e160]:
+        - generic [ref=e161]:
+          - paragraph [ref=e162]: // projetos
+          - heading "Projetos reais" [level=2] [ref=e163]
+        - generic [ref=e164]: "[ 05 / PROJETOS ]"
+      - paragraph [ref=e165]: Repositórios públicos com escopo técnico definido. Sem números inflados e sem promessas de produto final quando ainda é base ou MVP.
+      - generic [ref=e166]:
+        - article [ref=e167]:
+          - generic [ref=e168]:
+            - generic [ref=e169]: Plataforma institucional
+            - generic [ref=e170]: backend em desenvolvimento
+            - generic [ref=e171]: "2025"
+          - heading "PRISMA (UNIRIO)" [level=3] [ref=e172]
+          - paragraph [ref=e173]: Base FastAPI para gestão, divulgação e consulta de projetos acadêmicos, com autenticação por perfil, sessões com tokens, recuperação de senha, fila de e-mails e validações de segurança.
+          - list [ref=e174]:
+            - listitem [ref=e175]: FastAPI
+            - listitem [ref=e176]: PostgreSQL
+            - listitem [ref=e177]: Redis
+            - listitem [ref=e178]: RabbitMQ
+          - link "GitHub" [ref=e180] [cursor=pointer]:
+            - /url: https://github.com/pablozr/PRISMA
+        - article [ref=e181]:
+          - generic [ref=e182]:
+            - generic [ref=e183]: Frontend institucional
+            - generic [ref=e184]: protótipo funcional
+            - generic [ref=e185]: "2025"
+          - heading "SIEPA Front" [level=3] [ref=e186]
+          - paragraph [ref=e187]: Frontend Angular 19 para o ecossistema SIEPA, com organização por módulos, rotas autenticadas, reidratação de sessão e bases de catálogo/admin em evolução.
+          - list [ref=e188]:
+            - listitem [ref=e189]: Angular 19
+            - listitem [ref=e190]: TypeScript
+            - listitem [ref=e191]: PrimeNG
+          - link "GitHub" [ref=e193] [cursor=pointer]:
+            - /url: https://github.com/pablozr/siepa-front
+        - article [ref=e194]:
+          - generic [ref=e195]:
+            - generic [ref=e196]: API open source
+            - generic [ref=e197]: MVP técnico
+            - generic [ref=e198]: "2025"
+          - heading "WiredApply" [level=3] [ref=e199]
+          - paragraph [ref=e200]: "API para rotina diária de busca de vagas: ingestão, ranking por score, tracking de aplicações, ajuste por feedback e digest diário com workers."
+          - list [ref=e201]:
+            - listitem [ref=e202]: FastAPI
+            - listitem [ref=e203]: PostgreSQL
+            - listitem [ref=e204]: Redis
+            - listitem [ref=e205]: RabbitMQ
+            - listitem [ref=e206]: Docker
+          - link "GitHub" [ref=e208] [cursor=pointer]:
+            - /url: https://github.com/pablozr/wired-apply
+        - article [ref=e209]:
+          - generic [ref=e210]:
+            - generic [ref=e211]: Backend de pagamentos
+            - generic [ref=e212]: API em evolução
+            - generic [ref=e213]: "2025"
+          - heading "Self Checkout Monolith" [level=3] [ref=e214]
+          - paragraph [ref=e215]: Backend FastAPI para autoatendimento em restaurante com carrinho por sessão Redis, checkout Stripe com idempotência, webhook de reconciliação e eventos SSE para painel admin.
+          - list [ref=e216]:
+            - listitem [ref=e217]: FastAPI
+            - listitem [ref=e218]: PostgreSQL
+            - listitem [ref=e219]: Redis
+            - listitem [ref=e220]: Stripe
+            - listitem [ref=e221]: RabbitMQ
+          - link "GitHub" [ref=e223] [cursor=pointer]:
+            - /url: https://github.com/pablozr/self-checkout-monolith
+        - article [ref=e224]:
+          - generic [ref=e225]:
+            - generic [ref=e226]: Projeto web publicado
+            - generic [ref=e227]: online
+            - generic [ref=e228]: "2024"
+          - heading "Qual é o Segredo?" [level=3] [ref=e229]
+          - paragraph [ref=e230]: Jogo de lógica em JavaScript com pistas e estatísticas salvas no Supabase, publicado na Vercel.
+          - list [ref=e231]:
+            - listitem [ref=e232]: JavaScript
+            - listitem [ref=e233]: Supabase
+            - listitem [ref=e234]: Vercel
+          - generic [ref=e235]:
+            - link "GitHub" [ref=e236] [cursor=pointer]:
+              - /url: https://github.com/pablozr/qual-e-o-segredo
+            - link "Live" [ref=e237] [cursor=pointer]:
+              - /url: https://qual-e-o-segredo.vercel.app
+    - generic [ref=e240]:
+      - generic [ref=e241]:
+        - generic [ref=e242]:
+          - paragraph [ref=e243]: // processo
+          - heading "Da primeira call até produção em quatro etapas honestas." [level=2] [ref=e244]:
+            - text: Da primeira call até produção
+            - text: em quatro etapas honestas.
+        - paragraph [ref=e246]: Um desenvolvedor. Sem camada de agência, sem repasse para júnior, sem surpresa em fatura. Você sempre sabe o que está sendo construído, por quê e quando entrega.
+      - generic [ref=e250]:
+        - generic [ref=e251]:
+          - generic [ref=e252]:
+            - generic [ref=e256]: "01"
+            - generic [ref=e257]: 30 min · grátis
+          - heading "Descoberta" [level=3] [ref=e258]
+          - paragraph [ref=e259]: Uma call de 30 minutos para mapear o problema real, não apenas o pedido superficial. Você sai com clareza mesmo que não fechemos.
+          - list [ref=e260]:
+            - listitem [ref=e261]:
+              - generic [ref=e262]: →
+              - text: Resumo do problema
+            - listitem [ref=e263]:
+              - generic [ref=e264]: →
+              - text: Direção técnica
+            - listitem [ref=e265]:
+              - generic [ref=e266]: →
+              - text: Estimativa inicial
+        - generic [ref=e267]:
+          - generic [ref=e268]:
+            - generic [ref=e272]: "02"
+            - generic [ref=e273]: retorno em 48h
+          - heading "Escopo" [level=3] [ref=e274]
+          - paragraph [ref=e275]: Proposta de preço fixo com marcos, entregáveis e cronograma fechado. Sem surpresas de cobrança por hora.
+          - list [ref=e276]:
+            - listitem [ref=e277]:
+              - generic [ref=e278]: →
+              - text: Marcos
+            - listitem [ref=e279]:
+              - generic [ref=e280]: →
+              - text: Orçamento fixo
+            - listitem [ref=e281]:
+              - generic [ref=e282]: →
+              - text: Data de início
+        - generic [ref=e283]:
+          - generic [ref=e284]:
+            - generic [ref=e288]: "03"
+            - generic [ref=e289]: demos semanais
+          - heading "Construção" [level=3] [ref=e290]
+          - paragraph [ref=e291]: Demos semanais, ambiente de staging desde o primeiro dia e acompanhamento contínuo da evolução. Nada de semanas em silêncio em caixa-preta.
+          - list [ref=e292]:
+            - listitem [ref=e293]:
+              - generic [ref=e294]: →
+              - text: URL de staging
+            - listitem [ref=e295]:
+              - generic [ref=e296]: →
+              - text: Loom semanal
+            - listitem [ref=e297]:
+              - generic [ref=e298]: →
+              - text: Canal no Slack
+        - generic [ref=e299]:
+          - generic [ref=e300]:
+            - generic [ref=e304]: "04"
+            - generic [ref=e305]: handover incluso
+          - heading "Entrega" [level=3] [ref=e306]
+          - paragraph [ref=e307]: Deploy, monitoramento e documentação. Você recebe as chaves, o código e o runbook sem dependência de mim.
+          - list [ref=e308]:
+            - listitem [ref=e309]:
+              - generic [ref=e310]: →
+              - text: Deploy em produção
+            - listitem [ref=e311]:
+              - generic [ref=e312]: →
+              - text: Docs + runbook
+            - listitem [ref=e313]:
+              - generic [ref=e314]: →
+              - text: Suporte de 30 dias
+    - generic [ref=e317]:
+      - generic [ref=e318]:
+        - generic [ref=e319]:
+          - paragraph [ref=e320]: // about
+          - heading "Experiência prática em produtos web e backend." [level=2] [ref=e321]:
+            - text: Experiência prática
+            - text: em produtos web e backend.
+        - generic [ref=e323]: ● stack com propósito
+      - generic [ref=e324]:
+        - generic [ref=e326]:
+          - generic [ref=e329]:
+            - generic [ref=e330]: operator_profile.exe
+            - generic [ref=e331]: ● live
+          - generic [ref=e337]:
+            - generic [ref=e338]:
+              - generic [ref=e339]: quem
+              - generic [ref=e340]: desenvolvedor full stack
+            - generic [ref=e341]:
+              - generic [ref=e342]: atua
+              - generic [ref=e343]: web, backend e integrações
+            - generic [ref=e344]:
+              - generic [ref=e345]: fluxo
+              - generic [ref=e346]: escopo, staging e handoff
+          - generic [ref=e348]:
+            - paragraph [ref=e349]: planejar / construir / manter
+            - paragraph [ref=e350]: Stack com propósito para resolver gargalos reais de operação.
+        - generic [ref=e352]:
+          - generic [ref=e354]:
+            - paragraph [ref=e355]: Sou desenvolvedor full stack e atuo em projetos web para negócios que precisam parar de operar no improviso e colocar um sistema em produção.
+            - paragraph [ref=e356]: Normalmente entro quando é preciso tirar uma landing page do papel, organizar um painel interno ou estruturar APIs para autenticação, pagamentos, permissões e integrações entre ferramentas.
+            - paragraph [ref=e357]: No backend, trabalho com FastAPI e Spring Boot para regras de negócio, PostgreSQL e Redis para dados e performance, e RabbitMQ + Docker para filas, jobs e deploy previsível.
+            - paragraph [ref=e358]: No dia a dia com o cliente, organizo escopo em etapas curtas, entrego staging para validação e faço handoff com documentação e acesso para continuidade do time.
+          - generic [ref=e359]:
+            - generic [ref=e360]:
+              - term [ref=e362]: FastAPI / Spring Boot
+              - definition [ref=e363]: APIs, regras de negócio e autenticação
+            - generic [ref=e364]:
+              - term [ref=e366]: PostgreSQL / Redis
+              - definition [ref=e367]: dados, cache e performance
+            - generic [ref=e368]:
+              - term [ref=e370]: RabbitMQ / Docker
+              - definition [ref=e371]: filas, jobs e deploy previsível
+            - generic [ref=e372]:
+              - term [ref=e374]: Angular
+              - definition [ref=e375]: dashboards e interfaces responsivas
+          - generic [ref=e376]:
+            - paragraph [ref=e379]: APIs documentadas
+            - paragraph [ref=e382]: staging para validar
+            - paragraph [ref=e385]: deploy e handoff claros
+    - generic [ref=e388]:
+      - generic [ref=e390]:
+        - paragraph [ref=e392]: // faq
+        - heading "Perguntas frequentes." [level=2] [ref=e393]:
+          - text: Perguntas
+          - text: frequentes.
+        - generic [ref=e394]:
+          - paragraph [ref=e395]: resposta direta
+          - paragraph [ref=e396]:
+            - text: Faltou algo?
+            - link "Me manda uma mensagem" [ref=e397] [cursor=pointer]:
+              - /url: "#contact"
+            - text: — respondo em ate 24 horas.
+        - generic [ref=e398]:
+          - generic [ref=e399]: escopo
+          - generic [ref=e400]: prazo
+          - generic [ref=e401]: stack
+      - list [ref=e403]:
+        - listitem [ref=e404]:
+          - button "01 Quanto custa um projeto?" [expanded] [ref=e405]:
+            - generic [ref=e406]:
+              - generic [ref=e407]: "01"
+              - generic [ref=e408]: Quanto custa um projeto?
+            - generic [ref=e409]: +
+          - paragraph [ref=e414]: Trabalho com valores base para dar previsibilidade desde o início. Landing page simples começa em R$600 e personalizada em R$1.000; sistemas sob medida em R$2.000; ferramentas internas e automações em R$1.500. O valor final varia conforme escopo, prazo e integrações.
+        - listitem [ref=e415]:
+          - button "02 Em quanto tempo vejo resultado?" [ref=e416]:
+            - generic [ref=e417]:
+              - generic [ref=e418]: "02"
+              - generic [ref=e419]: Em quanto tempo vejo resultado?
+            - generic [ref=e420]: +
+          - paragraph [ref=e423]: Landing pages normalmente saem em 1 a 2 semanas. Sistemas e dashboards em 3 a 6 semanas. Você recebe staging desde a primeira semana e demos recorrentes.
+        - listitem [ref=e424]:
+          - button "03 O código fica comigo?" [ref=e425]:
+            - generic [ref=e426]:
+              - generic [ref=e427]: "03"
+              - generic [ref=e428]: O código fica comigo?
+            - generic [ref=e429]: +
+          - paragraph [ref=e432]: Sim, 100%. Código, arquivos de design, acesso à infra e documentação são entregues no encerramento. Zero lock-in.
+        - listitem [ref=e433]:
+          - button "04 Qual stack você usa?" [ref=e434]:
+            - generic [ref=e435]:
+              - generic [ref=e436]: "04"
+              - generic [ref=e437]: Qual stack você usa?
+            - generic [ref=e438]: +
+          - paragraph [ref=e441]: Uso FastAPI e Spring Boot para APIs e regras de negócio, PostgreSQL e Redis para dados e performance, RabbitMQ para filas e processamento assíncrono, Docker para ambientes previsíveis e Angular para dashboards e interfaces web.
+        - listitem [ref=e442]:
+          - button "05 Você oferece suporte depois do lançamento?" [ref=e443]:
+            - generic [ref=e444]:
+              - generic [ref=e445]: "05"
+              - generic [ref=e446]: Você oferece suporte depois do lançamento?
+            - generic [ref=e447]: +
+          - paragraph [ref=e450]: Todo projeto inclui 30 dias de suporte gratuito pós-lançamento para correção de bugs. Depois disso, posso atuar em retainer mensal opcional.
+        - listitem [ref=e451]:
+          - button "06 Você trabalha junto com meu time atual?" [ref=e452]:
+            - generic [ref=e453]:
+              - generic [ref=e454]: "06"
+              - generic [ref=e455]: Você trabalha junto com meu time atual?
+            - generic [ref=e456]: +
+          - paragraph [ref=e459]: Sim. Integro com Slack, Linear/Jira, GitHub e rituais do time quando necessário, mantendo comunicação clara e alinhamento contínuo.
+    - generic [ref=e462]:
+      - generic [ref=e463]:
+        - paragraph [ref=e464]: // contato
+        - heading "Tem um projeto em mente?" [level=2] [ref=e465]:
+          - text: Tem um projeto
+          - text: em mente?
+        - paragraph [ref=e466]: Me conta sobre ele, mesmo que ainda esteja embrionário. Eu respondo em até 24h com feedback honesto de escopo, prazo e investimento.
+        - generic [ref=e467]:
+          - generic [ref=e468]:
+            - term [ref=e469]: Email
+            - definition [ref=e470]: hello@pablofarina.dev
+          - generic [ref=e471]:
+            - term [ref=e472]: Resposta
+            - definition [ref=e473]: Em até 24h
+          - generic [ref=e474]:
+            - term [ref=e475]: Status
+            - definition [ref=e476]: Aceitando projetos para Q3
+      - generic [ref=e478]:
+        - generic [ref=e479]:
+          - generic [ref=e480]:
+            - generic [ref=e481]: Nome
+            - textbox "Seu nome" [ref=e482]
+          - generic [ref=e483]:
+            - generic [ref=e484]: Email
+            - textbox "você@empresa.com" [ref=e485]
+        - generic [ref=e487]:
+          - generic [ref=e488]: Orçamento
+          - 'textbox "ex.: 5k — 10k (opcional)" [ref=e489]'
+        - generic [ref=e490]:
+          - generic [ref=e491]: Projeto
+          - textbox "O que você quer construir?" [ref=e492]
+        - generic [ref=e493]:
+          - paragraph [ref=e494]: Abre seu cliente de email com tudo preenchido.
+          - button "Enviar mensagem →" [ref=e495]:
+            - text: Enviar mensagem
+            - generic [ref=e496]: →
+  - contentinfo [ref=e497]:
+    - generic [ref=e499]:
+      - generic [ref=e500]:
+        - generic [ref=e501]:
+          - paragraph [ref=e502]: // fim
+          - link "Pablo Farina" [ref=e503] [cursor=pointer]:
+            - /url: "#top"
+            - text: Pablo
+            - text: Farina
+        - generic [ref=e505]:
+          - generic [ref=e508]: "Status: aceitando clientes"
+          - paragraph [ref=e509]: Se você precisa tirar uma landing page, dashboard ou sistema do papel, me chama.
+          - link "iniciar conversa" [ref=e510] [cursor=pointer]:
+            - /url: "#contact"
+            - generic [ref=e511]: iniciar conversa
+            - generic [ref=e512]: →
+      - generic [ref=e513]:
+        - generic [ref=e514]: © 2026 Pablo Farina — todos os sistemas nominais
+        - link "hello@pablofarina.dev" [ref=e516] [cursor=pointer]:
+          - /url: mailto:hello@pablofarina.dev
+        - link "voltar ao topo" [ref=e517] [cursor=pointer]:
+          - /url: "#top"
