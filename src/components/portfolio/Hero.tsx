@@ -73,16 +73,17 @@ export function Hero({ className = "" }: { className?: string }) {
           >
             <a
               href="#contact"
-              className="group inline-flex items-center gap-3 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="group inline-flex items-center gap-3 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               {copy.hero.ctaStart}
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
             <a
               href="#work"
-              className="inline-flex items-center gap-2 rounded-md border border-white/45 bg-white/8 px-5 py-3 text-sm font-medium text-zinc-100 shadow-[0_10px_24px_rgba(0,0,0,0.28)] transition-colors hover:border-accent/70 hover:bg-white/14 hover:text-white"
+              className="group inline-flex items-center gap-2 rounded-md border border-white/45 bg-white/8 px-5 py-3 text-sm font-medium text-zinc-100 shadow-[0_10px_24px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/70 hover:bg-white/14 hover:text-white active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               {copy.hero.ctaServices}
+              <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
             </a>
           </div>
 

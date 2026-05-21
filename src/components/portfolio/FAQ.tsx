@@ -20,9 +20,9 @@ export function FAQ() {
         aria-hidden
       />
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-28 sm:py-32 lg:grid-cols-12">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-24 sm:py-32 lg:grid-cols-12 lg:py-36">
         <div className="lg:col-span-5">
-          <div className="sticky top-24 overflow-hidden rounded-2xl border border-border/80 bg-card/55 p-7 backdrop-blur-sm sm:p-9">
+          <div className="overflow-hidden rounded-2xl border border-border/80 bg-card/55 p-6 backdrop-blur-sm sm:p-9 lg:sticky lg:top-24">
             <div
               className="absolute inset-x-0 top-0 h-px"
               style={{ background: "linear-gradient(to right, transparent, var(--color-accent), transparent)" }}
@@ -55,7 +55,7 @@ export function FAQ() {
               </p>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+            <div className="mt-6 grid grid-cols-2 gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground sm:grid-cols-3">
               {[isPt ? "escopo" : "scope", isPt ? "prazo" : "timeline", isPt ? "stack" : "stack"].map((item) => (
                 <span key={item} className="rounded-full border border-border/70 bg-background/40 px-3 py-2 text-center">
                   {item}
@@ -81,7 +81,7 @@ export function FAQ() {
                 >
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-start justify-between gap-6 px-6 py-6 text-left sm:px-7"
+                    className="flex w-full items-start justify-between gap-6 px-6 py-6 text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-inset sm:px-7"
                     aria-expanded={isOpen}
                   >
                     <span className="flex items-start gap-4">

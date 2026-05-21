@@ -9,6 +9,7 @@ import { About } from "@/components/portfolio/About";
 import { FAQ } from "@/components/portfolio/FAQ";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
+import { RevealOnScroll } from "@/components/portfolio/RevealOnScroll";
 import { useLanguage } from "@/i18n/language";
 import { useEffect } from "react";
 
@@ -65,12 +66,42 @@ function Page() {
           <Hero className="flex-1" />
           <Marquee />
         </section>
-        <Services />
-        <Work />
-        <Process />
-        <About />
-        <FAQ />
-        <Contact />
+        <div className="relative isolate bg-[#0c0d10]">
+          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
+          <RevealOnScroll>
+            <Services />
+          </RevealOnScroll>
+        </div>
+        <div className="relative isolate bg-background">
+          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
+          <RevealOnScroll>
+            <Work />
+          </RevealOnScroll>
+        </div>
+        <div className="relative isolate bg-[#0b0c0f]">
+          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
+          <RevealOnScroll>
+            <Process />
+          </RevealOnScroll>
+        </div>
+        <div className="relative isolate bg-background">
+          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
+          <RevealOnScroll>
+            <About />
+          </RevealOnScroll>
+        </div>
+        <div className="relative isolate bg-[#0d0f12]">
+          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
+          <RevealOnScroll>
+            <FAQ />
+          </RevealOnScroll>
+        </div>
+        <div className="relative isolate bg-background">
+          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
+          <RevealOnScroll>
+            <Contact />
+          </RevealOnScroll>
+        </div>
       </main>
       <Footer />
     </div>

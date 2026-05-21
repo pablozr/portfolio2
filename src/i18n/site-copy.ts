@@ -64,13 +64,15 @@ type SiteCopy = {
   work: {
     title: string;
     intro: string;
-    itemsLabel: string;
+    modalStackLabel: string;
+    modalHighlightsLabel: string;
+    modalRepoLabel: string;
+    modalLiveLabel: string;
     projects: Array<{
       title: string;
-      tag: string;
       year: string;
-      status: string;
       body: string;
+      highlights: string[];
       stack: string[];
       repoUrl: string;
       liveUrl?: string;
@@ -120,7 +122,6 @@ type SiteCopy = {
   };
   footer: {
     rights: string;
-    status: string;
   };
   meta: {
     title: string;
@@ -202,56 +203,75 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       ],
     },
     work: {
-      title: "Projetos reais",
+      title: "Experiência em projetos",
       intro:
-        "Repositórios públicos com escopo técnico definido. Sem números inflados e sem promessas de produto final quando ainda é base ou MVP.",
-      itemsLabel: "[ 05 / PROJETOS ]",
+        "Ao longo da minha trajetória, desenvolvi projetos completos com backend, frontend, autenticação, integrações externas, mensageria, cache, pagamentos, dashboards e arquitetura modular. Foco em resolver problemas reais com soluções organizadas, seguras e preparadas para evolução.",
+      modalStackLabel: "Stack",
+      modalHighlightsLabel: "Destaques técnicos",
+      modalRepoLabel: "Abrir no GitHub",
+      modalLiveLabel: "Abrir demo",
       projects: [
         {
-          title: "PRISMA (UNIRIO)",
-          tag: "Plataforma institucional",
-          year: "2025",
-          status: "backend em desenvolvimento",
-          body: "Base FastAPI para gestão, divulgação e consulta de projetos acadêmicos, com autenticação por perfil, sessões com tokens, recuperação de senha, fila de e-mails e validações de segurança.",
-          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ"],
-          repoUrl: "https://github.com/pablozr/PRISMA",
-        },
-        {
-          title: "SIEPA Front",
-          tag: "Frontend institucional",
-          year: "2025",
-          status: "protótipo funcional",
-          body: "Frontend Angular 19 para o ecossistema SIEPA, com organização por módulos, rotas autenticadas, reidratação de sessão e bases de catálogo/admin em evolução.",
-          stack: ["Angular 19", "TypeScript", "PrimeNG"],
-          repoUrl: "https://github.com/pablozr/siepa-front",
-        },
-        {
-          title: "WiredApply",
-          tag: "API open source",
-          year: "2025",
-          status: "MVP técnico",
-          body: "API para rotina diária de busca de vagas: ingestão, ranking por score, tracking de aplicações, ajuste por feedback e digest diário com workers.",
-          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
-          repoUrl: "https://github.com/pablozr/wired-apply",
-        },
-        {
           title: "Self Checkout Monolith",
-          tag: "Backend de pagamentos",
           year: "2025",
-          status: "API em evolução",
-          body: "Backend FastAPI para autoatendimento em restaurante com carrinho por sessão Redis, checkout Stripe com idempotência, webhook de reconciliação e eventos SSE para painel admin.",
+          body: "Sistema de autoatendimento com carrinho anônimo, menu por mesa, checkout com Stripe, webhook de pagamento, Redis, RabbitMQ e atualização em tempo real via SSE.",
+          highlights: [
+            "Idempotência e reconciliação no fluxo de pagamento",
+            "Controle de concorrência em operações críticas",
+            "Eventos em tempo real para painel administrativo",
+          ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
         },
         {
-          title: "Qual é o Segredo?",
-          tag: "Projeto web publicado",
-          year: "2024",
-          status: "online",
-          body: "Jogo de lógica em JavaScript com pistas e estatísticas salvas no Supabase, publicado na Vercel.",
-          stack: ["JavaScript", "Supabase", "Vercel"],
-          repoUrl: "https://github.com/pablozr/qual-e-o-segredo",
-          liveUrl: "https://qual-e-o-segredo.vercel.app",
+          title: "PRISMA",
+          year: "2025",
+          body: "Plataforma institucional com backend e frontend para divulgação e gestão de projetos universitários, com catálogo público, autenticação por perfis, login Google e área administrativa.",
+          highlights: [
+            "Backend FastAPI com regras de acesso por perfil",
+            "Frontend Angular modular com rotas protegidas",
+            "Auditoria, autenticação institucional e base para evolução",
+          ],
+          stack: ["FastAPI", "Angular", "PostgreSQL", "Redis", "RabbitMQ", "JWT"],
+          repoUrl: "https://github.com/pablozr/PRISMA",
+          liveUrl: "https://github.com/pablozr/siepa-front",
+        },
+        {
+          title: "WiredApply",
+          year: "2025",
+          body: "API open-source para automação de busca de vagas, com ingestão de oportunidades, ranking por score, acompanhamento de candidaturas, feedback do usuário e digest diário.",
+          highlights: [
+            "Pipeline assíncrona com workers e filas",
+            "Score de vagas com ajuste por feedback",
+            "Digest diário para acompanhamento operacional",
+          ],
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
+          repoUrl: "https://github.com/pablozr/wired-apply",
+        },
+        {
+          title: "Subscription Monolith",
+          year: "2025",
+          body: "Sistema para gerenciamento de assinaturas, controle de custos recorrentes e envio de lembretes por e-mail antes da renovação.",
+          highlights: [
+            "Arquitetura modular com domínios separados",
+            "Fila para envio assíncrono com worker SMTP",
+            "Redis e RabbitMQ para rotina de notificações",
+          ],
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "SMTP"],
+          repoUrl: "https://github.com/pablozr/subscription-monolith",
+        },
+        {
+          title: "FastAPI Template / Angular Template",
+          year: "2025",
+          body: "Templates para acelerar novos produtos com convenções de projeto, arquitetura inicial e componentes reutilizáveis para backend e frontend.",
+          highlights: [
+            "Starter backend com padrão modular e ambientes",
+            "Starter frontend por features com base escalável",
+            "Ideal para reduzir setup e acelerar kickoff",
+          ],
+          stack: ["FastAPI", "Angular", "TypeScript", "Docker"],
+          repoUrl: "https://github.com/pablozr/fastapi-template",
+          liveUrl: "https://github.com/pablozr/angular-template",
         },
       ],
     },
@@ -259,7 +279,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine1: "Da primeira call até",
       titleAccent: "produção",
       titleLine2: "em quatro etapas honestas.",
-      body: "Um desenvolvedor. Sem camada de agência, sem repasse para júnior, sem surpresa em fatura. Você sempre sabe o que está sendo construído, por quê e quando entrega.",
+      body: "Um desenvolvedor. Sem camada de agência, sem repasse para júnior, sem surpresa em fatura. Você sempre sabe o que está sendo construído, por quê e quando será entregue.",
       meta: ["média de 3-6 semanas", "preço fechado", "escopo claro"],
       steps: [
         {
@@ -311,7 +331,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine2: "frequentes.",
       preContact: "Faltou algo?",
       contactLink: "Me manda uma mensagem",
-      postContact: "— respondo em ate 24 horas.",
+      postContact: "— respondo em até 24 horas.",
       items: [
         {
           q: "Quanto custa um projeto?",
@@ -344,13 +364,12 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine2: "em mente?",
       body: "Me conta sobre ele, mesmo que ainda esteja embrionário. Eu respondo em até 24h com feedback honesto de escopo, prazo e investimento.",
       details: [
-        { k: "Email", v: "hello@pablofarina.dev" },
+        { k: "E-mail", v: "pablo.farina28@outlook.com" },
         { k: "Resposta", v: "Em até 24h" },
-        { k: "Status", v: "Aceitando projetos para Q3" },
       ],
       labels: {
         name: "Nome",
-        email: "Email",
+        email: "E-mail",
         budget: "Orçamento",
         project: "Projeto",
       },
@@ -360,34 +379,33 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         budget: "ex.: 5k — 10k (opcional)",
         project: "O que você quer construir?",
       },
-      statusIdle: "Abre seu cliente de email com tudo preenchido.",
-      statusSent: "✓ Cliente de email aberto — nos falamos em breve.",
+      statusIdle: "Abre seu cliente de e-mail com tudo preenchido.",
+      statusSent: "✓ Cliente de e-mail aberto — nos falamos em breve.",
       submitIdle: "Enviar mensagem",
       submitSending: "Enviando...",
       errors: {
         nameRequired: "Nome é obrigatório",
-        invalidEmail: "Email inválido",
+        invalidEmail: "E-mail inválido",
         messageMin: "Conte um pouco mais (10+ caracteres)",
       },
       mail: {
         subjectPrefix: "Novo projeto",
         fieldName: "Nome",
-        fieldEmail: "Email",
+        fieldEmail: "E-mail",
         fieldBudget: "Orçamento",
         budgetFallback: "-",
       },
     },
     footer: {
-      rights: "todos os sistemas nominais",
-      status: "Status: aceitando clientes",
+      rights: "todos os sistemas operacionais",
     },
     meta: {
       title: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
       description:
-        "Desenvolvedor fullstack freelancer criando landing pages, sistemas sob medida, ferramentas internas e automacoes.",
+        "Desenvolvedor fullstack freelancer criando landing pages, sistemas sob medida, ferramentas internas e automações.",
       ogTitle: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
       ogDescription:
-        "Landing pages, sistemas sob medida, ferramentas internas e automacoes.",
+        "Landing pages, sistemas sob medida, ferramentas internas e automações.",
     },
   },
   en: {
@@ -461,50 +479,68 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       title: "Real projects",
       intro:
         "Public repositories with clear technical scope. No inflated metrics and no claims of finished products when they are still a prototype or technical base.",
-      itemsLabel: "[ 05 / PROJECTS ]",
+      modalStackLabel: "Stack",
+      modalHighlightsLabel: "Highlights",
+      modalRepoLabel: "Open on GitHub",
+      modalLiveLabel: "Open demo",
       projects: [
         {
           title: "PRISMA (UNIRIO)",
-          tag: "Institutional platform",
           year: "2025",
-          status: "backend in development",
           body: "FastAPI base for managing and publishing academic projects, including role-based auth, token sessions, password recovery, email queue, and auth security validations.",
+          highlights: [
+            "Role-based authentication and access control",
+            "Admin workflows with public project catalog",
+            "Audit trail for sensitive operations",
+          ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ"],
           repoUrl: "https://github.com/pablozr/PRISMA",
         },
         {
           title: "SIEPA Front",
-          tag: "Institutional frontend",
           year: "2025",
-          status: "functional prototype",
           body: "Angular 19 frontend for the SIEPA ecosystem with module-based organization, protected routes, session rehydration, and evolving catalog/admin foundations.",
+          highlights: [
+            "Feature-based Angular module organization",
+            "Protected routes with session rehydration",
+            "Foundations for catalog and admin areas",
+          ],
           stack: ["Angular 19", "TypeScript", "PrimeNG"],
           repoUrl: "https://github.com/pablozr/siepa-front",
         },
         {
           title: "WiredApply",
-          tag: "Open-source API",
           year: "2025",
-          status: "technical MVP",
           body: "API for daily job-search operations: job ingestion, score-based ranking, application tracking, feedback tuning, and daily digest workflows with workers.",
+          highlights: [
+            "Asynchronous pipeline backed by workers",
+            "Score ranking tuned by user feedback",
+            "Daily digest to summarize opportunities",
+          ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
           repoUrl: "https://github.com/pablozr/wired-apply",
         },
         {
           title: "Self Checkout Monolith",
-          tag: "Payments backend",
           year: "2025",
-          status: "API in progress",
           body: "FastAPI backend for restaurant self-checkout with Redis cart sessions, Stripe checkout idempotency, payment reconciliation webhook, and SSE events for admin monitoring.",
+          highlights: [
+            "Idempotent Stripe checkout flow",
+            "Redis-backed cart sessions and state",
+            "SSE updates for real-time admin visibility",
+          ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
         },
         {
           title: "Qual é o Segredo?",
-          tag: "Published web project",
           year: "2024",
-          status: "live",
           body: "Logic game in JavaScript where players infer a secret number from clues, with Supabase persistence for clues, stats, and game time.",
+          highlights: [
+            "Live deployment for public access",
+            "Supabase persistence for game data",
+            "Stat tracking and timed sessions",
+          ],
           stack: ["JavaScript", "Supabase", "Vercel"],
           repoUrl: "https://github.com/pablozr/qual-e-o-segredo",
           liveUrl: "https://qual-e-o-segredo.vercel.app",
@@ -600,9 +636,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine2: "in mind?",
       body: "Tell me about it, even if it is still rough. I reply within 24h with honest feedback on scope, timeline and price.",
       details: [
-        { k: "Email", v: "hello@pablofarina.dev" },
+        { k: "Email", v: "pablo.farina28@outlook.com" },
         { k: "Response", v: "Under 24h" },
-        { k: "Status", v: "Accepting Q3 projects" },
       ],
       labels: {
         name: "Name",
@@ -635,7 +670,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     footer: {
       rights: "all systems nominal",
-      status: "Status: accepting clients",
     },
     meta: {
       title: "Pablo Farina — Freelance Fullstack Developer",

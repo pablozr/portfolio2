@@ -5,7 +5,7 @@ export function Services() {
   const layout = ["lg:col-span-8", "lg:col-span-4", "lg:col-span-4", "lg:col-span-8"];
 
   return (
-    <section id="services" className="relative mx-auto max-w-7xl px-6 py-32">
+    <section id="services" className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-36">
       <div
         className="pointer-events-none absolute inset-x-10 top-16 h-52 rounded-full blur-3xl"
         style={{

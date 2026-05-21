@@ -34,21 +34,20 @@ export function Footer() {
           <div className="lg:col-span-5">
             <div className="rounded-2xl border border-border/80 bg-background/60 p-6 backdrop-blur-sm">
               <div className="flex items-center gap-3 border-b border-border/80 pb-5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                <span className="size-2 rounded-full bg-accent animate-pulse" />
-                <span>{copy.footer.status}</span>
+                <span>{isPt ? "conversa aberta" : "open for conversations"}</span>
               </div>
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                 {isPt
                   ? "Se você precisa tirar uma landing page, dashboard ou sistema do papel, me chama."
                   : "If you need to take a landing page, dashboard, or system from idea to launch, reach out."}
               </p>
-              <a
-                href="#contact"
-                className="mt-6 inline-flex w-full items-center justify-between rounded-full border border-border bg-card px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-accent/60 hover:text-accent"
-              >
-                <span>{isPt ? "iniciar conversa" : "start a conversation"}</span>
-                <span aria-hidden>→</span>
-              </a>
+                <a
+                  href="#contact"
+                  className="group mt-6 inline-flex w-full items-center justify-between rounded-full border border-border bg-card px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <span>{isPt ? "iniciar conversa" : "start a conversation"}</span>
+                  <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
             </div>
           </div>
         </div>
@@ -58,14 +57,14 @@ export function Footer() {
 
           <div className="md:text-center">
             <a
-              href="mailto:hello@pablofarina.dev"
-              className="rounded-full border border-border/70 bg-background/40 px-3 py-2 transition-colors hover:border-accent/50 hover:text-accent"
+              href="mailto:pablo.farina28@outlook.com"
+              className="rounded-full border border-border/70 bg-background/40 px-3 py-2 transition-colors duration-300 hover:border-accent/50 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
             >
-              hello@pablofarina.dev
+              pablo.farina28@outlook.com
             </a>
           </div>
 
-          <a href="#top" className="transition-colors hover:text-accent md:text-right">
+          <a href="#top" className="transition-colors duration-300 hover:text-accent focus-visible:outline-none focus-visible:text-accent md:text-right">
             {isPt ? "voltar ao topo" : "back to top"}
           </a>
         </div>

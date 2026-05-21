@@ -1,4 +1,5 @@
 import { useLanguage } from "@/i18n/language";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export function About() {
   const { copy, locale } = useLanguage();
@@ -33,7 +34,7 @@ export function About() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-28 sm:py-32">
+      <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-36">
         <div className="mb-14 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.25em] text-accent">
@@ -111,6 +112,37 @@ export function About() {
                   <p>{copy.about.p2}</p>
                   <p>{copy.about.p3}</p>
                   {copy.about.p4 ? <p className="text-foreground">{copy.about.p4}</p> : null}
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <a
+                    href="mailto:pablo.farina28@outlook.com"
+                    className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/60 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    aria-label="Email"
+                  >
+                    <Mail className="size-[15px]" />
+                    <span>Email</span>
+                  </a>
+                  <a
+                    href="https://github.com/pablozr"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/60 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    aria-label="GitHub"
+                  >
+                    <Github className="size-[15px]" />
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/pablo-de-ara%C3%BAjo-farina-893a8126b"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/60 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="size-[15px]" />
+                    <span>LinkedIn</span>
+                  </a>
                 </div>
               </div>
 
