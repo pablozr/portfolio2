@@ -1,8 +1,6 @@
-export type Locale = "pt-BR" | "en";
+import type { Locale } from "./locales";
 
-export const DEFAULT_LOCALE: Locale = "pt-BR";
-
-type SiteCopy = {
+export type SiteCopy = {
   nav: {
     work: string;
     services: string;
@@ -128,6 +126,7 @@ type SiteCopy = {
     description: string;
     ogTitle: string;
     ogDescription: string;
+    ogImageAlt: string;
   };
 };
 
@@ -406,6 +405,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       ogTitle: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
       ogDescription:
         "Landing pages, sistemas sob medida, ferramentas internas e automações.",
+      ogImageAlt: "Preview do portfolio de Pablo Farina",
     },
   },
   en: {
@@ -678,6 +678,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       ogTitle: "Pablo Farina — Freelance Fullstack Developer",
       ogDescription:
         "Landing pages, custom systems, internal tools and automation.",
+      ogImageAlt: "Pablo Farina portfolio preview",
     },
   },
 };

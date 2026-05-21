@@ -3,15 +3,24 @@ import { Nav } from "@/components/portfolio/Nav";
 import { Hero } from "@/components/portfolio/Hero";
 import { Marquee } from "@/components/portfolio/Marquee";
 import { Services } from "@/components/portfolio/Services";
-import { Work } from "@/components/portfolio/Work";
-import { Process } from "@/components/portfolio/Process";
-import { About } from "@/components/portfolio/About";
-import { FAQ } from "@/components/portfolio/FAQ";
-import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
 import { RevealOnScroll } from "@/components/portfolio/RevealOnScroll";
 import { useLanguage } from "@/i18n/language";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
+
+const Work = lazy(() => import("@/components/portfolio/Work").then((m) => ({ default: m.Work })));
+const Process = lazy(() =>
+  import("@/components/portfolio/Process").then((m) => ({ default: m.Process })),
+);
+const About = lazy(() => import("@/components/portfolio/About").then((m) => ({ default: m.About })));
+const FAQ = lazy(() => import("@/components/portfolio/FAQ").then((m) => ({ default: m.FAQ })));
+const Contact = lazy(() =>
+  import("@/components/portfolio/Contact").then((m) => ({ default: m.Contact })),
+);
+
+function SectionFallback() {
+  return <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-36" aria-hidden />;
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,6 +34,8 @@ function Page() {
 
   useEffect(() => {
     document.title = copy.meta.title;
+    const canonicalUrl = window.location.href;
+    const ogImageUrl = `${window.location.origin}/og-cover.svg`;
 
     const upsertMeta = (selector: string, attrs: Record<string, string>) => {
       let node = document.head.querySelector(selector) as HTMLMetaElement | null;
@@ -56,6 +67,46 @@ function Page() {
       property: "og:description",
       content: copy.meta.ogDescription,
     });
+    upsertMeta('meta[property="og:image"]', {
+      property: "og:image",
+      content: ogImageUrl,
+    });
+    upsertMeta('meta[property="og:image:alt"]', {
+      property: "og:image:alt",
+      content: copy.meta.ogImageAlt,
+    });
+    upsertMeta('meta[property="og:url"]', {
+      property: "og:url",
+      content: canonicalUrl,
+    });
+    upsertMeta('meta[name="twitter:card"]', {
+      name: "twitter:card",
+      content: "summary_large_image",
+    });
+    upsertMeta('meta[name="twitter:title"]', {
+      name: "twitter:title",
+      content: copy.meta.ogTitle,
+    });
+    upsertMeta('meta[name="twitter:description"]', {
+      name: "twitter:description",
+      content: copy.meta.ogDescription,
+    });
+    upsertMeta('meta[name="twitter:image"]', {
+      name: "twitter:image",
+      content: ogImageUrl,
+    });
+    upsertMeta('meta[name="robots"]', {
+      name: "robots",
+      content: "index, follow, max-image-preview:large",
+    });
+
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute("href", canonicalUrl);
   }, [copy]);
 
   return (
@@ -74,33 +125,43 @@ function Page() {
         </div>
         <div className="relative isolate bg-background">
           <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
-          <RevealOnScroll>
-            <Work />
-          </RevealOnScroll>
+          <Suspense fallback={<SectionFallback />}>
+            <RevealOnScroll>
+              <Work />
+            </RevealOnScroll>
+          </Suspense>
         </div>
         <div className="relative isolate bg-[#0b0c0f]">
           <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
-          <RevealOnScroll>
-            <Process />
-          </RevealOnScroll>
+          <Suspense fallback={<SectionFallback />}>
+            <RevealOnScroll>
+              <Process />
+            </RevealOnScroll>
+          </Suspense>
         </div>
         <div className="relative isolate bg-background">
           <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
-          <RevealOnScroll>
-            <About />
-          </RevealOnScroll>
+          <Suspense fallback={<SectionFallback />}>
+            <RevealOnScroll>
+              <About />
+            </RevealOnScroll>
+          </Suspense>
         </div>
         <div className="relative isolate bg-[#0d0f12]">
           <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
-          <RevealOnScroll>
-            <FAQ />
-          </RevealOnScroll>
+          <Suspense fallback={<SectionFallback />}>
+            <RevealOnScroll>
+              <FAQ />
+            </RevealOnScroll>
+          </Suspense>
         </div>
         <div className="relative isolate bg-background">
           <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
-          <RevealOnScroll>
-            <Contact />
-          </RevealOnScroll>
+          <Suspense fallback={<SectionFallback />}>
+            <RevealOnScroll>
+              <Contact />
+            </RevealOnScroll>
+          </Suspense>
         </div>
       </main>
       <Footer />

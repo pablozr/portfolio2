@@ -137,58 +137,6 @@
   background-size: 80px 80px;
 }
 
-@keyframes section-wave-drift {
-  0% {
-    transform: translate3d(-8%, -50%, 0);
-  }
-  100% {
-    transform: translate3d(0%, -50%, 0);
-  }
-}
-
-@keyframes section-wave-drift-reverse {
-  0% {
-    transform: translate3d(0%, -50%, 0);
-  }
-  100% {
-    transform: translate3d(-8%, -50%, 0);
-  }
-}
-
-@keyframes section-core-pulse {
-  0%,
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: translate3d(-50%, -50%, 0) scale(1.22);
-    opacity: 1;
-  }
-}
-
-@keyframes process-line-shift {
-  0% {
-    transform: translateX(-132%) scaleX(0.7);
-    opacity: 0;
-  }
-  14% {
-    opacity: 0.35;
-  }
-  28% {
-    transform: translateX(-35%) scaleX(1.1);
-    opacity: 1;
-  }
-  72% {
-    transform: translateX(35%) scaleX(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(132%) scaleX(0.7);
-    opacity: 0;
-  }
-}
-
 @keyframes process-node-glow {
   0%,
   100% {
@@ -197,22 +145,6 @@
   50% {
     box-shadow: 0 0 0 10px oklch(0.78 0.09 70 / 0);
   }
-}
-
-.animate-section-wave {
-  animation: section-wave-drift 8.5s linear infinite;
-}
-
-.animate-section-wave-reverse {
-  animation: section-wave-drift-reverse 11s linear infinite;
-}
-
-.animate-section-core {
-  animation: section-core-pulse 2.2s ease-in-out infinite;
-}
-
-.animate-process-line {
-  animation: process-line-shift 4.3s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
 }
 
 .animate-process-node {
@@ -226,22 +158,6 @@
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translate3d(0, 36px, 0);
-  filter: blur(2px);
-  transition:
-    opacity 680ms var(--ease-out-expo),
-    transform 680ms var(--ease-out-expo),
-    filter 680ms var(--ease-out-expo);
-}
-
-.reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  filter: blur(0);
 }
 
 .noise-overlay {

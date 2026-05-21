@@ -1,18 +1,20 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { DEFAULT_LOCALE, type Locale, siteCopy } from "./site-copy";
+import { DEFAULT_LOCALE, type Locale } from "./locales";
+import type { SiteCopy } from "./site-copy";
 
 const STORAGE_KEY = "portfolio.locale";
 
 type LanguageContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  copy: (typeof siteCopy)[Locale];
+  copy: SiteCopy;
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
+  const [copy, setCopy] = useState<SiteCopy | null>(null);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -32,10 +34,28 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
   }, [locale]);
 
+  useEffect(() => {
+    let active = true;
+
+    import("./site-copy").then((module) => {
+      if (active) {
+        setCopy(module.siteCopy[locale]);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [locale]);
+
   const value = useMemo(
-    () => ({ locale, setLocale, copy: siteCopy[locale] }),
-    [locale]
+    () => (copy ? { locale, setLocale, copy } : null),
+    [copy, locale],
   );
+
+  if (!value) {
+    return null;
+  }
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }

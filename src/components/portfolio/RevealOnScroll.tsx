@@ -1,34 +1,29 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
+import { useRef, type ReactNode } from "react";
 
 export function RevealOnScroll({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.18,
-        rootMargin: "0px 0px -10% 0px",
-      }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+  const inView = useInView(ref, {
+    once: true,
+    amount: 0.18,
+    margin: "0px 0px -10% 0px",
+  });
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div ref={ref} className={`reveal-on-scroll ${visible ? "is-visible" : ""}`}>
+    <motion.div
+      ref={ref}
+      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 36, filter: "blur(2px)" }}
+      animate={
+        inView
+          ? { opacity: 1, y: 0, filter: "blur(0px)" }
+          : reduceMotion
+            ? { opacity: 0 }
+            : { opacity: 0, y: 36, filter: "blur(2px)" }
+      }
+      transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 }

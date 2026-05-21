@@ -1,25 +1,43 @@
 import { useLanguage } from "@/i18n/language";
 import heroVideo from "@/assets/eclipse-over-silent-falls.1920x1080.mp4";
+import { useEffect, useState } from "react";
 
 export function Hero({ className = "" }: { className?: string }) {
   const { copy } = useLanguage();
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 640px)");
+    const onChange = () => setShowVideo(mediaQuery.matches);
+    onChange();
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <section
       id="top"
       className={`relative overflow-hidden border-b border-border ${className}`.trim()}
     >
-      <video
-        className="absolute inset-0 z-0 h-full w-full animate-hero-video-in object-cover object-[72%_center] md:object-[68%_center]"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden
-      >
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+      {showVideo ? (
+        <video
+          className="absolute inset-0 z-0 h-full w-full animate-hero-video-in object-cover object-[72%_center] md:object-[68%_center]"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      ) : (
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/og-cover.svg')" }}
+          aria-hidden
+        />
+      )}
       <div className="absolute inset-0 bg-background/18 animate-hero-overlay-in" aria-hidden />
       <div
         className="absolute inset-0 animate-hero-overlay-in"
