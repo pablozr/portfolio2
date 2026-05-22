@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
   component: Page,
 });
 
-function Page() {
+export function Page() {
   const { copy } = useLanguage();
 
   useEffect(() => {
