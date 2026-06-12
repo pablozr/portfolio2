@@ -5,6 +5,7 @@ import { Marquee } from "@/components/portfolio/Marquee";
 import { Services } from "@/components/portfolio/Services";
 import { Footer } from "@/components/portfolio/Footer";
 import { RevealOnScroll } from "@/components/portfolio/RevealOnScroll";
+import { CtaBand, ProofBand } from "@/components/portfolio/ConversionBands";
 import { useLanguage } from "@/i18n/language";
 import { lazy, Suspense, useEffect } from "react";
 
@@ -12,7 +13,9 @@ const Work = lazy(() => import("@/components/portfolio/Work").then((m) => ({ def
 const Process = lazy(() =>
   import("@/components/portfolio/Process").then((m) => ({ default: m.Process })),
 );
-const About = lazy(() => import("@/components/portfolio/About").then((m) => ({ default: m.About })));
+const About = lazy(() =>
+  import("@/components/portfolio/About").then((m) => ({ default: m.About })),
+);
 const FAQ = lazy(() => import("@/components/portfolio/FAQ").then((m) => ({ default: m.FAQ })));
 const Contact = lazy(() =>
   import("@/components/portfolio/Contact").then((m) => ({ default: m.Contact })),
@@ -118,21 +121,32 @@ export function Page() {
           <Marquee />
         </section>
         <div className="relative isolate bg-[#0c0d10]">
-          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-0 noise-overlay opacity-35"
+            aria-hidden
+          />
           <RevealOnScroll>
             <Services />
           </RevealOnScroll>
         </div>
+        <ProofBand />
         <div className="relative isolate bg-background">
-          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-0 noise-overlay opacity-20"
+            aria-hidden
+          />
           <Suspense fallback={<SectionFallback />}>
             <RevealOnScroll>
               <Work />
             </RevealOnScroll>
           </Suspense>
         </div>
+        <CtaBand tone="dark" />
         <div className="relative isolate bg-[#0b0c0f]">
-          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-0 noise-overlay opacity-35"
+            aria-hidden
+          />
           <Suspense fallback={<SectionFallback />}>
             <RevealOnScroll>
               <Process />
@@ -140,7 +154,10 @@ export function Page() {
           </Suspense>
         </div>
         <div className="relative isolate bg-background">
-          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-0 noise-overlay opacity-20"
+            aria-hidden
+          />
           <Suspense fallback={<SectionFallback />}>
             <RevealOnScroll>
               <About />
@@ -148,15 +165,22 @@ export function Page() {
           </Suspense>
         </div>
         <div className="relative isolate bg-[#0d0f12]">
-          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-35" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-0 noise-overlay opacity-35"
+            aria-hidden
+          />
           <Suspense fallback={<SectionFallback />}>
             <RevealOnScroll>
               <FAQ />
             </RevealOnScroll>
           </Suspense>
         </div>
+        <CtaBand />
         <div className="relative isolate bg-background">
-          <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-0 noise-overlay opacity-20"
+            aria-hidden
+          />
           <Suspense fallback={<SectionFallback />}>
             <RevealOnScroll>
               <Contact />

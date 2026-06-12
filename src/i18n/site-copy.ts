@@ -143,10 +143,10 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     hero: {
       availability: "",
-      titleLine1: "Landing pages, dashboards e sistemas",
-      titleLine2: "sob medida com backend",
-      titleAccent: "confiável.",
-      body: "Desenvolvo interfaces, APIs e deploy com FastAPI, Angular, PostgreSQL, Java e Spring Boot para projetos web que precisam rodar em produção.",
+      titleLine1: "Landing pages e sistemas web",
+      titleLine2: "para vender e operar com",
+      titleAccent: "confiança.",
+      body: "Crio landing pages, dashboards, automações e sistemas sob medida para negócios que precisam validar uma oferta, sair da planilha ou colocar uma operação em produção.",
       ctaStart: "Iniciar projeto",
       ctaServices: "Ver projetos",
     },
@@ -173,10 +173,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           title: "Landing Pages",
           body: "Superfícies de marketing para alta conversão. Design customizado, motion e estrutura pensada para copy. Feitas para performance e Lighthouse 95+.",
           bullets: ["Design + dev custom", "Com CMS ou estático", "Pronto para A/B"],
-          prices: [
-            "Simples: a partir de R$600",
-            "Personalizada: a partir de R$1.000",
-          ],
+          prices: ["Simples: a partir de R$600", "Personalizada: a partir de R$1.000"],
         },
         {
           code: "02 / SYS",
@@ -213,11 +210,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "Self Checkout Monolith",
           year: "2025",
-          body: "Sistema de autoatendimento com carrinho anônimo, menu por mesa, checkout com Stripe, webhook de pagamento, Redis, RabbitMQ e atualização em tempo real via SSE.",
+          body: "Sistema para restaurante vender pelo próprio menu digital, receber pagamentos online e acompanhar pedidos em tempo real no painel administrativo.",
           highlights: [
-            "Idempotência e reconciliação no fluxo de pagamento",
-            "Controle de concorrência em operações críticas",
-            "Eventos em tempo real para painel administrativo",
+            "Checkout com Stripe e reconciliação segura de pagamento",
+            "Carrinho por mesa para reduzir fricção no pedido",
+            "Atualização em tempo real para operação acompanhar vendas",
           ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
@@ -225,11 +222,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "PRISMA",
           year: "2025",
-          body: "Plataforma institucional com backend e frontend para divulgação e gestão de projetos universitários, com catálogo público, autenticação por perfis, login Google e área administrativa.",
+          body: "Plataforma institucional para publicar projetos universitários, organizar permissões e dar autonomia para equipes administrarem conteúdo sem depender de alterações manuais.",
           highlights: [
-            "Backend FastAPI com regras de acesso por perfil",
-            "Frontend Angular modular com rotas protegidas",
-            "Auditoria, autenticação institucional e base para evolução",
+            "Catálogo público com base administrativa",
+            "Login e permissões por perfil para proteger áreas internas",
+            "Estrutura modular preparada para evolução do produto",
           ],
           stack: ["FastAPI", "Angular", "PostgreSQL", "Redis", "RabbitMQ", "JWT"],
           repoUrl: "https://github.com/pablozr/PRISMA",
@@ -238,11 +235,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "WiredApply",
           year: "2025",
-          body: "API open-source para automação de busca de vagas, com ingestão de oportunidades, ranking por score, acompanhamento de candidaturas, feedback do usuário e digest diário.",
+          body: "Ferramenta para organizar a busca de vagas, priorizar oportunidades por aderência e transformar candidaturas em um fluxo acompanhável no dia a dia.",
           highlights: [
-            "Pipeline assíncrona com workers e filas",
-            "Score de vagas com ajuste por feedback",
-            "Digest diário para acompanhamento operacional",
+            "Ranking de oportunidades para reduzir decisão manual",
+            "Acompanhamento de candidaturas e feedback do usuário",
+            "Resumo diário para manter rotina de busca ativa",
           ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
           repoUrl: "https://github.com/pablozr/wired-apply",
@@ -250,11 +247,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "Subscription Monolith",
           year: "2025",
-          body: "Sistema para gerenciamento de assinaturas, controle de custos recorrentes e envio de lembretes por e-mail antes da renovação.",
+          body: "Sistema para acompanhar assinaturas, evitar renovações esquecidas e dar visibilidade sobre custos recorrentes antes que eles virem desperdício.",
           highlights: [
-            "Arquitetura modular com domínios separados",
-            "Fila para envio assíncrono com worker SMTP",
-            "Redis e RabbitMQ para rotina de notificações",
+            "Controle centralizado de custos recorrentes",
+            "Lembretes automáticos antes da renovação",
+            "Base organizada para relatórios e evolução futura",
           ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "SMTP"],
           repoUrl: "https://github.com/pablozr/subscription-monolith",
@@ -262,11 +259,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "FastAPI Template / Angular Template",
           year: "2025",
-          body: "Templates para acelerar novos produtos com convenções de projeto, arquitetura inicial e componentes reutilizáveis para backend e frontend.",
+          body: "Bases reutilizáveis para começar novos produtos com estrutura, autenticação, organização por módulos e convenções claras desde o primeiro commit.",
           highlights: [
-            "Starter backend com padrão modular e ambientes",
-            "Starter frontend por features com base escalável",
-            "Ideal para reduzir setup e acelerar kickoff",
+            "Menos tempo gasto em setup repetitivo",
+            "Organização inicial para backend e frontend crescerem sem bagunça",
+            "Ponto de partida para MVPs, dashboards e sistemas internos",
           ],
           stack: ["FastAPI", "Angular", "TypeScript", "Docker"],
           repoUrl: "https://github.com/pablozr/fastapi-template",
@@ -278,7 +275,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine1: "Da primeira call até",
       titleAccent: "produção",
       titleLine2: "em quatro etapas honestas.",
-      body: "Um desenvolvedor. Sem camada de agência, sem repasse para júnior, sem surpresa em fatura. Você sempre sabe o que está sendo construído, por quê e quando será entregue.",
+      body: "Um fluxo simples para sair de uma necessidade solta e chegar em uma entrega validável. Você entende o escopo, acompanha versões em staging e recebe o código pronto para continuar.",
       meta: ["média de 3-6 semanas", "preço fechado", "escopo claro"],
       steps: [
         {
@@ -403,8 +400,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       description:
         "Desenvolvedor fullstack freelancer criando landing pages, sistemas sob medida, ferramentas internas e automações.",
       ogTitle: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
-      ogDescription:
-        "Landing pages, sistemas sob medida, ferramentas internas e automações.",
+      ogDescription: "Landing pages, sistemas sob medida, ferramentas internas e automações.",
       ogImageAlt: "Preview do portfolio de Pablo Farina",
     },
   },
@@ -420,10 +416,10 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     },
     hero: {
       availability: "",
-      titleLine1: "Landing pages, dashboards, and systems",
-      titleLine2: "tailored with backend",
-      titleAccent: "they can trust.",
-      body: "I build interfaces, APIs, and deployments with FastAPI, Angular, PostgreSQL, Java, and Spring Boot for web projects that need to run in production.",
+      titleLine1: "Landing pages and web systems",
+      titleLine2: "built to sell and operate with",
+      titleAccent: "confidence.",
+      body: "I build landing pages, dashboards, automations, and custom systems for businesses that need to validate an offer, replace spreadsheets, or put an operation into production.",
       ctaStart: "Start a project",
       ctaServices: "View projects",
     },
@@ -487,11 +483,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "PRISMA (UNIRIO)",
           year: "2025",
-          body: "FastAPI base for managing and publishing academic projects, including role-based auth, token sessions, password recovery, email queue, and auth security validations.",
+          body: "Institutional platform for publishing academic projects, organizing access permissions, and giving teams a structured admin area instead of manual content updates.",
           highlights: [
-            "Role-based authentication and access control",
-            "Admin workflows with public project catalog",
-            "Audit trail for sensitive operations",
+            "Public catalog backed by admin workflows",
+            "Role-based access for protected internal areas",
+            "Modular base prepared for product evolution",
           ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ"],
           repoUrl: "https://github.com/pablozr/PRISMA",
@@ -499,7 +495,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "SIEPA Front",
           year: "2025",
-          body: "Angular 19 frontend for the SIEPA ecosystem with module-based organization, protected routes, session rehydration, and evolving catalog/admin foundations.",
+          body: "Frontend foundation for a project-management ecosystem, with protected areas, session continuity, and reusable structure for catalog and admin screens.",
           highlights: [
             "Feature-based Angular module organization",
             "Protected routes with session rehydration",
@@ -511,11 +507,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "WiredApply",
           year: "2025",
-          body: "API for daily job-search operations: job ingestion, score-based ranking, application tracking, feedback tuning, and daily digest workflows with workers.",
+          body: "Tool to organize job-search routines, prioritize better-fit opportunities, and turn applications into a trackable daily workflow.",
           highlights: [
-            "Asynchronous pipeline backed by workers",
-            "Score ranking tuned by user feedback",
-            "Daily digest to summarize opportunities",
+            "Opportunity ranking to reduce manual filtering",
+            "Application tracking with user feedback",
+            "Daily digest to keep the routine moving",
           ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
           repoUrl: "https://github.com/pablozr/wired-apply",
@@ -523,11 +519,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         {
           title: "Self Checkout Monolith",
           year: "2025",
-          body: "FastAPI backend for restaurant self-checkout with Redis cart sessions, Stripe checkout idempotency, payment reconciliation webhook, and SSE events for admin monitoring.",
+          body: "Restaurant self-checkout system for digital menus, online payment, and real-time operational visibility from the admin panel.",
           highlights: [
-            "Idempotent Stripe checkout flow",
-            "Redis-backed cart sessions and state",
-            "SSE updates for real-time admin visibility",
+            "Stripe checkout with safer payment reconciliation",
+            "Table-based carts to reduce order friction",
+            "Real-time updates for admin monitoring",
           ],
           stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
@@ -551,7 +547,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       titleLine1: "From first call to",
       titleAccent: "production",
       titleLine2: "in four honest steps.",
-      body: "One developer. No agency overhead, no junior hand-offs, no surprise invoices. You always know what is being built, why, and when it ships.",
+      body: "A simple flow to turn a loose need into a validated delivery. You understand the scope, review staging builds, and receive code that can keep evolving.",
       meta: ["avg. 3-6 weeks", "fixed price", "clear scope"],
       steps: [
         {
@@ -676,8 +672,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       description:
         "Freelance fullstack developer building landing pages, custom systems, internal tools and automation.",
       ogTitle: "Pablo Farina — Freelance Fullstack Developer",
-      ogDescription:
-        "Landing pages, custom systems, internal tools and automation.",
+      ogDescription: "Landing pages, custom systems, internal tools and automation.",
       ogImageAlt: "Pablo Farina portfolio preview",
     },
   },

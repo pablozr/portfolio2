@@ -29,7 +29,8 @@ const getPlaceholderPreview = (title: string) => {
 };
 
 export function Work() {
-  const { copy } = useLanguage();
+  const { copy, locale } = useLanguage();
+  const isPt = locale === "pt-BR";
 
   return (
     <section id="work" className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-36">
@@ -41,14 +42,14 @@ export function Work() {
 
       <div className="relative mb-12 border-b border-border/70 pb-8">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent/90 animate-[reveal_0.7s_var(--ease-out-expo)_both]">
-          Portfolio selecionado
+          {isPt ? "Portfolio selecionado" : "Selected work"}
         </p>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight animate-[reveal_0.9s_var(--ease-out-expo)_both] sm:text-5xl md:text-6xl">
             {copy.work.title}
           </h2>
           <span className="rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-accent animate-[reveal_1.1s_var(--ease-out-expo)_both]">
-            entregas reais
+            {isPt ? "entregas reais" : "real deliveries"}
           </span>
         </div>
       </div>
@@ -63,7 +64,7 @@ export function Work() {
             <DialogTrigger asChild>
               <button
                 type="button"
-                className={`group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-6 text-left backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-card/70 sm:p-7 ${
+                className={`group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-7 text-left backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-card/70 sm:p-8 ${
                   index === 0 ? "md:col-span-2" : ""
                 }`}
                 style={{
@@ -75,18 +76,18 @@ export function Work() {
                 <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent/10 blur-2xl transition-transform duration-500 group-hover:scale-125" />
 
                 <div className="relative mb-5 flex items-center justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent/90">
+                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-accent/90">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                     {project.year}
                   </span>
                 </div>
 
-                <h3 className="relative text-2xl font-semibold tracking-tight transition-transform duration-300 group-hover:translate-x-0.5 sm:text-[28px]">
+                <h3 className="relative text-[1.7rem] font-semibold tracking-tight transition-transform duration-300 group-hover:translate-x-0.5 sm:text-[2rem]">
                   {project.title}
                 </h3>
-                <p className="relative mt-4 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+                <p className="relative mt-4 text-[15px] leading-relaxed text-muted-foreground sm:text-[17px]">
                   {project.body}
                 </p>
 
@@ -94,20 +95,20 @@ export function Work() {
                   {project.stack.slice(0, 4).map((item) => (
                     <li
                       key={item}
-                      className="rounded-full border border-border/70 bg-background/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-300"
+                      className="rounded-full border border-border/70 bg-background/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-300"
                     >
                       {item}
                     </li>
                   ))}
                   {project.stack.length > 4 ? (
-                    <li className="rounded-full border border-border/70 bg-background/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                    <li className="rounded-full border border-border/70 bg-background/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
                       +{project.stack.length - 4}
                     </li>
                   ) : null}
                 </ul>
 
-                <p className="relative mt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground transition-colors group-hover:text-accent">
-                  Abrir detalhes completos
+                <p className="relative mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors group-hover:text-accent">
+                  {isPt ? "Abrir detalhes completos" : "Open full details"}
                 </p>
               </button>
             </DialogTrigger>
@@ -168,7 +169,9 @@ export function Work() {
                     className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background/80 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     {copy.work.modalRepoLabel}
-                    <span className="text-accent/0 transition-colors duration-300 group-hover:text-accent">↗</span>
+                    <span className="text-accent/0 transition-colors duration-300 group-hover:text-accent">
+                      ↗
+                    </span>
                   </a>
                   {project.liveUrl ? (
                     <a
@@ -178,7 +181,9 @@ export function Work() {
                       className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background/80 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {copy.work.modalLiveLabel}
-                      <span className="text-accent/0 transition-colors duration-300 group-hover:text-accent">↗</span>
+                      <span className="text-accent/0 transition-colors duration-300 group-hover:text-accent">
+                        ↗
+                      </span>
                     </a>
                   ) : null}
                 </div>

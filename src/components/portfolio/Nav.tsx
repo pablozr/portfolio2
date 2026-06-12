@@ -6,8 +6,8 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const links = [
-    { href: "#work", label: copy.nav.work },
     { href: "#services", label: copy.nav.services },
+    { href: "#work", label: copy.nav.work },
     { href: "#process", label: copy.nav.process },
     { href: "#about", label: copy.nav.about },
     { href: "#faq", label: copy.nav.faq },
@@ -20,7 +20,10 @@ export function Nav() {
         className="relative mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] border border-border/70 bg-[#0e0f12]/92 shadow-[0_20px_65px_rgba(0,0,0,0.55)] backdrop-blur"
         role="navigation"
       >
-        <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent"
+          aria-hidden
+        />
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(140%_95%_at_50%_-45%,rgba(255,255,255,0.16),rgba(255,255,255,0.03)_38%,rgba(255,255,255,0)_62%),linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0)_38%)]"
           aria-hidden
@@ -103,7 +106,9 @@ export function Nav() {
                 className="group flex items-center justify-between rounded-lg px-3 py-2 transition-colors duration-300 hover:bg-white/5 hover:text-accent"
               >
                 {link.label}
-                <span className="translate-x-0 text-accent/0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-accent">→</span>
+                <span className="translate-x-0 text-accent/0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-accent">
+                  →
+                </span>
               </a>
             ))}
           </div>

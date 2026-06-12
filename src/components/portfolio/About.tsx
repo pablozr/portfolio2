@@ -1,26 +1,11 @@
 import { useLanguage } from "@/i18n/language";
 import { Github, Linkedin, Mail } from "lucide-react";
+import profilePhoto from "@/assets/ChatGPT Image 12 de jun. de 2026, 14_37_54.png";
 
 export function About() {
   const { copy, locale } = useLanguage();
   const isPt = locale === "pt-BR";
-  const aboutMeta = isPt
-    ? "stack com propósito"
-    : "purpose-driven stack";
-  const profileRows = isPt
-    ? [
-        ["quem", "desenvolvedor full stack"],
-        ["atua", "web, backend e integrações"],
-        ["fluxo", "escopo, staging e handoff"],
-      ]
-    : [
-        ["who", "full stack developer"],
-        ["focus", "web, backend, integrations"],
-        ["flow", "scope, staging, handoff"],
-      ];
-  const profileNote = isPt
-    ? "Stack com propósito para resolver gargalos reais de operação."
-    : "Purpose-driven stack focused on operational bottlenecks.";
+  const aboutMeta = isPt ? "stack com propósito" : "purpose-driven stack";
   const principles = isPt
     ? ["APIs documentadas", "staging para validar", "deploy e handoff claros"]
     : ["documented APIs", "staging for validation", "clear deploy and handoff"];
@@ -59,48 +44,13 @@ export function About() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="group relative min-h-[560px] overflow-hidden rounded-2xl border border-border/80 bg-card shadow-2xl shadow-black/20">
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(120% 80% at 30% 18%, oklch(0.78 0.09 70 / 0.22), transparent 58%), radial-gradient(80% 60% at 80% 72%, oklch(0.7 0.08 230 / 0.1), transparent 62%), linear-gradient(180deg, oklch(0.22 0.006 60), oklch(0.14 0.005 60))",
-              }}
-            />
-              <div className="absolute inset-0 grid-bg opacity-30" />
-              <div className="absolute left-6 right-6 top-6 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                <span>operator_profile.exe</span>
-                <span className="text-accent">● live</span>
-              </div>
-
-              <div className="absolute inset-x-8 top-24 rounded-2xl border border-border/70 bg-background/35 p-5 backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-1">
-                <div className="mb-5 flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-accent" />
-                  <span className="size-2 rounded-full bg-muted-foreground/40" />
-                  <span className="size-2 rounded-full bg-muted-foreground/25" />
-                </div>
-                <div className="space-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                  {profileRows.map(([label, value], i) => (
-                    <div
-                      key={label}
-                      className={`flex justify-between ${i < profileRows.length - 1 ? "border-b border-border/70 pb-3" : ""}`}
-                    >
-                      <span>{label}</span>
-                      <span className="text-foreground">{value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="rounded-2xl border border-border/80 bg-background/70 p-5 backdrop-blur-md">
-                  <p className="font-serif text-4xl italic leading-none text-accent">
-                    {isPt ? "planejar / construir / manter" : "plan / build / maintain"}
-                  </p>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {profileNote}
-                  </p>
-                </div>
-              </div>
+              <img
+                src={profilePhoto}
+                alt="Foto de Pablo Farina"
+                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-background/5 via-transparent to-background/20" />
             </div>
           </div>
 
@@ -155,7 +105,10 @@ export function About() {
                   >
                     <div
                       className="absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      style={{ background: "linear-gradient(to right, transparent, var(--color-accent), transparent)" }}
+                      style={{
+                        background:
+                          "linear-gradient(to right, transparent, var(--color-accent), transparent)",
+                      }}
                       aria-hidden
                     />
                     <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
