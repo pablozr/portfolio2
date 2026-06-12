@@ -8,10 +8,26 @@ export function Hero({ className = "" }: { className?: string }) {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 640px)");
-    const onChange = () => setShowVideo(mediaQuery.matches);
+    const dataSaverQuery = window.matchMedia("(prefers-reduced-data: reduce)");
+    let timer = 0;
+
+    const onChange = () => {
+      window.clearTimeout(timer);
+      if (!mediaQuery.matches || dataSaverQuery.matches) {
+        setShowVideo(false);
+        return;
+      }
+      timer = window.setTimeout(() => setShowVideo(true), 900);
+    };
+
     onChange();
     mediaQuery.addEventListener("change", onChange);
-    return () => mediaQuery.removeEventListener("change", onChange);
+    dataSaverQuery.addEventListener("change", onChange);
+    return () => {
+      window.clearTimeout(timer);
+      mediaQuery.removeEventListener("change", onChange);
+      dataSaverQuery.removeEventListener("change", onChange);
+    };
   }, []);
 
   return (
@@ -78,7 +94,9 @@ export function Hero({ className = "" }: { className?: string }) {
             {copy.hero.titleLine1}
             <br />
             {copy.hero.titleLine2}{" "}
-            <span className="font-serif italic text-accent [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]">{copy.hero.titleAccent}</span>
+            <span className="font-serif italic text-accent [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]">
+              {copy.hero.titleAccent}
+            </span>
           </h1>
 
           <p className="mt-10 max-w-xl text-base leading-relaxed text-zinc-200/92 [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-lg">
@@ -101,10 +119,11 @@ export function Hero({ className = "" }: { className?: string }) {
               className="group inline-flex items-center gap-2 rounded-md border border-white/45 bg-white/8 px-5 py-3 text-sm font-medium text-zinc-100 shadow-[0_10px_24px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/70 hover:bg-white/14 hover:text-white active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               {copy.hero.ctaServices}
-              <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
+              <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+                ↓
+              </span>
             </a>
           </div>
-
         </div>
       </div>
     </section>

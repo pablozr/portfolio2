@@ -1,6 +1,6 @@
 import { useLanguage } from "@/i18n/language";
 import { Github, Linkedin, Mail } from "lucide-react";
-import profilePhoto from "@/assets/ChatGPT Image 12 de jun. de 2026, 14_37_54.png";
+import profilePhoto from "@/assets/profile-photo.jpg";
 
 export function About() {
   const { copy, locale } = useLanguage();
@@ -48,6 +48,7 @@ export function About() {
                 src={profilePhoto}
                 alt="Foto de Pablo Farina"
                 className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                decoding="async"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-background/5 via-transparent to-background/20" />
