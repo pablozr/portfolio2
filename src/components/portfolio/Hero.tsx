@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 
 export function Hero({ className = "" }: { className?: string }) {
   const { copy } = useLanguage();
-  const [showVideo, setShowVideo] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 640px)");
@@ -14,10 +15,11 @@ export function Hero({ className = "" }: { className?: string }) {
     const onChange = () => {
       window.clearTimeout(timer);
       if (!mediaQuery.matches || dataSaverQuery.matches) {
-        setShowVideo(false);
+        setShouldLoadVideo(false);
+        setVideoReady(false);
         return;
       }
-      timer = window.setTimeout(() => setShowVideo(true), 900);
+      timer = window.setTimeout(() => setShouldLoadVideo(true), 900);
     };
 
     onChange();
@@ -35,25 +37,26 @@ export function Hero({ className = "" }: { className?: string }) {
       id="top"
       className={`relative overflow-hidden border-b border-border ${className}`.trim()}
     >
-      {showVideo ? (
+      <div
+        className="absolute inset-0 z-0 bg-[radial-gradient(70%_55%_at_78%_18%,oklch(0.78_0.09_70_/_0.22),transparent_64%),radial-gradient(70%_60%_at_18%_4%,oklch(0.7_0.08_230_/_0.18),transparent_68%),linear-gradient(135deg,oklch(0.18_0.01_250),oklch(0.1_0.006_60)_58%,oklch(0.16_0.008_70))]"
+        aria-hidden
+      />
+      {shouldLoadVideo ? (
         <video
-          className="absolute inset-0 z-0 h-full w-full animate-hero-video-in object-cover object-[72%_center] md:object-[68%_center]"
+          className={`absolute inset-0 z-0 h-full w-full object-cover object-[72%_center] transition-opacity duration-[1800ms] ease-out md:object-[68%_center] ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
+          onCanPlay={() => setVideoReady(true)}
           aria-hidden
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-      ) : (
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/og-cover.svg')" }}
-          aria-hidden
-        />
-      )}
+      ) : null}
       <div className="absolute inset-0 bg-background/18 animate-hero-overlay-in" aria-hidden />
       <div
         className="absolute inset-0 animate-hero-overlay-in"
