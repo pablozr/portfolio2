@@ -7,38 +7,26 @@ export function Services() {
   return (
     <section id="services" className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-36">
       <div
-        className="pointer-events-none absolute inset-x-10 top-16 h-52 rounded-full blur-3xl"
-        style={{
-          background:
-            "linear-gradient(90deg, oklch(0.76 0.12 78 / 0.24), oklch(0.7 0.06 220 / 0.16), oklch(0.68 0.11 40 / 0.2))",
-        }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent"
+        className="pointer-events-none absolute right-10 top-16 h-36 w-36 rotate-12 border-[4px] border-border bg-accent shadow-[10px_10px_0_var(--color-border)]"
         aria-hidden
       />
 
-      <div className="relative mb-14 overflow-hidden rounded-3xl border border-white/15 bg-[linear-gradient(140deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02)_35%,rgba(0,0,0,0.08)_100%)] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-10">
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/45"
-          aria-hidden
-        />
-        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-white/15 pb-6">
+      <div className="relative mb-14 overflow-hidden border-[4px] border-border bg-card p-7 shadow-[12px_12px_0_var(--color-border)] sm:p-10">
+        <div className="flex flex-wrap items-end justify-between gap-6 border-b-[3px] border-border pb-6">
           <div>
-            <p className="mb-2 font-mono text-xs uppercase tracking-[0.3em] text-accent/90">
+            <p className="mb-2 font-mono text-xs font-black uppercase tracking-[0.3em] text-accent">
               // {copy.services.eyebrow}
             </p>
-            <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h2 className="text-4xl font-black uppercase tracking-[-0.05em] sm:text-6xl">
               {copy.services.title}
             </h2>
           </div>
-          <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-200/85">
+          <span className="border-[3px] border-border bg-primary px-3 py-1 font-mono text-[11px] font-black uppercase tracking-[0.22em] text-foreground shadow-[4px_4px_0_var(--color-border)]">
             {copy.services.itemsLabel}
           </span>
         </div>
 
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-zinc-300/90 sm:text-base">
+        <p className="mt-6 max-w-3xl text-sm font-semibold leading-relaxed text-muted-foreground sm:text-base">
           {copy.services.intro}
         </p>
       </div>
@@ -47,10 +35,10 @@ export function Services() {
         {copy.services.items.map((s, i) => (
           <article
             key={s.code}
-            className={`group relative overflow-hidden rounded-3xl border border-white/12 bg-[linear-gradient(145deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02)_40%,rgba(0,0,0,0.22)_100%)] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.32)] transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/55 hover:shadow-[0_28px_80px_rgba(0,0,0,0.42)] sm:p-9 lg:p-10 ${layout[i] ?? "lg:col-span-6"}`}
+            className={`group relative overflow-hidden border-[3px] border-border bg-card p-8 shadow-[9px_9px_0_var(--color-border)] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:bg-secondary hover:shadow-[4px_4px_0_var(--color-border)] sm:p-9 lg:p-10 ${layout[i] ?? "lg:col-span-6"}`}
           >
             <div
-              className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full opacity-35 blur-2xl transition-opacity group-hover:opacity-55"
+              className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rotate-12 border-[3px] border-border opacity-90 transition-transform group-hover:rotate-3"
               style={{
                 background:
                   i % 2 === 0 ? "oklch(0.78 0.09 78 / 0.82)" : "oklch(0.7 0.11 220 / 0.82)",
@@ -58,41 +46,43 @@ export function Services() {
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/30"
+              className="pointer-events-none absolute inset-x-0 top-0 h-3 bg-primary"
               aria-hidden
             />
 
             <div className="relative flex items-start justify-between gap-3">
-              <span className="font-mono text-[13px] uppercase tracking-[0.18em] text-zinc-400 transition-colors group-hover:text-accent">
+              <span className="font-mono text-[13px] font-black uppercase tracking-[0.18em] text-muted-foreground transition-colors group-hover:text-foreground">
                 {s.code}
               </span>
-              <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
+              <span className="border-2 border-border bg-accent px-3 py-1 font-mono text-[10px] font-black uppercase tracking-[0.14em] text-accent-foreground">
                 {copy.services.badge}
               </span>
             </div>
 
-            <h3 className="relative mt-5 text-[1.7rem] font-semibold tracking-tight sm:text-[2rem]">
+            <h3 className="relative mt-5 text-[1.7rem] font-black uppercase tracking-[-0.04em] sm:text-[2.2rem]">
               {s.title}
             </h3>
-            <p className="relative mt-4 text-[17px] leading-relaxed text-zinc-300/90">{s.body}</p>
+            <p className="relative mt-4 text-[17px] font-medium leading-relaxed text-muted-foreground">
+              {s.body}
+            </p>
 
             <div className="relative mt-7 space-y-4">
-              <div className="space-y-1 border-t border-white/12 pt-4">
+              <div className="space-y-1 border-t-[3px] border-border pt-4">
                 {s.prices.map((price) => (
                   <p
                     key={price}
-                    className="font-mono text-xs uppercase tracking-[0.16em] text-accent/95"
+                    className="font-mono text-xs font-black uppercase tracking-[0.16em] text-accent"
                   >
                     {price}
                   </p>
                 ))}
               </div>
 
-              <ul className="grid gap-2 border-t border-white/12 pt-4 font-mono text-[13px] text-zinc-300/85 sm:grid-cols-2">
+              <ul className="grid gap-2 border-t-[3px] border-border pt-4 font-mono text-[13px] font-bold text-foreground sm:grid-cols-2">
                 {s.bullets.map((b) => (
                   <li
                     key={b}
-                    className="rounded-md border border-white/12 bg-black/20 px-2.5 py-2 transition-colors group-hover:border-white/20"
+                    className="border-2 border-border bg-background px-2.5 py-2 transition-colors group-hover:bg-card"
                   >
                     <span className="mr-2 text-accent">▸</span>
                     {b}
@@ -104,17 +94,17 @@ export function Services() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-3xl border border-white/15 bg-[linear-gradient(140deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02)_35%,rgba(0,0,0,0.1)_100%)] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-10">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/12 pb-5">
-          <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+      <div className="mt-12 border-[4px] border-border bg-primary p-7 shadow-[12px_12px_0_var(--color-border)] sm:p-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b-[3px] border-border pb-5">
+          <h3 className="text-2xl font-black uppercase tracking-[-0.04em] sm:text-4xl">
             {copy.services.fitTitle}
           </h3>
-          <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-200/85">
+          <span className="border-2 border-border bg-card px-3 py-1 font-mono text-[10px] font-black uppercase tracking-[0.16em] text-foreground">
             fit
           </span>
         </div>
 
-        <p className="mt-5 max-w-3xl text-sm leading-relaxed text-zinc-300/90 sm:text-base">
+        <p className="mt-5 max-w-3xl text-sm font-semibold leading-relaxed text-foreground sm:text-base">
           {copy.services.fitIntro}
         </p>
 
@@ -122,7 +112,7 @@ export function Services() {
           {copy.services.fitItems.map((item) => (
             <li
               key={item}
-              className="rounded-xl border border-white/12 bg-black/20 px-4 py-3 text-sm leading-relaxed text-zinc-200/95"
+              className="border-2 border-border bg-card px-4 py-3 text-sm font-semibold leading-relaxed text-foreground"
             >
               <span className="mr-2 text-accent">▸</span>
               {item}

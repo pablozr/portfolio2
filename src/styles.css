@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -45,12 +45,22 @@
   --animate-orbit-soft: orbit-soft 2.8s ease-in-out infinite;
 
   @keyframes reveal {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
   @keyframes hero-video-in {
     0% {
@@ -65,60 +75,103 @@
     }
   }
   @keyframes hero-overlay-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   @keyframes hero-accent-in {
-    0% { opacity: 0; transform: translate3d(0, -10px, 0) scale(1.08); }
-    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -10px, 0) scale(1.08);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
   }
   @keyframes float-soft {
-    0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.2; }
-    50% { transform: translate3d(0, -6px, 0) rotate(3deg); opacity: 0.38; }
-    100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.2; }
+    0% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translate3d(0, -6px, 0) rotate(3deg);
+      opacity: 0.38;
+    }
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+      opacity: 0.2;
+    }
   }
   @keyframes orbit-soft {
-    0% { transform: translate3d(0, 0, 0) scale(0.95); opacity: 0.2; }
-    50% { transform: translate3d(4px, -6px, 0) scale(1.08); opacity: 0.8; }
-    100% { transform: translate3d(0, 0, 0) scale(0.95); opacity: 0.2; }
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.95);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translate3d(4px, -6px, 0) scale(1.08);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(0.95);
+      opacity: 0.2;
+    }
   }
 }
 
 :root {
-  /* Sophisticated dark — deep charcoal + warm cream + muted copper */
-  --background: oklch(0.16 0.005 60);
-  --foreground: oklch(0.94 0.01 80);
-  --card: oklch(0.19 0.006 60);
-  --card-foreground: oklch(0.94 0.01 80);
-  --popover: oklch(0.19 0.006 60);
-  --popover-foreground: oklch(0.94 0.01 80);
+  --background: #0b0f17;
+  --foreground: #fffdf5;
+  --card: #111722;
+  --card-foreground: #fffdf5;
+  --popover: #111722;
+  --popover-foreground: #fffdf5;
 
-  /* Warm muted copper as accent */
-  --primary: oklch(0.78 0.09 70);
-  --primary-foreground: oklch(0.16 0.005 60);
-  --accent: oklch(0.78 0.09 70);
-  --accent-foreground: oklch(0.16 0.005 60);
+  --primary: #b66a14;
+  --primary-foreground: #fffdf5;
+  --accent: #e96255;
+  --accent-foreground: #fff8ef;
 
-  --secondary: oklch(0.24 0.006 60);
-  --secondary-foreground: oklch(0.94 0.01 80);
-  --muted: oklch(0.24 0.006 60);
-  --muted-foreground: oklch(0.62 0.01 70);
-  --destructive: oklch(0.62 0.18 27);
-  --destructive-foreground: oklch(0.96 0 0);
-  --border: oklch(0.26 0.005 60);
-  --input: oklch(0.26 0.005 60);
-  --ring: oklch(0.78 0.09 70);
+  --secondary: #1a2230;
+  --secondary-foreground: #fffdf5;
+  --muted: #1a2230;
+  --muted-foreground: #c7c1b6;
+  --destructive: oklch(0.58 0.2 27);
+  --destructive-foreground: oklch(0.97 0.014 86);
+  --border: #050505;
+  --input: #050505;
+  --ring: #e96255;
 
-  --grid-line: oklch(1 0 0 / 0.03);
+  --grid-line: rgb(26 34 48 / 0.72);
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html, body {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-image:
+      radial-gradient(circle at 12% 8%, oklch(0.64 0.155 28 / 0.2) 0 14%, transparent 15%),
+      radial-gradient(circle at 88% 12%, oklch(0.52 0.11 62 / 0.16) 0 12%, transparent 13%),
+      linear-gradient(135deg, oklch(0.16 0.018 270), oklch(0.24 0.018 270)),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(var(--grid-line) 1px, transparent 1px);
+    background-size:
+      auto,
+      auto,
+      auto,
+      42px 42px,
+      42px 42px;
   }
   html {
     scroll-behavior: smooth;
@@ -134,7 +187,29 @@
   background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 80px 80px;
+  background-size: 42px 42px;
+}
+
+@utility brutal-panel {
+  border: 3px solid var(--color-border);
+  background: var(--color-card);
+  box-shadow: 10px 10px 0 var(--color-border);
+}
+
+@utility brutal-button {
+  border: 3px solid var(--color-border);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  box-shadow: 6px 6px 0 var(--color-border);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+@utility brutal-button-hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--color-border);
 }
 
 @keyframes process-node-glow {
@@ -148,7 +223,7 @@
 }
 
 .animate-process-node {
-  animation: process-node-glow 2.8s ease-out infinite;
+  animation: none;
 }
 
 .no-scrollbar {
@@ -161,7 +236,16 @@
 }
 
 .noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.2'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  mix-blend-mode: soft-light;
+  display: none;
+}
+
+.neo-cutout {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 22px) 0,
+    100% 22px,
+    100% 100%,
+    22px 100%,
+    0 calc(100% - 22px)
+  );
 }

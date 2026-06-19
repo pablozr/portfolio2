@@ -6,61 +6,63 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const links = [
-    { href: "#services", label: copy.nav.services },
     { href: "#work", label: copy.nav.work },
     { href: "#process", label: copy.nav.process },
     { href: "#about", label: copy.nav.about },
     { href: "#faq", label: copy.nav.faq },
-    { href: "#contact", label: copy.nav.ping },
   ];
 
   return (
-    <nav className="fixed top-4 z-50 w-full px-3 sm:top-5 sm:px-6">
+    <nav className="fixed top-4 z-50 w-full px-3 sm:px-6">
       <div
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] border border-border/70 bg-[#0e0f12]/92 shadow-[0_20px_65px_rgba(0,0,0,0.55)] backdrop-blur"
+        className="relative mx-auto max-w-7xl overflow-hidden border-[4px] border-border bg-background shadow-[8px_8px_0_var(--color-border)]"
         role="navigation"
       >
         <div
-          className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(140%_95%_at_50%_-45%,rgba(255,255,255,0.16),rgba(255,255,255,0.03)_38%,rgba(255,255,255,0)_62%),linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0)_38%)]"
+          className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-accent"
           aria-hidden
         />
 
-        <div className="relative mx-auto flex h-[68px] max-w-7xl items-center justify-between px-4 sm:h-[76px] sm:px-7 lg:px-8">
+        <div className="relative mx-auto flex h-[64px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-7">
           <a
             href="#top"
-            className="group mr-3 whitespace-nowrap font-mono text-xs tracking-[0.07em] text-zinc-100 sm:mr-6 sm:text-base sm:tracking-[0.08em]"
+            className="group mr-3 whitespace-nowrap font-mono text-xs font-black tracking-[0.07em] text-foreground sm:mr-5 sm:text-sm sm:tracking-[0.08em]"
           >
-            <span className="text-accent transition-colors group-hover:text-zinc-100">PABLO</span>{" "}
+            <span className="bg-primary px-1 text-foreground transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+              PABLO
+            </span>{" "}
             FARINA
-            <span className="hidden text-zinc-400 sm:inline">/v01</span>
+            <span className="hidden text-muted-foreground sm:inline">/v02</span>
           </a>
 
-          <div className="hidden flex-1 items-center justify-center gap-8 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-200 lg:flex">
+          <div className="hidden flex-1 items-center justify-center gap-5 font-mono text-[11px] font-black uppercase tracking-[0.16em] text-foreground lg:flex">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="group relative py-2 transition-colors duration-300 hover:text-accent focus-visible:outline-none focus-visible:text-accent"
+                className="group relative border-2 border-transparent px-3 py-2.5 transition-colors duration-200 hover:border-border hover:bg-primary focus-visible:outline-none focus-visible:bg-primary"
               >
                 {link.label}
-                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-accent/90 transition-transform duration-300 group-hover:scale-x-100 group-focus-visible:scale-x-100" />
+                <span className="absolute -right-1 -top-1 hidden h-3 w-3 border-2 border-border bg-accent group-hover:block" />
               </a>
             ))}
           </div>
 
-          <div className="ml-2 flex shrink-0 items-center gap-2 font-mono text-xs text-zinc-100 sm:ml-3 sm:gap-4">
-            <div className="flex items-center gap-1 rounded-xl border border-white/15 bg-white/5 p-1">
+          <div className="relative ml-2 flex shrink-0 items-center gap-2 font-mono text-xs font-black text-foreground sm:ml-3 sm:gap-3">
+            <a
+              href="#contact"
+              className="hidden border-[3px] border-border bg-accent px-4 py-2 font-mono text-[10px] font-black uppercase tracking-[0.14em] text-accent-foreground shadow-[4px_4px_0_var(--color-border)] transition-all duration-200 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--color-border)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:inline-flex"
+            >
+              {locale === "pt-BR" ? "Orçamento rápido" : "Quick quote"}
+            </a>
+            <div className="flex items-center gap-1 border-[3px] border-border bg-card p-1 shadow-[3px_3px_0_var(--color-border)]">
               <button
                 type="button"
                 onClick={() => setLocale("pt-BR")}
-                className={`rounded-lg px-2 py-1 transition-colors ${
+                className={`px-2 py-1 transition-colors ${
                   locale === "pt-BR"
                     ? "bg-accent text-accent-foreground"
-                    : "text-zinc-300 hover:text-zinc-100"
+                    : "text-foreground hover:bg-secondary"
                 }`}
                 aria-label={`${copy.nav.languageLabel}: Portugues`}
               >
@@ -69,10 +71,10 @@ export function Nav() {
               <button
                 type="button"
                 onClick={() => setLocale("en")}
-                className={`rounded-lg px-2 py-1 transition-colors ${
+                className={`px-2 py-1 transition-colors ${
                   locale === "en"
                     ? "bg-accent text-accent-foreground"
-                    : "text-zinc-300 hover:text-zinc-100"
+                    : "text-foreground hover:bg-secondary"
                 }`}
                 aria-label={`${copy.nav.languageLabel}: English`}
               >
@@ -83,7 +85,7 @@ export function Nav() {
             <button
               type="button"
               onClick={() => setMobileOpen((prev) => !prev)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 bg-white/5 text-zinc-100 transition-colors hover:border-accent/40 hover:text-accent lg:hidden"
+              className="inline-flex h-9 w-9 items-center justify-center border-2 border-border bg-primary text-foreground shadow-[3px_3px_0_var(--color-border)] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_var(--color-border)] lg:hidden"
               aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={mobileOpen}
             >
@@ -93,20 +95,20 @@ export function Nav() {
         </div>
 
         <div
-          className={`overflow-hidden border-t border-white/10 transition-[max-height,opacity] duration-300 lg:hidden ${
+          className={`overflow-hidden border-t-[3px] border-border transition-[max-height,opacity] duration-300 lg:hidden ${
             mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="space-y-1 px-5 py-4 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-100 sm:px-7">
+          <div className="space-y-2 px-5 py-4 font-mono text-[11px] font-black uppercase tracking-[0.18em] text-foreground sm:px-7">
             {links.map((link) => (
               <a
                 key={`mobile-${link.href}`}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="group flex items-center justify-between rounded-lg px-3 py-2 transition-colors duration-300 hover:bg-white/5 hover:text-accent"
+                className="group flex items-center justify-between border-2 border-border bg-card px-3 py-2 shadow-[3px_3px_0_var(--color-border)] transition-transform duration-200 hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-secondary hover:shadow-[1px_1px_0_var(--color-border)]"
               >
                 {link.label}
-                <span className="translate-x-0 text-accent/0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-accent">
+                <span className="text-accent transition-all duration-300 group-hover:translate-x-0.5">
                   →
                 </span>
               </a>

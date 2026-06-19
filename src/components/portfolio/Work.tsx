@@ -31,89 +31,109 @@ const getPlaceholderPreview = (title: string) => {
 export function Work() {
   const { copy, locale } = useLanguage();
   const isPt = locale === "pt-BR";
+  const cardAccents = ["bg-accent", "bg-primary", "bg-secondary", "bg-card"];
 
   return (
     <section id="work" className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-36">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-20" aria-hidden />
-      <div
-        className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl animate-[float-soft_4.6s_ease-in-out_infinite]"
-        aria-hidden
-      />
 
-      <div className="relative mb-12 border-b border-border/70 pb-8">
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent/90 animate-[reveal_0.7s_var(--ease-out-expo)_both]">
+      <div className="relative mb-12 border-b-[3px] border-border pb-8">
+        <p className="mb-3 font-mono text-xs font-black uppercase tracking-[0.24em] text-accent animate-[reveal_0.7s_var(--ease-out-expo)_both]">
           {isPt ? "Portfolio selecionado" : "Selected work"}
         </p>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight animate-[reveal_0.9s_var(--ease-out-expo)_both] sm:text-5xl md:text-6xl">
+          <h2 className="max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-[-0.06em] animate-[reveal_0.9s_var(--ease-out-expo)_both] sm:text-6xl md:text-7xl">
             {copy.work.title}
           </h2>
-          <span className="rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-accent animate-[reveal_1.1s_var(--ease-out-expo)_both]">
+          <span className="border-[3px] border-border bg-accent px-4 py-1.5 font-mono text-[11px] font-black uppercase tracking-[0.16em] text-accent-foreground shadow-[4px_4px_0_var(--color-border)] animate-[reveal_1.1s_var(--ease-out-expo)_both]">
             {isPt ? "entregas reais" : "real deliveries"}
           </span>
         </div>
       </div>
 
-      <p className="relative mb-10 max-w-4xl text-sm leading-relaxed text-muted-foreground animate-[reveal_1.15s_var(--ease-out-expo)_both] sm:text-base">
+      <p className="relative mb-10 max-w-4xl border-[3px] border-border bg-card p-5 text-sm font-semibold leading-relaxed text-muted-foreground shadow-[7px_7px_0_var(--color-border)] sm:text-base">
         {copy.work.intro}
       </p>
 
-      <div className="relative grid gap-6 md:grid-cols-2">
+      <div className="relative grid auto-rows-fr gap-6 md:grid-cols-6">
         {copy.work.projects.map((project, index) => (
           <Dialog key={project.title}>
             <DialogTrigger asChild>
               <button
                 type="button"
-                className={`group relative overflow-hidden rounded-3xl border border-border/70 bg-card/40 p-7 text-left backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:bg-card/70 sm:p-8 ${
-                  index === 0 ? "md:col-span-2" : ""
+                className={`group relative flex min-h-[430px] overflow-hidden border-[3px] border-border bg-card text-left shadow-[9px_9px_0_var(--color-border)] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0_var(--color-border)] ${
+                  index === 0 ? "md:col-span-6 lg:min-h-[520px]" : "md:col-span-3"
                 }`}
-                style={{
-                  animation: "reveal 0.7s var(--ease-out-expo) both",
-                  animationDelay: `${index * 90 + 180}ms`,
-                }}
               >
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent/10 blur-2xl transition-transform duration-500 group-hover:scale-125" />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.05),transparent_42%)]" />
+                <div
+                  className={`pointer-events-none absolute right-0 top-0 h-full w-[34%] border-l-[3px] border-border ${cardAccents[index % cardAccents.length]} opacity-95 transition-transform duration-300 group-hover:translate-x-2`}
+                  aria-hidden
+                />
+                <div className="pointer-events-none absolute right-6 top-6 h-20 w-20 rotate-6 border-[3px] border-border bg-background shadow-[6px_6px_0_var(--color-border)] transition-transform duration-300 group-hover:rotate-12" />
+                <div className="pointer-events-none absolute bottom-6 right-8 h-28 w-44 -rotate-3 border-[3px] border-border bg-card shadow-[6px_6px_0_var(--color-border)] transition-transform duration-300 group-hover:-rotate-6" />
 
-                <div className="relative mb-5 flex items-center justify-between">
-                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-accent/90">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-                    {project.year}
-                  </span>
-                </div>
+                <div className="relative z-10 flex w-full flex-col justify-between p-6 sm:p-8 lg:p-10">
+                  <div>
+                    <div className="mb-6 flex items-center justify-between gap-4">
+                      <span className="border-2 border-border bg-background px-3 py-1.5 font-mono text-xs font-black uppercase tracking-[0.16em] text-foreground">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="border-2 border-border bg-background px-3 py-1.5 font-mono text-[11px] font-black uppercase tracking-[0.16em] text-foreground">
+                        {project.year}
+                      </span>
+                    </div>
 
-                <h3 className="relative text-[1.7rem] font-semibold tracking-tight transition-transform duration-300 group-hover:translate-x-0.5 sm:text-[2rem]">
-                  {project.title}
-                </h3>
-                <p className="relative mt-4 text-[15px] leading-relaxed text-muted-foreground sm:text-[17px]">
-                  {project.body}
-                </p>
+                    <div className="mb-7 grid max-w-xl grid-cols-5 gap-2" aria-hidden>
+                      <span className="col-span-3 h-3 border-2 border-border bg-accent" />
+                      <span className="col-span-2 h-3 border-2 border-border bg-primary" />
+                      <span className="col-span-2 h-3 border-2 border-border bg-secondary" />
+                      <span className="col-span-3 h-3 border-2 border-border bg-background" />
+                    </div>
 
-                <ul className="relative mt-5 flex flex-wrap gap-2">
-                  {project.stack.slice(0, 4).map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-full border border-border/70 bg-background/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-300"
+                    <h3
+                      className={`relative max-w-3xl font-black uppercase leading-[0.9] tracking-[-0.06em] transition-transform duration-300 group-hover:translate-x-0.5 ${
+                        index === 0 ? "text-5xl sm:text-6xl lg:text-7xl" : "text-3xl sm:text-4xl"
+                      }`}
                     >
-                      {item}
-                    </li>
-                  ))}
-                  {project.stack.length > 4 ? (
-                    <li className="rounded-full border border-border/70 bg-background/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
-                      +{project.stack.length - 4}
-                    </li>
-                  ) : null}
-                </ul>
+                      {project.title}
+                    </h3>
+                    <p className="relative mt-5 max-w-2xl text-[15px] font-medium leading-relaxed text-muted-foreground sm:text-[17px]">
+                      {project.body}
+                    </p>
+                  </div>
 
-                <p className="relative mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors group-hover:text-accent">
-                  {isPt ? "Abrir detalhes completos" : "Open full details"}
-                </p>
+                  <div>
+                    <ul className="relative mt-8 flex max-w-3xl flex-wrap gap-2">
+                      {project.stack.slice(0, index === 0 ? 6 : 4).map((item) => (
+                        <li
+                          key={item}
+                          className="border-2 border-border bg-background px-3 py-1.5 font-mono text-[11px] font-black uppercase tracking-[0.12em] text-foreground"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                      {project.stack.length > (index === 0 ? 6 : 4) ? (
+                        <li className="border-2 border-border bg-background px-3 py-1.5 font-mono text-[11px] font-black uppercase tracking-[0.12em] text-muted-foreground">
+                          +{project.stack.length - (index === 0 ? 6 : 4)}
+                        </li>
+                      ) : null}
+                    </ul>
+
+                    <div className="mt-7 flex items-center justify-between gap-4 border-t-[3px] border-border pt-5">
+                      <p className="font-mono text-[11px] font-black uppercase tracking-[0.14em] text-muted-foreground transition-colors group-hover:text-accent">
+                        {isPt ? "Abrir estudo do projeto" : "Open project study"}
+                      </p>
+                      <span className="grid size-11 place-items-center border-[3px] border-border bg-accent font-mono text-xl font-black text-accent-foreground shadow-[4px_4px_0_var(--color-border)] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5">
+                        ↗
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </button>
             </DialogTrigger>
 
-            <DialogContent className="max-h-[88vh] overflow-y-auto border-border/70 bg-background/95 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:max-w-3xl">
+            <DialogContent className="max-h-[88vh] overflow-y-auto border-[3px] border-border bg-background shadow-[10px_10px_0_var(--color-border)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:max-w-3xl">
               <DialogHeader>
                 <DialogTitle className="text-2xl sm:text-3xl">{project.title}</DialogTitle>
                 <DialogDescription className="pt-2 text-sm leading-relaxed text-muted-foreground">
@@ -122,7 +142,7 @@ export function Work() {
               </DialogHeader>
 
               <div className="space-y-6 pt-4">
-                <div className="group/preview overflow-hidden rounded-2xl border border-border/70 bg-card/40">
+                <div className="group/preview overflow-hidden border-[3px] border-border bg-card shadow-[7px_7px_0_var(--color-border)]">
                   <img
                     src={getPlaceholderPreview(project.title)}
                     alt={`Preview provisório de ${project.title}`}
@@ -131,7 +151,7 @@ export function Work() {
                   />
                 </div>
 
-                <div className="rounded-2xl border border-border/70 bg-card/40 p-5">
+                <div className="border-[3px] border-border bg-card p-5 shadow-[7px_7px_0_var(--color-border)]">
                   <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                     {copy.work.modalHighlightsLabel}
                   </p>
@@ -145,7 +165,7 @@ export function Work() {
                   </ul>
                 </div>
 
-                <div className="rounded-2xl border border-border/70 bg-card/40 p-5">
+                <div className="border-[3px] border-border bg-card p-5 shadow-[7px_7px_0_var(--color-border)]">
                   <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                     {copy.work.modalStackLabel}
                   </p>
@@ -153,7 +173,7 @@ export function Work() {
                     {project.stack.map((item) => (
                       <li
                         key={item}
-                        className="rounded-full border border-border/70 bg-background/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-zinc-300"
+                        className="border-2 border-border bg-background px-2.5 py-1 font-mono text-[10px] font-black uppercase tracking-[0.12em] text-foreground"
                       >
                         {item}
                       </li>
@@ -166,7 +186,7 @@ export function Work() {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background/80 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="group inline-flex items-center gap-2 border-[3px] border-border bg-primary px-4 py-2.5 font-mono text-[11px] font-black uppercase tracking-[0.16em] text-foreground shadow-[5px_5px_0_var(--color-border)] transition-all duration-200 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--color-border)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     {copy.work.modalRepoLabel}
                     <span className="text-accent/0 transition-colors duration-300 group-hover:text-accent">
@@ -178,7 +198,7 @@ export function Work() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background/80 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="group inline-flex items-center gap-2 border-[3px] border-border bg-accent px-4 py-2.5 font-mono text-[11px] font-black uppercase tracking-[0.16em] text-accent-foreground shadow-[5px_5px_0_var(--color-border)] transition-all duration-200 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--color-border)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {copy.work.modalLiveLabel}
                       <span className="text-accent/0 transition-colors duration-300 group-hover:text-accent">

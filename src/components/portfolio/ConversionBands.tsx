@@ -16,16 +16,18 @@ export function ProofBand() {
       ];
 
   return (
-    <section className="relative border-y border-border bg-background px-6 py-14">
+    <section className="relative border-y-[4px] border-border bg-accent px-6 py-14">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-20" aria-hidden />
       <div className="relative mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
         {items.map(([k, v]) => (
           <div
             key={k}
-            className="rounded-2xl border border-border/70 bg-card/45 p-7 backdrop-blur-sm sm:p-8"
+            className="border-[3px] border-border bg-card p-7 shadow-[8px_8px_0_var(--color-border)] sm:p-8"
           >
-            <p className="font-serif text-6xl italic leading-none text-accent">{k}</p>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">{v}</p>
+            <p className="font-mono text-6xl font-black leading-none text-accent">{k}</p>
+            <p className="mt-5 text-base font-semibold leading-relaxed text-muted-foreground">
+              {v}
+            </p>
           </div>
         ))}
       </div>
@@ -39,20 +41,20 @@ export function CtaBand({ tone = "light" }: { tone?: "light" | "dark" }) {
 
   return (
     <section
-      className={`relative border-y border-border px-6 py-16 ${tone === "dark" ? "bg-[#0b0c0f]" : "bg-background"}`}
+      className="relative border-y-[4px] border-border bg-background px-6 py-16"
     >
       <div className="pointer-events-none absolute inset-0 noise-overlay opacity-20" aria-hidden />
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-6 rounded-3xl border border-border/70 bg-card/50 p-7 backdrop-blur-sm sm:p-9 lg:flex-row lg:items-center lg:justify-between">
+      <div className="relative mx-auto flex max-w-7xl flex-col gap-6 border-[4px] border-border bg-card p-7 shadow-[12px_12px_0_var(--color-border)] sm:p-9 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+          <p className="mb-3 font-mono text-[11px] font-black uppercase tracking-[0.22em] text-accent">
             {isPt ? "próximo passo" : "next step"}
           </p>
-          <h2 className="max-w-3xl text-[2rem] font-semibold leading-tight tracking-tight sm:text-[2.75rem]">
+          <h2 className="max-w-3xl text-[2rem] font-black uppercase leading-[0.95] tracking-[-0.05em] sm:text-[3rem]">
             {isPt
               ? "Quer validar uma oferta, criar uma landing page ou tirar um sistema da planilha?"
               : "Need to validate an offer, launch a landing page, or replace a spreadsheet with software?"}
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base font-semibold leading-relaxed text-muted-foreground sm:text-lg">
             {isPt
               ? "Me mande o contexto. Eu respondo com um caminho realista de escopo, prazo e investimento."
               : "Send me the context. I will reply with a realistic path for scope, timeline, and price."}
@@ -60,7 +62,7 @@ export function CtaBand({ tone = "light" }: { tone?: "light" | "dark" }) {
         </div>
         <a
           href="#contact"
-          className="inline-flex w-fit items-center gap-3 rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="inline-flex w-fit items-center gap-3 border-[3px] border-border bg-accent px-6 py-3 text-sm font-black uppercase text-accent-foreground shadow-[6px_6px_0_var(--color-border)] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0_var(--color-border)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           {isPt ? "Conversar sobre projeto" : "Discuss a project"}
           <span>→</span>

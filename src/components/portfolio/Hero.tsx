@@ -1,125 +1,58 @@
 import { useLanguage } from "@/i18n/language";
-import heroVideo from "@/assets/eclipse-over-silent-falls.1920x1080.mp4";
-import { useEffect, useState } from "react";
 
 export function Hero({ className = "" }: { className?: string }) {
-  const { copy } = useLanguage();
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 640px)");
-    const dataSaverQuery = window.matchMedia("(prefers-reduced-data: reduce)");
-    let timer = 0;
-
-    const onChange = () => {
-      window.clearTimeout(timer);
-      if (!mediaQuery.matches || dataSaverQuery.matches) {
-        setShouldLoadVideo(false);
-        setVideoReady(false);
-        return;
-      }
-      timer = window.setTimeout(() => setShouldLoadVideo(true), 900);
-    };
-
-    onChange();
-    mediaQuery.addEventListener("change", onChange);
-    dataSaverQuery.addEventListener("change", onChange);
-    return () => {
-      window.clearTimeout(timer);
-      mediaQuery.removeEventListener("change", onChange);
-      dataSaverQuery.removeEventListener("change", onChange);
-    };
-  }, []);
+  const { copy, locale } = useLanguage();
+  const isPt = locale === "pt-BR";
 
   return (
     <section
       id="top"
-      className={`relative overflow-hidden border-b border-border ${className}`.trim()}
+      className={`relative overflow-hidden border-b-[4px] border-border bg-background ${className}`.trim()}
     >
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(70%_55%_at_78%_18%,oklch(0.78_0.09_70_/_0.22),transparent_64%),radial-gradient(70%_60%_at_18%_4%,oklch(0.7_0.08_230_/_0.18),transparent_68%),linear-gradient(135deg,oklch(0.18_0.01_250),oklch(0.1_0.006_60)_58%,oklch(0.16_0.008_70))]"
+        className="absolute inset-0 z-0 bg-[linear-gradient(135deg,#0b0e14,#121722)]"
         aria-hidden
       />
-      {shouldLoadVideo ? (
-        <video
-          className={`absolute inset-0 z-0 h-full w-full object-cover object-[72%_center] transition-opacity duration-[1800ms] ease-out md:object-[68%_center] ${
-            videoReady ? "opacity-100" : "opacity-0"
-          }`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onCanPlay={() => setVideoReady(true)}
-          aria-hidden
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-      ) : null}
-      <div className="absolute inset-0 bg-background/18 animate-hero-overlay-in" aria-hidden />
-      <div
-        className="absolute inset-0 animate-hero-overlay-in"
-        style={{
-          background:
-            "linear-gradient(90deg, oklch(0.14 0.01 250 / 0.48) 0%, oklch(0.14 0.01 250 / 0.36) 38%, oklch(0.14 0.01 250 / 0.16) 62%, oklch(0.14 0.01 250 / 0.3) 100%)",
-        }}
-        aria-hidden
-      />
-      <div className="absolute inset-0 grid-bg opacity-35" aria-hidden />
-      <div
-        className="pointer-events-none absolute inset-0 animate-hero-accent-in"
-        style={{
-          background:
-            "radial-gradient(72% 62% at 18% 0%, oklch(0.78 0.09 70 / 0.13), transparent 68%)",
-        }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 animate-hero-accent-in"
-        style={{
-          background:
-            "radial-gradient(46% 34% at 78% 18%, oklch(0.88 0.07 95 / 0.2), transparent 74%)",
-        }}
-        aria-hidden
-      />
+      <div className="absolute inset-0 grid-bg opacity-18" aria-hidden />
 
-      <div className="relative mx-auto max-w-6xl px-6 pt-40 pb-32 sm:pt-48 sm:pb-40">
-        <div className="animate-reveal">
-          {copy.hero.availability ? (
-            <div className="mb-10 inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-              <span>{copy.hero.availability}</span>
-            </div>
-          ) : null}
+      <div className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-1 px-6 pt-24 pb-16 lg:grid-cols-[minmax(0,56%)_minmax(360px,38%)] lg:gap-20 lg:pt-26 lg:pb-18">
+        <div className="flex flex-col justify-center">
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            {copy.hero.availability ? (
+              <div className="inline-flex items-center gap-3 border-[3px] border-border bg-card px-4 py-2 font-mono text-[11px] font-black uppercase tracking-[0.2em] text-foreground shadow-[5px_5px_0_var(--color-border)]">
+                <span className="size-3 border-2 border-border bg-accent" aria-hidden />
+                <span>{copy.hero.availability}</span>
+              </div>
+            ) : null}
+          </div>
 
-          <h1 className="max-w-4xl text-balance text-4xl font-semibold leading-[1.03] tracking-tight text-white [text-shadow:0_3px_20px_rgba(0,0,0,0.55)] sm:text-6xl md:text-[5rem]">
+          <h1 className="max-w-[780px] text-balance text-[clamp(3.1rem,6.4vw,6.5rem)] font-black uppercase leading-[0.9] tracking-[-0.055em] text-white">
             {copy.hero.titleLine1}
             <br />
-            {copy.hero.titleLine2}{" "}
-            <span className="font-serif italic text-accent [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]">
+            <span className="text-white">{copy.hero.titleLine2}</span>
+            <br />
+            <span className="inline-block -rotate-1 border-[4px] border-border bg-accent px-3 py-1 text-[0.72em] text-accent-foreground shadow-[6px_6px_0_var(--color-border)]">
               {copy.hero.titleAccent}
             </span>
           </h1>
 
-          <p className="mt-10 max-w-xl text-base leading-relaxed text-zinc-200/92 [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-lg">
-            {copy.hero.body}
-          </p>
+          <div className="mt-7 max-w-2xl">
+            <p className="border-l-[6px] border-accent bg-background/80 py-2 pl-5 pr-4 text-[15px] font-semibold leading-relaxed text-foreground sm:text-base">
+              {copy.hero.body}
+            </p>
+          </div>
 
-          <div
-            className="mt-12 flex flex-wrap items-center gap-4 animate-reveal"
-            style={{ animationDelay: "180ms" }}
-          >
+          <div className="mt-7 flex flex-wrap items-center gap-4">
             <a
               href="#contact"
-              className="group inline-flex items-center gap-3 rounded-md bg-foreground px-5 py-3 text-sm font-medium text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="group inline-flex w-full items-center justify-center gap-3 border-[3px] border-border bg-accent px-5 py-3 text-sm font-black uppercase text-accent-foreground shadow-[6px_6px_0_var(--color-border)] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0_var(--color-border)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto"
             >
-              {copy.hero.ctaStart}
+              {isPt ? "Pedir orçamento rápido" : "Request a quick quote"}
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
             <a
               href="#work"
-              className="group inline-flex items-center gap-2 rounded-md border border-white/45 bg-white/8 px-5 py-3 text-sm font-medium text-zinc-100 shadow-[0_10px_24px_rgba(0,0,0,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/70 hover:bg-white/14 hover:text-white active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="group inline-flex w-full items-center justify-center gap-2 border-[3px] border-border bg-card px-5 py-3 text-sm font-black uppercase text-foreground shadow-[6px_6px_0_var(--color-border)] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:bg-secondary hover:shadow-[2px_2px_0_var(--color-border)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto"
             >
               {copy.hero.ctaServices}
               <span className="transition-transform duration-300 group-hover:translate-y-0.5">
@@ -127,8 +60,101 @@ export function Hero({ className = "" }: { className?: string }) {
               </span>
             </a>
           </div>
+          <p className="mt-4 font-mono text-[10px] font-black uppercase tracking-[0.16em] text-muted-foreground">
+            {isPt
+              ? "Landing page • Site institucional • WhatsApp-first • Mobile-first"
+              : "Landing page • Business website • WhatsApp-first • Mobile-first"}
+          </p>
+          <div className="mt-9 lg:hidden" aria-hidden>
+            <HeroMockup isPt={isPt} />
+          </div>
         </div>
+
+        <aside className="relative hidden items-center lg:flex" aria-hidden>
+          <HeroMockup isPt={isPt} desktop />
+        </aside>
       </div>
     </section>
+  );
+}
+
+function HeroMockup({ isPt, desktop = false }: { isPt: boolean; desktop?: boolean }) {
+  return (
+    <div
+      className={`w-full border-[4px] border-border bg-card shadow-[14px_14px_0_var(--color-border)] ${
+        desktop ? "scale-[1.08]" : "max-w-md"
+      }`}
+    >
+      <div className="flex h-11 items-center gap-2 border-b-[4px] border-border bg-background px-4">
+        <span className="size-3 border-2 border-border bg-accent" />
+        <span className="size-3 border-2 border-border bg-primary" />
+        <span className="size-3 border-2 border-border bg-card" />
+        <span className="ml-auto font-mono text-[10px] font-black uppercase tracking-[0.16em] text-muted-foreground">
+          preview.site
+        </span>
+      </div>
+
+      <div className="p-5">
+        <div className="mb-5 flex items-center justify-between border-b-[3px] border-border pb-4">
+          <div className="border-[3px] border-border bg-accent px-3 py-1 font-mono text-[10px] font-black uppercase tracking-[0.12em] text-accent-foreground">
+            {isPt ? "Clínica" : "Clinic"}
+          </div>
+          <div className="flex gap-2">
+            <span className="h-3 w-10 bg-muted-foreground" />
+            <span className="h-3 w-8 bg-muted-foreground" />
+            <span className="h-3 w-12 bg-muted-foreground" />
+          </div>
+        </div>
+
+        <div className="grid gap-4">
+          <div className="border-[3px] border-border bg-background p-4 shadow-[5px_5px_0_var(--color-border)]">
+            <div className="mb-3 inline-flex border-2 border-border bg-secondary px-2 py-1 font-mono text-[9px] font-black uppercase tracking-[0.12em] text-secondary-foreground">
+              {isPt ? "agenda aberta" : "booking open"}
+            </div>
+            <div className="space-y-2">
+              <div className="h-6 w-full bg-foreground" />
+              <div className="h-6 w-5/6 bg-foreground" />
+              <div className="h-6 w-2/3 bg-foreground" />
+            </div>
+            <div className="mt-5 flex gap-3">
+              <span className="grid h-10 w-32 place-items-center border-[3px] border-border bg-primary font-mono text-[10px] font-black uppercase tracking-[0.12em] text-primary-foreground">
+                WhatsApp
+              </span>
+              <span className="grid h-10 w-24 place-items-center border-[3px] border-border bg-card font-mono text-[10px] font-black uppercase tracking-[0.12em] text-foreground">
+                {isPt ? "Serviços" : "Services"}
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            <div className="border-[3px] border-border bg-primary p-2 font-mono text-[9px] font-black uppercase leading-tight tracking-[0.08em] text-primary-foreground">
+              {isPt ? "Consulta" : "Visit"}
+            </div>
+            <div className="border-[3px] border-border bg-secondary p-2 font-mono text-[9px] font-black uppercase leading-tight tracking-[0.08em] text-secondary-foreground">
+              {isPt ? "Tratamentos" : "Services"}
+            </div>
+            <div className="border-[3px] border-border bg-accent p-2 font-mono text-[9px] font-black uppercase leading-tight tracking-[0.08em] text-accent-foreground">
+              {isPt ? "Avaliações" : "Reviews"}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-[1fr_92px] gap-3">
+            <div className="border-[3px] border-border bg-background p-3">
+              <div className="mb-3 font-mono text-[9px] font-black uppercase tracking-[0.12em] text-accent">
+                {isPt ? "localização" : "location"}
+              </div>
+              <div className="space-y-2">
+                <div className="h-3 w-full bg-muted-foreground" />
+                <div className="h-3 w-4/5 bg-muted-foreground" />
+                <div className="h-3 w-2/3 bg-muted-foreground" />
+              </div>
+            </div>
+            <div className="grid place-items-center border-[3px] border-border bg-accent font-mono text-2xl font-black text-accent-foreground">
+              ↗
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

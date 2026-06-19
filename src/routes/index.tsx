@@ -1,11 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/portfolio/Nav";
 import { Hero } from "@/components/portfolio/Hero";
-import { Marquee } from "@/components/portfolio/Marquee";
-import { Services } from "@/components/portfolio/Services";
 import { Footer } from "@/components/portfolio/Footer";
 import { RevealOnScroll } from "@/components/portfolio/RevealOnScroll";
-import { CtaBand, ProofBand } from "@/components/portfolio/ConversionBands";
+import { CtaBand } from "@/components/portfolio/ConversionBands";
 import { useLanguage } from "@/i18n/language";
 import { lazy, Suspense, useEffect } from "react";
 
@@ -118,18 +116,7 @@ export function Page() {
       <main>
         <section className="flex min-h-screen flex-col">
           <Hero className="flex-1" />
-          <Marquee />
         </section>
-        <div className="relative isolate bg-[#0c0d10]">
-          <div
-            className="pointer-events-none absolute inset-0 noise-overlay opacity-35"
-            aria-hidden
-          />
-          <RevealOnScroll>
-            <Services />
-          </RevealOnScroll>
-        </div>
-        <ProofBand />
         <div className="relative isolate bg-background">
           <div
             className="pointer-events-none absolute inset-0 noise-overlay opacity-20"
@@ -142,7 +129,7 @@ export function Page() {
           </Suspense>
         </div>
         <CtaBand tone="dark" />
-        <div className="relative isolate bg-[#0b0c0f]">
+        <div className="relative isolate bg-primary">
           <div
             className="pointer-events-none absolute inset-0 noise-overlay opacity-35"
             aria-hidden
@@ -164,7 +151,7 @@ export function Page() {
             </RevealOnScroll>
           </Suspense>
         </div>
-        <div className="relative isolate bg-[#0d0f12]">
+        <div className="relative isolate bg-secondary">
           <div
             className="pointer-events-none absolute inset-0 noise-overlay opacity-35"
             aria-hidden
