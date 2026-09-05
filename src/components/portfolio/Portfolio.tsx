@@ -296,11 +296,14 @@ export function Portfolio() {
         </a>
         <header className="site-header">
           <a href="#top" className="name-brand" aria-label="Pablo Farina — home">
-            <span className="name-brand-title">
-              Pablo Farina<span className="name-brand-dot">.</span>
-            </span>
-            <span className="name-brand-role micro">
-              {pt ? "DESENVOLVEDOR & CRIATIVO" : "DEVELOPER & CREATIVE"}
+            <img className="brand-mark" src="/logo-pf.svg" width="46" height="46" alt="" />
+            <span className="brand-wordmark">
+              <span className="name-brand-title">
+                Pablo Farina<span className="name-brand-dot">.</span>
+              </span>
+              <span className="name-brand-role micro">
+                {pt ? "DESENVOLVEDOR & CRIATIVO" : "DEVELOPER & CREATIVE"}
+              </span>
             </span>
           </a>
           <nav aria-label={pt ? "Navegação principal" : "Main navigation"} className="desktop-nav">
@@ -657,8 +660,8 @@ export function Portfolio() {
               </Reveal>
               <ContactForm />
               <footer className="site-footer">
-                <a href="#top" className="brand">
-                  pf<span>®</span>
+                <a href="#top" className="brand" aria-label="Pablo Farina — home">
+                  <img src="/logo-pf.svg" width="46" height="46" alt="" />
                 </a>
                 <span className="micro">© {new Date().getFullYear()} PABLO FARINA</span>
                 <a

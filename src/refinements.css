@@ -587,3 +587,59 @@
     animation: none;
   }
 }
+
+/* PF mark: rounded P counter and cut F terminals echo precision and movement. */
+.name-brand {
+  flex-direction: row;
+  align-items: center;
+  gap: 13px;
+}
+.brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.brand-mark {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+@media (max-width: 760px) {
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+  .name-brand {
+    gap: 9px;
+  }
+  .name-brand-title {
+    font-size: 23px;
+  }
+}
+@media (max-width: 420px) {
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+  .name-brand-title {
+    font-size: 20px;
+  }
+  .name-brand-role {
+    font-size: 5px;
+  }
+  .name-brand {
+    gap: 7px;
+  }
+}
+@media (max-width: 350px) {
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+  .name-brand-title {
+    font-size: 18px;
+  }
+  .name-brand-role {
+    font-size: 4.5px;
+  }
+}
