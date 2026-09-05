@@ -1,39 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#131317" />
-      <stop offset="1" stop-color="#1B1A18" />
-    </linearGradient>
-    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(220 40) rotate(52) scale(430 320)">
-      <stop stop-color="#C8A66A" stop-opacity="0.4" />
-      <stop offset="1" stop-color="#C8A66A" stop-opacity="0" />
-    </radialGradient>
-    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(970 580) rotate(-130) scale(420 300)">
-      <stop stop-color="#A5C7E6" stop-opacity="0.24" />
-      <stop offset="1" stop-color="#A5C7E6" stop-opacity="0" />
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)" />
-  <rect width="1200" height="630" fill="url(#glowA)" />
-  <rect width="1200" height="630" fill="url(#glowB)" />
-  <g opacity="0.18" stroke="#F0E9DD" stroke-width="1">
-    <path d="M0 72H1200" />
-    <path d="M0 152H1200" />
-    <path d="M0 232H1200" />
-    <path d="M0 312H1200" />
-    <path d="M0 392H1200" />
-    <path d="M0 472H1200" />
-    <path d="M0 552H1200" />
-    <path d="M94 0V630" />
-    <path d="M254 0V630" />
-    <path d="M414 0V630" />
-    <path d="M574 0V630" />
-    <path d="M734 0V630" />
-    <path d="M894 0V630" />
-    <path d="M1054 0V630" />
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f3f2ec" />
+  <path d="M60 100H1140M60 550H1140" stroke="#d1d1c7" />
+  <text
+    x="60"
+    y="70"
+    font-family="Arial,sans-serif"
+    font-size="28"
+    font-weight="bold"
+    fill="#24251f"
+  >
+    pf®
+  </text>
+  <text x="145" y="65" font-family="monospace" font-size="12" fill="#686960">
+    PABLO FARINA / FULLSTACK DEVELOPER
+  </text>
+  <text
+    x="60"
+    y="255"
+    font-family="Arial,sans-serif"
+    font-size="82"
+    letter-spacing="-5"
+    fill="#24251f"
+  >
+    Código preciso.
+  </text>
+  <text
+    x="60"
+    y="350"
+    font-family="Arial,sans-serif"
+    font-size="82"
+    letter-spacing="-5"
+    fill="#24251f"
+  >
+    Design que
+  </text>
+  <text
+    x="60"
+    y="460"
+    font-family="Georgia,serif"
+    font-style="italic"
+    font-size="110"
+    letter-spacing="-5"
+    fill="#24251f"
+  >
+    marca.
+  </text>
+  <g transform="translate(920 325)" fill="none" stroke="#657344">
+    <ellipse rx="170" ry="64" transform="rotate(0)" />
+    <ellipse rx="170" ry="64" transform="rotate(12)" />
+    <ellipse rx="170" ry="64" transform="rotate(24)" />
+    <ellipse rx="170" ry="64" transform="rotate(36)" />
+    <ellipse rx="170" ry="64" transform="rotate(48)" />
+    <ellipse rx="170" ry="64" transform="rotate(60)" />
+    <ellipse rx="170" ry="64" transform="rotate(72)" />
+    <ellipse rx="170" ry="64" transform="rotate(84)" />
+    <ellipse rx="170" ry="64" transform="rotate(96)" />
+    <ellipse rx="170" ry="64" transform="rotate(108)" />
+    <ellipse rx="170" ry="64" transform="rotate(120)" />
+    <ellipse rx="170" ry="64" transform="rotate(132)" />
+    <ellipse rx="170" ry="64" transform="rotate(144)" />
+    <ellipse rx="170" ry="64" transform="rotate(156)" />
+    <ellipse rx="170" ry="64" transform="rotate(168)" />
+    <circle r="22" fill="#d5fa42" stroke="none" />
   </g>
-  <text x="90" y="206" fill="#CFB27A" font-family="JetBrains Mono, monospace" font-size="26" letter-spacing="5.2">PORTFOLIO / FULLSTACK</text>
-  <text x="90" y="320" fill="#F3EEE4" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">Pablo Farina</text>
-  <text x="90" y="380" fill="#E4D7BE" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500">Landing pages, sistemas e backend confiavel</text>
-  <text x="90" y="448" fill="#CFC6B6" font-family="JetBrains Mono, monospace" font-size="22">FastAPI - Angular - Spring Boot - PostgreSQL</text>
+  <text x="60" y="590" font-family="monospace" font-size="12" fill="#686960">
+    DESENVOLVIMENTO COM PERSONALIDADE.
+  </text>
+  <rect x="920" y="572" width="220" height="27" rx="14" fill="#d5fa42" />
+  <text x="946" y="590" font-family="monospace" font-size="11" fill="#24251f">
+    VAMOS CONVERSAR ↗
+  </text>
 </svg>

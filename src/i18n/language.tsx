@@ -1,4 +1,13 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { flushSync } from "react-dom";
 import { DEFAULT_LOCALE, type Locale } from "./locales";
 import type { SiteCopy } from "./site-copy";
 
@@ -14,7 +23,8 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
-  const [copy, setCopy] = useState<SiteCopy | null>(null);
+  const [dictionary, setDictionary] = useState<Record<Locale, SiteCopy> | null>(null);
+  const transitionRef = useRef<{ skipTransition: () => void } | null>(null);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -25,10 +35,33 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const setLocale = (nextLocale: Locale) => {
-    setLocaleState(nextLocale);
-    window.localStorage.setItem(STORAGE_KEY, nextLocale);
-  };
+  const setLocale = useCallback(
+    (nextLocale: Locale) => {
+      if (nextLocale === locale) return;
+      const commit = () => {
+        flushSync(() => setLocaleState(nextLocale));
+        window.localStorage.setItem(STORAGE_KEY, nextLocale);
+      };
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        commit();
+        return;
+      }
+      transitionRef.current?.skipTransition();
+      if (document.startViewTransition) {
+        transitionRef.current = document.startViewTransition(commit);
+      } else {
+        commit();
+        document.querySelector("main")?.animate(
+          [
+            { opacity: 0.35, transform: "translateY(8px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          { duration: 420, easing: "cubic-bezier(.22,1,.36,1)" },
+        );
+      }
+    },
+    [locale],
+  );
 
   useEffect(() => {
     document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
@@ -39,18 +72,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
     import("./site-copy").then((module) => {
       if (active) {
-        setCopy(module.siteCopy[locale]);
+        setDictionary(module.siteCopy);
       }
     });
 
     return () => {
       active = false;
     };
-  }, [locale]);
+  }, []);
 
   const value = useMemo(
-    () => (copy ? { locale, setLocale, copy } : null),
-    [copy, locale],
+    () => (dictionary ? { locale, setLocale, copy: dictionary[locale] } : null),
+    [dictionary, locale, setLocale],
   );
 
   if (!value) {
