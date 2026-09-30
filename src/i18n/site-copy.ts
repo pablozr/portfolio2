@@ -194,7 +194,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { k: "idiomas", v: "PT nativo · EN C1" },
         { k: "cidadania", v: "BR · ES (UE)" },
       ],
-      photoAlt: "Retrato de Pablo Farina com tratamento visual em tons de vermelho",
+      photoAlt: "Retrato de Pablo Farina",
     },
     protocol: {
       layer: "protocolo",
@@ -469,7 +469,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { k: "languages", v: "PT native · EN C1" },
         { k: "citizenship", v: "BR · ES (EU)" },
       ],
-      photoAlt: "Portrait of Pablo Farina with a red-toned visual treatment",
+      photoAlt: "Portrait of Pablo Farina",
     },
     protocol: {
       layer: "protocol",

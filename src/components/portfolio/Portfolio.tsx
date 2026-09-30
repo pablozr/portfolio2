@@ -305,7 +305,6 @@ export function Portfolio() {
                     height={1402}
                     loading="lazy"
                   />
-                  <span className="portrait-dots" aria-hidden="true" />
                   <span className="portrait-tag">subject: pablo_farina.jpg</span>
                 </div>
                 <Sigil className="portrait-sigil" />
