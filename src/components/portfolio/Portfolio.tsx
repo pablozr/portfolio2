@@ -1,697 +1,565 @@
-import { useRef, useState } from "react";
-import type { FormEvent, ReactNode } from "react";
+import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import { motion, MotionConfig, useReducedMotion, useScroll, useSpring } from "motion/react";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  ArrowUp,
-  Plus,
-  Minus,
-  Menu,
-  X,
-  Pause,
-  Play,
-  Github,
-  Check,
-  Copy,
-} from "lucide-react";
-import * as Dialog from "@radix-ui/react-dialog";
+import { ArrowUpRight, ArrowUp, Check, Copy, Download, Pause, Play } from "lucide-react";
 import { useLanguage } from "@/i18n/language";
-import { Sculpture3D } from "./Sculpture3D";
-import { CreativeRibbon } from "./CreativeRibbon";
-import { ProjectModel } from "./ProjectModel";
+import type { Status } from "@/i18n/site-copy";
+import profilePhoto from "@/assets/profile-photo.jpg";
+import { BootSequence } from "./BootSequence";
+import { Sigil, ThornRule } from "./Sigil";
+import { WiredCanvas } from "./WiredCanvas";
 
 const email = "pablo.farina28@outlook.com";
-const phone = "+5521991767182";
-const whatsappUrl = "https://wa.me/5521991767182";
-const projectNames = [
-  "Self Checkout",
-  "PRISMA",
-  "WiredApply",
-  "Subscriptions",
-  "The foundations",
-  "SIEPA Front",
-  "Qual é o Segredo?",
-];
-const categories = [
-  "Commerce & payments",
-  "Education platform",
-  "Career & automation",
-  "Finance & control",
-  "Developer tools",
-  "Frontend architecture",
-  "Interactive experience",
-];
+const githubUrl = "https://github.com/pablozr";
+const linkedinUrl = "https://www.linkedin.com/in/pablo-de-araujo-farina-893a8126b";
+const cvUrl = "/cv-pablo-farina.pdf";
 
-function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
+const layerGlyphs: Record<string, string> = {
+  whoami: "自己",
+  protocol: "プロトコル",
+  signals: "信号",
+  archive: "記録",
+  stack: "道具",
+  offline: "オフライン",
+  connect: "接続",
+};
+
+const layerIds = ["whoami", "protocol", "signals", "archive", "stack", "offline", "connect"];
+
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   const reduced = useReducedMotion();
   return (
     <motion.div
       className={className}
-      initial={reduced ? false : { opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      initial={reduced ? false : { opacity: 0, y: 24, filter: "blur(6px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
   );
 }
 
-function Project({ index }: { index: number }) {
-  const { copy, locale } = useLanguage();
-  const project = copy.work.projects[index];
-  const pt = locale === "pt-BR";
+function Glitch({
+  text,
+  as: Tag = "span",
+  className = "",
+}: {
+  text: string;
+  as?: "span" | "h1" | "h2";
+  className?: string;
+}) {
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <button className={`project-card project-${index}`}>
-          <div className="project-image">
-            <div className="project-topline">
-              <span className="micro">{categories[index]}</span>
-              <span className="micro">{project.year}</span>
-            </div>
-            <ProjectModel index={index} />
-            <span className="project-wordmark">
-              {index === 0 ? "checkout®" : index === 1 ? "PRISMA" : "wired/apply"}
-            </span>
-            <span className="project-caption micro">
-              {pt ? "EXPLORAÇÃO VISUAL DO PROJETO" : "PROJECT VISUAL EXPLORATION"}
-            </span>
-            <span className="project-open">
-              <ArrowUpRight size={23} />
-            </span>
-          </div>
-          <div className="project-info">
-            <div>
-              <span className="micro project-number">0{index + 1} /</span>
-              <h3>{projectNames[index]}</h3>
-            </div>
-            <span className="project-stack">{project.stack.slice(0, 2).join(" / ")}</span>
-          </div>
-        </button>
-      </Dialog.Trigger>
-      <ProjectDialog index={index} />
-    </Dialog.Root>
+    <Tag className={`glitch ${className}`} data-text={text}>
+      {text}
+    </Tag>
   );
 }
 
-function ProjectDialog({ index }: { index: number }) {
-  const { copy, locale } = useLanguage();
-  const p = copy.work.projects[index];
+function LayerHeader({ id, index, label }: { id: string; index: number; label: string }) {
   return (
-    <Dialog.Portal>
-      <Dialog.Overlay className="modal-overlay" />
-      <Dialog.Content className="project-modal">
-        <Dialog.Close
-          className="icon-button modal-close"
-          aria-label={locale === "pt-BR" ? "Fechar projeto" : "Close project"}
-        >
-          <X />
-        </Dialog.Close>
-        <p className="micro">
-          {p.year} / {categories[index]}
-        </p>
-        <Dialog.Title>{p.title}</Dialog.Title>
-        <Dialog.Description>{p.body}</Dialog.Description>
-        <h3 className="micro">{copy.work.modalHighlightsLabel}</h3>
-        <ul className="project-highlights">
-          {p.highlights.map((h) => (
-            <li key={h}>
-              <ArrowUpRight size={16} />
-              {h}
-            </li>
-          ))}
-        </ul>
-        <h3 className="micro">{copy.work.modalStackLabel}</h3>
-        <div className="tags">
-          {p.stack.map((s) => (
-            <span key={s}>{s}</span>
-          ))}
-        </div>
-        <div className="modal-actions">
-          <a className="pill pill-dark" href={p.repoUrl} target="_blank" rel="noreferrer">
-            {copy.work.modalRepoLabel}
-            <Github size={17} />
-          </a>
-          {p.liveUrl && (
-            <a className="text-link" href={p.liveUrl} target="_blank" rel="noreferrer">
-              {p.liveUrl.includes("github.com")
-                ? locale === "pt-BR"
-                  ? "Repositório frontend"
-                  : "Frontend repository"
-                : copy.work.modalLiveLabel}
-              <ArrowUpRight size={18} />
-            </a>
-          )}
-        </div>
-      </Dialog.Content>
-    </Dialog.Portal>
-  );
-}
-
-function ContactForm() {
-  const { copy, locale } = useLanguage();
-  const [prepared, setPrepared] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [copyError, setCopyError] = useState(false);
-  const messageRef = useRef<HTMLTextAreaElement>(null);
-  const pt = locale === "pt-BR";
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const message = String(data.get("message") || "").trim();
-    if (message.length < 10) {
-      messageRef.current?.setCustomValidity(copy.contact.errors.messageMin);
-      messageRef.current?.reportValidity();
-      return;
-    }
-    const body = `${copy.contact.mail.fieldName}: ${data.get("name")}\nEmail: ${data.get("email")}\n${copy.contact.mail.fieldBudget}: ${data.get("budget") || "—"}\n\n${message}`;
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(`${copy.contact.mail.subjectPrefix}: ${data.get("name")}`)}&body=${encodeURIComponent(body)}`;
-    setPrepared(true);
-  };
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-      setCopyError(false);
-    } catch {
-      setCopyError(true);
-    }
-  };
-  return (
-    <div className="contact-grid">
-      <div>
-        <p className="contact-intro">
-          {pt
-            ? "Um bom projeto começa com uma boa conversa. Me conte o que você tem em mente."
-            : "A great project starts with a good conversation. Tell me what you have in mind."}
-        </p>
-        <a className="contact-email" href={`mailto:${email}`}>
-          {email}
-          <ArrowUpRight size={18} />
-        </a>
-        <button className="copy-email micro" onClick={copyEmail}>
-          {copied ? <Check size={13} /> : <Copy size={13} />}{" "}
-          {copied ? (pt ? "E-mail copiado" : "Email copied") : pt ? "Copiar e-mail" : "Copy email"}
-        </button>
-        {copyError && (
-          <p role="status">
-            {pt ? "Selecione e copie o e-mail acima." : "Select and copy the email above."}
-          </p>
-        )}
-        <div className="contact-phone">
-          <span className="micro">{pt ? "TELEFONE / WHATSAPP" : "PHONE / WHATSAPP"}</span>
-          <a href={`tel:${phone}`}>
-            +55 (21) 99176-7182 <ArrowUpRight size={18} />
-          </a>
-          <a className="text-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-            {pt ? "Conversar pelo WhatsApp" : "Chat on WhatsApp"}
-            <ArrowUpRight size={16} />
-          </a>
-        </div>
-        <div className="contact-note micro">
-          <span className="status-dot" />
-          {pt ? "CONTATO DIRETO, SEM INTERMEDIÁRIOS." : "DIRECT CONTACT. NO MIDDLEMEN."}
-        </div>
-      </div>
-      <form onSubmit={submit} className="contact-form">
-        <div className="form-row">
-          <label>
-            {copy.contact.labels.name}
-            <input
-              required
-              name="name"
-              autoComplete="name"
-              maxLength={100}
-              placeholder={copy.contact.placeholders.name}
-            />
-          </label>
-          <label>
-            {copy.contact.labels.email}
-            <input
-              required
-              type="email"
-              name="email"
-              autoComplete="email"
-              maxLength={200}
-              placeholder={copy.contact.placeholders.email}
-            />
-          </label>
-        </div>
-        <label>
-          {copy.contact.labels.budget}
-          <input name="budget" maxLength={100} placeholder={copy.contact.placeholders.budget} />
-        </label>
-        <label>
-          {copy.contact.labels.project}
-          <textarea
-            ref={messageRef}
-            name="message"
-            required
-            minLength={10}
-            maxLength={2000}
-            rows={3}
-            placeholder={copy.contact.placeholders.project}
-            onInput={() => messageRef.current?.setCustomValidity("")}
-          />
-        </label>
-        <div className="form-bottom">
-          <p aria-live="polite">
-            {prepared
-              ? pt
-                ? "Mensagem preparada. Conclua o envio no seu aplicativo de e-mail."
-                : "Message prepared. Complete sending in your email app."
-              : copy.contact.statusIdle}
-          </p>
-          <button type="submit" className="pill pill-lime">
-            {pt ? "Vamos conversar" : "Let's talk"}
-            <ArrowUpRight size={18} />
-          </button>
-        </div>
-      </form>
+    <div className="layer-header">
+      <span className="layer-index" aria-hidden="true">
+        {String(index).padStart(2, "0")}
+      </span>
+      <span className="layer-label">
+        <span className="layer-tag">LAYER:{String(index).padStart(2, "0")}</span>
+        <span className="layer-name">{label}</span>
+      </span>
+      <span className="layer-glyph" lang="ja" aria-hidden="true">
+        {layerGlyphs[id]}
+      </span>
     </div>
+  );
+}
+
+function StatusChip({ status, label }: { status: Status; label: string }) {
+  return (
+    <span className={`status status-${status}`}>
+      <span className="status-dot" aria-hidden="true" />
+      {label}
+    </span>
+  );
+}
+
+function Clock() {
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => {
+    setNow(new Date());
+    const id = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(id);
+  }, []);
+  if (!now) return <span className="clock">----.--.-- --:--:--</span>;
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return (
+    <time className="clock" dateTime={now.toISOString()}>
+      {now.getFullYear()}.{pad(now.getMonth() + 1)}.{pad(now.getDate())} {pad(now.getHours())}:
+      {pad(now.getMinutes())}:{pad(now.getSeconds())}
+    </time>
+  );
+}
+
+function useActiveLayer() {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(layerIds.indexOf(entry.target.id) + 1);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    layerIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    const top = document.getElementById("top");
+    const topObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setActive(0);
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    if (top) topObserver.observe(top);
+    return () => {
+      observer.disconnect();
+      topObserver.disconnect();
+    };
+  }, []);
+  return active;
+}
+
+function CopyEmail({ label, done }: { label: string; done: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      className="wire-button ghost"
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+          setCopied(true);
+          window.setTimeout(() => setCopied(false), 2200);
+        } catch {
+          window.location.href = `mailto:${email}`;
+        }
+      }}
+    >
+      {copied ? <Check size={16} /> : <Copy size={16} />}
+      <span aria-live="polite">{copied ? done : label}</span>
+    </button>
   );
 }
 
 export function Portfolio() {
   const { copy, locale, setLocale } = useLanguage();
   const pt = locale === "pt-BR";
-  const [menuOpen, setMenuOpen] = useState(false);
   const [paused, setPaused] = useState(false);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const links = [
-    { href: "#work", text: pt ? "Projetos" : "Work" },
-    { href: "#about", text: pt ? "Sobre" : "About" },
-    { href: "#services", text: pt ? "Serviços" : "Services" },
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+  const active = useActiveLayer();
+  const { ui, hero, whoami, protocol, signals, archive, stack, offline, connect } = copy;
+
+  const marquee = [
+    "CLOSE THE WORLD",
+    "OPEN THE NEXT",
+    "ワイヤード",
+    "PRESENT DAY",
+    "PRESENT TIME",
+    "接続",
   ];
+
   return (
     <MotionConfig reducedMotion="user">
-      <div className={`portfolio ${paused ? "motion-paused" : ""}`}>
-        <motion.div className="reading-progress" style={{ scaleX: progress }} />
+      <div className={`lain ${paused ? "motion-paused" : ""}`}>
+        <div className="fx-noise" aria-hidden="true" />
+        <div className="fx-scanlines" aria-hidden="true" />
+        <div className="fx-vignette" aria-hidden="true" />
+        <BootSequence lines={ui.boot} hint={ui.bootSkip} />
+        <motion.div className="progress" style={{ scaleX: progress }} />
         <a className="skip-link" href="#main">
-          {pt ? "Pular para o conteúdo" : "Skip to content"}
+          {ui.skip}
         </a>
-        <header className="site-header">
-          <a href="#top" className="name-brand" aria-label="Pablo Farina — home">
-            <img className="brand-mark" src="/logo-pf.svg" width="46" height="46" alt="" />
-            <span className="brand-wordmark">
-              <span className="name-brand-title">
-                Pablo Farina<span className="name-brand-dot">.</span>
-              </span>
-              <span className="name-brand-role micro">
-                {pt ? "DESENVOLVEDOR & CRIATIVO" : "DEVELOPER & CREATIVE"}
-              </span>
-            </span>
+
+        <header className="topbar">
+          <a href="#top" className="brand" aria-label="Pablo Farina — home">
+            <Sigil className="brand-sigil" />
+            <span className="brand-name">pablo farina</span>
+            <span className="brand-sub">// navi</span>
           </a>
-          <nav aria-label={pt ? "Navegação principal" : "Main navigation"} className="desktop-nav">
-            {links.map((l) => (
-              <a href={l.href} key={l.href}>
-                {l.text}
+          <nav className="topnav" aria-label={pt ? "Navegação principal" : "Main navigation"}>
+            {ui.nav.map((item, i) => (
+              <a key={item.href} href={item.href} className={active === i + 1 ? "is-active" : ""}>
+                <span aria-hidden="true">0{i + 1}</span>
+                {item.label}
               </a>
             ))}
           </nav>
-          <div className="header-actions">
-            <div className="language-switch">
-              <motion.span
-                className="language-active"
-                animate={{ x: pt ? 0 : 36 }}
-                transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                aria-hidden="true"
-              />
-              <button aria-pressed={pt} onClick={() => setLocale("pt-BR")} aria-label="Português">
+          <div className="topbar-actions">
+            <Clock />
+            <div className="lang" role="group" aria-label={pt ? "Idioma" : "Language"}>
+              <button aria-pressed={pt} onClick={() => setLocale("pt-BR")}>
                 PT
               </button>
-              <button aria-pressed={!pt} onClick={() => setLocale("en")} aria-label="English">
+              <button aria-pressed={!pt} onClick={() => setLocale("en")}>
                 EN
               </button>
             </div>
-            <a href="#contact" className="header-contact">
-              {pt ? "Vamos conversar" : "Let's talk"}
-              <ArrowUpRight size={16} />
-            </a>
             <button
-              className="icon-button menu-toggle"
-              aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
-              aria-label={
-                pt
-                  ? menuOpen
-                    ? "Fechar menu"
-                    : "Abrir menu"
-                  : menuOpen
-                    ? "Close menu"
-                    : "Open menu"
-              }
-              onClick={() => setMenuOpen(!menuOpen)}
+              className="icon-toggle"
+              onClick={() => setPaused(!paused)}
+              disabled={!!reduced}
+              aria-pressed={paused}
+              aria-label={paused ? ui.motionOff : ui.motionOn}
+              title={paused ? ui.motionOff : ui.motionOn}
             >
-              {menuOpen ? <X /> : <Menu />}
+              {paused || reduced ? <Play size={14} /> : <Pause size={14} />}
             </button>
+            <a href="#connect" className="topbar-connect">
+              {ui.connect}
+            </a>
           </div>
-          {menuOpen && (
-            <nav
-              id="mobile-menu"
-              className="mobile-menu"
-              aria-label={pt ? "Navegação móvel" : "Mobile navigation"}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") setMenuOpen(false);
-              }}
-            >
-              {[...links, { href: "#contact", text: pt ? "Contato" : "Contact" }].map((l, i) => (
-                <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
-                  <span className="micro">0{i + 1}</span>
-                  {l.text}
-                  <ArrowUpRight />
-                </a>
-              ))}
-            </nav>
-          )}
         </header>
+
+        <aside className="layer-rail" aria-hidden="true">
+          <span className="rail-label">LAYER</span>
+          <span className="rail-value">{String(active).padStart(2, "0")}</span>
+          <span className="rail-track">
+            {layerIds.map((id, i) => (
+              <span key={id} className={active >= i + 1 ? "on" : ""} />
+            ))}
+          </span>
+        </aside>
+
         <main id="main">
-          <section id="top" className="hero section-shell">
-            <div className="hero-eyebrow micro">
-              <span>{pt ? "BRASIL · PARA O MUNDO" : "BRAZIL · WORLDWIDE"}</span>
+          <section id="top" className="hero">
+            <WiredCanvas paused={paused} />
+            <div className="hero-dots" aria-hidden="true" />
+            <Sigil className="hero-sigil" />
+            <div className="hero-inner">
+              <p className="hero-kicker">
+                <span className="rec" aria-hidden="true" /> {hero.kicker}
+              </p>
+              <h1 className="hero-name">
+                <Glitch text="PABLO" className="hero-line" />
+                <Glitch text="FARINA" className="hero-line hero-line-2" />
+              </h1>
+              <p className="hero-jp" lang="ja" aria-hidden="true">
+                パブロ・ファリーナ
+              </p>
+              <p className="hero-role">{hero.role}</p>
+              <p className="hero-body">{hero.body}</p>
+              <div className="hero-ctas">
+                <a className="wire-button" href="#whoami">
+                  {hero.ctaPrimary} <ArrowUpRight size={16} />
+                </a>
+                <a className="wire-button ghost" href="#connect">
+                  {hero.ctaSecondary}
+                </a>
+              </div>
             </div>
-            <div className="hero-layout">
-              <div className="hero-copy">
-                <h1>
-                  <span className="hero-line">{pt ? "Código preciso." : "Precise code."}</span>
-                  <span className="hero-line">{pt ? "Design que" : "Design that"}</span>
-                  <span className="hero-line serif">
-                    {pt ? "marca." : "stays."}
-                    <span className="heading-spark" aria-hidden="true">
-                      ✳
+            <dl className="readout">
+              {hero.readout.map((r) => (
+                <div key={r.k}>
+                  <dt>{r.k}</dt>
+                  <dd>{r.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <div className="marquee" aria-hidden="true">
+            <div className="marquee-track">
+              {[0, 1].map((n) => (
+                <span key={n}>
+                  {marquee.map((m) => (
+                    <span key={m} className="marquee-item">
+                      {m}
+                      <Sigil className="marquee-sigil" />
                     </span>
-                  </span>
-                </h1>
-                <p>
-                  {pt
-                    ? "Transformo ideias em sites e sistemas com personalidade. Feitos para funcionar. Pensados para impressionar."
-                    : "I turn ideas into websites and systems with personality. Built to work. Designed to leave an impression."}
-                </p>
-                <div className="hero-buttons">
-                  <a className="pill pill-dark" href="#work">
-                    {pt ? "Explore meus projetos" : "Explore my work"}
-                    <ArrowDown size={17} />
-                  </a>
-                  <a href="#contact" className="text-link">
-                    {pt ? "Tem uma ideia?" : "Have an idea?"}
-                    <ArrowUpRight size={17} />
-                  </a>
-                </div>
-              </div>
-              <div className="hero-art hero-art-solid">
-                <div className="art-cross cross-top" />
-                <div className="art-cross cross-bottom" />
-                <Sculpture3D paused={paused} />
-                <div className="art-meta micro">
-                  <span>{pt ? "FORMA LIVRE / ESTUDO 001" : "FREE FORM / STUDY 001"}</span>
-                  <button
-                    className="motion-toggle"
-                    onClick={() => setPaused(!paused)}
-                    disabled={!!reduced}
-                    aria-label={
-                      pt
-                        ? paused
-                          ? "Retomar animação"
-                          : "Pausar animação"
-                        : paused
-                          ? "Resume animation"
-                          : "Pause animation"
-                    }
-                    aria-pressed={paused || !!reduced}
-                  >
-                    {paused || reduced ? <Play size={12} /> : <Pause size={12} />}
-                  </button>
-                </div>
-                <span className="art-side micro">
-                  {pt
-                    ? "MOVA O CURSOR. MUDE O PONTO DE VISTA."
-                    : "MOVE YOUR CURSOR. CHANGE YOUR PERSPECTIVE."}
+                  ))}
                 </span>
-              </div>
+              ))}
             </div>
-            <div className="hero-bottom micro">
-              <span>FULLSTACK DEVELOPMENT & CREATIVE THINKING</span>
-              <a href="#work">
-                {pt ? "ROLE PARA DESCOBRIR" : "SCROLL TO DISCOVER"}
-                <ArrowDown size={13} />
-              </a>
-              <span>PORTFOLIO — 2026</span>
+          </div>
+
+          <section id="whoami" className="layer">
+            <LayerHeader id="whoami" index={1} label={whoami.layer} />
+            <div className="whoami-grid">
+              <Reveal className="portrait">
+                <div className="portrait-frame">
+                  <img
+                    src={profilePhoto}
+                    alt={whoami.photoAlt}
+                    width={1122}
+                    height={1402}
+                    loading="lazy"
+                  />
+                  <span className="portrait-dots" aria-hidden="true" />
+                  <span className="portrait-tag">subject: pablo_farina.jpg</span>
+                </div>
+                <Sigil className="portrait-sigil" />
+              </Reveal>
+              <div className="whoami-copy">
+                <Reveal>
+                  <h2 className="layer-title">{whoami.title}</h2>
+                </Reveal>
+                {whoami.paragraphs.map((p, i) => (
+                  <Reveal key={p} delay={i * 0.06}>
+                    <p>{p}</p>
+                  </Reveal>
+                ))}
+                <Reveal>
+                  <blockquote className="quote">{whoami.quote}</blockquote>
+                </Reveal>
+                <dl className="facts">
+                  {whoami.facts.map((f) => (
+                    <div key={f.k}>
+                      <dd>{f.v}</dd>
+                      <dt>{f.k}</dt>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </section>
-          <CreativeRibbon />
-          <section id="work" className="work-section section-shell section-space">
-            <Reveal>
-              <div className="section-kicker micro">
-                <span>01 / {pt ? "PROJETOS SELECIONADOS" : "SELECTED WORK"}</span>
-                <span>2025 — 2026</span>
-              </div>
-              <div className="section-heading">
-                <h2>
-                  {pt ? "Menos promessa." : "Less promise."}
-                  <br />
-                  <span className="serif">{pt ? "Mais projeto." : "More proof."}</span>
-                </h2>
-                <p>
-                  {pt
-                    ? "Da interface à arquitetura: uma seleção de ideias que saíram do papel e viraram software."
-                    : "From interface to architecture: a selection of ideas that became working software."}
-                </p>
-              </div>
+
+          <ThornRule />
+
+          <section id="protocol" className="layer">
+            <LayerHeader id="protocol" index={2} label={protocol.layer} />
+            <Reveal className="layer-intro">
+              <h2 className="layer-title">{protocol.title}</h2>
+              <p>{protocol.intro}</p>
             </Reveal>
-            <div className="project-grid">
-              {[0, 1, 2].map((i) => (
-                <Reveal key={i} className={i === 0 ? "project-featured" : ""}>
-                  <Project index={i} />
+            <ol className="timeline">
+              {protocol.jobs.map((job, i) => (
+                <li className="job" key={job.org + job.role}>
+                  <Reveal delay={i * 0.04} className="job-inner">
+                    <div className="job-meta">
+                      <span className="job-period">{job.period}</span>
+                      <span className="job-place">{job.place}</span>
+                    </div>
+                    <div className="job-body">
+                      <h3>
+                        <Glitch text={job.org} />
+                      </h3>
+                      <p className="job-role">{job.role}</p>
+                      <ul>
+                        {job.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                      <div className="chips">
+                        {job.stack.map((s) => (
+                          <span key={s}>{s}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+            <div className="education">
+              <span className="edu-label">{protocol.education.label}</span>
+              <span className="edu-school">{protocol.education.school}</span>
+              <span>{protocol.education.degree}</span>
+              <span className="edu-period">{protocol.education.period}</span>
+            </div>
+          </section>
+
+          <section id="signals" className="layer layer-signals">
+            <div className="signals-dots" aria-hidden="true" />
+            <LayerHeader id="signals" index={3} label={signals.layer} />
+            <Reveal className="layer-intro">
+              <h2 className="layer-title">{signals.title}</h2>
+              <p>{signals.intro}</p>
+            </Reveal>
+            <div className="signal-grid">
+              {signals.items.map((s, i) => (
+                <Reveal key={s.code} delay={i * 0.05} className={`signal signal-${s.status}`}>
+                  <div className="signal-head">
+                    <span className="signal-code">{s.code}</span>
+                    <StatusChip status={s.status} label={ui.statusLabels[s.status]} />
+                  </div>
+                  <h3>{s.name}</h3>
+                  <p>{s.body}</p>
+                  <div className="chips">
+                    {s.tags.map((t) => (
+                      <span key={t}>{t}</span>
+                    ))}
+                  </div>
+                  {s.repoUrl && (
+                    <a className="signal-link" href={s.repoUrl} target="_blank" rel="noreferrer">
+                      {ui.repo} <ArrowUpRight size={14} />
+                    </a>
+                  )}
                 </Reveal>
               ))}
-            </div>
-            <div className="more-projects">
-              {copy.work.projects.slice(3).map((_, offset) => {
-                const i = offset + 3;
-                return (
-                  <Dialog.Root key={i}>
-                    <Dialog.Trigger className="project-row">
-                      <span className="micro">0{i + 1}</span>
-                      <h3>{projectNames[i]}</h3>
-                      <span className="micro">{categories[i]}</span>
-                      <ArrowUpRight />
-                    </Dialog.Trigger>
-                    <ProjectDialog index={i} />
-                  </Dialog.Root>
-                );
-              })}
-            </div>
-            <a
-              className="text-link github-link"
-              href="https://github.com/pablozr"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {pt ? "Mais código, no GitHub" : "More code on GitHub"}
-              <ArrowUpRight size={16} />
-            </a>
-          </section>
-          <section id="about" className="about-section section-space">
-            <div className="section-shell">
-              <div className="section-kicker micro">
-                <span>02 / {pt ? "SOBRE MIM" : "ABOUT ME"}</span>
-                <span>
-                  {pt ? "A PESSOA POR TRÁS DOS PROJETOS" : "THE PERSON BEHIND THE PROJECTS"}
-                </span>
-              </div>
-              <Reveal className="about-grid">
-                <div className="about-identity">
-                  <span className="micro about-label">
-                    {pt ? "PRAZER, ESSE SOU EU." : "HEY, THIS IS ME."}
-                  </span>
-                  <h2 className="about-name">
-                    Pablo
-                    <br />
-                    <span className="serif">Farina.</span>
-                  </h2>
-                  <span className="about-role">
-                    {pt ? "Desenvolvedor fullstack." : "Fullstack developer."}
-                    <br />
-                    {pt ? "Curioso por natureza." : "Curious by nature."}
-                  </span>
-                  <span className="about-signature serif" aria-hidden="true">
-                    pf.
-                  </span>
+              <Reveal className="signal reading" delay={0.3}>
+                <div className="signal-head">
+                  <span className="signal-code">QUE</span>
                 </div>
-                <div>
-                  <h3 className="about-statement">
-                    {pt ? "Olhar criativo." : "Creative eye."}
-                    <br />
-                    <span className="serif">{pt ? "Cabeça de dev." : "Developer mind."}</span>
-                  </h3>
-                  <p className="about-lead">
-                    {pt
-                      ? "Sou Pablo. Conecto design e desenvolvimento para criar experiências digitais que fazem sentido — para o seu negócio e para quem usa."
-                      : "I'm Pablo. I connect design and development to create digital experiences that make sense — for your business and the people using them."}
-                  </p>
-                  <p>
-                    {copy.about.p1} {copy.about.p3}
-                  </p>
-                  <a href="#contact" className="text-link">
-                    {pt ? "Vamos construir algo juntos" : "Let's build something together"}
-                    <ArrowUpRight size={18} />
-                  </a>
-                </div>
+                <h3>{signals.reading.label}</h3>
+                <ol>
+                  {signals.reading.items.map((r, i) => (
+                    <li key={r}>
+                      <span>{String(i + 1).padStart(2, "0")}</span>
+                      {r}
+                    </li>
+                  ))}
+                </ol>
               </Reveal>
-              <div className="tech-strip micro">
-                {["FASTAPI", "ANGULAR", "TYPESCRIPT", "POSTGRESQL", "REDIS", "DOCKER"].map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
             </div>
           </section>
-          <section id="services" className="section-shell section-space">
-            <Reveal>
-              <div className="section-kicker micro">
-                <span>03 / {pt ? "O QUE PODEMOS CRIAR" : "WHAT WE CAN BUILD"}</span>
-                <span>{pt ? "DA IDEIA AO DEPLOY" : "FROM IDEA TO DEPLOY"}</span>
-              </div>
-              <div className="section-heading">
-                <h2>
-                  {pt ? "Bonito por fora." : "Beautiful outside."}
-                  <br />
-                  <span className="serif">
-                    {pt ? "Bem feito por dentro." : "Well built inside."}
-                  </span>
-                </h2>
-                <p>
-                  {pt
-                    ? "Soluções sob medida, com atenção aos detalhes que você vê. E aos que fazem tudo funcionar."
-                    : "Bespoke solutions, with attention to the details you see. And those that make everything work."}
-                </p>
-              </div>
+
+          <section id="archive" className="layer">
+            <LayerHeader id="archive" index={4} label={archive.layer} />
+            <Reveal className="layer-intro">
+              <h2 className="layer-title">{archive.title}</h2>
+              <p>{archive.intro}</p>
             </Reveal>
-            <div className="services-list">
-              {copy.services.items.map((s, i) => (
-                <details key={s.code} className="service-item">
+            <div className="archive" role="list">
+              <div className="archive-head" aria-hidden="true">
+                <span>perm</span>
+                <span>year</span>
+                <span>name</span>
+                <span>type</span>
+              </div>
+              {archive.projects.map((p) => (
+                <details key={p.name} className="archive-row" role="listitem">
                   <summary>
-                    <span className="micro">0{i + 1}</span>
-                    <h3>{s.title}</h3>
-                    <span className="service-teaser">{s.bullets[0]}</span>
-                    <span className="expand-icon">
-                      <Plus className="plus" size={20} />
-                      <Minus className="minus" size={20} />
+                    <span className="perm" aria-hidden="true">
+                      drwxr-x
                     </span>
+                    <span className="year">{p.year}</span>
+                    <span className="name">{p.name}</span>
+                    <span className="kind">{p.kind}</span>
+                    <span className="toggle" aria-hidden="true" />
                   </summary>
-                  <div className="service-detail">
-                    <p>{s.body}</p>
-                    <div className="tags">
-                      {s.bullets.map((b) => (
-                        <span key={b}>{b}</span>
+                  <div className="archive-detail">
+                    <p>{p.body}</p>
+                    <div className="chips">
+                      {p.stack.map((s) => (
+                        <span key={s}>{s}</span>
                       ))}
                     </div>
-                    <div className="service-pricing">
-                      <a className="text-link" href="#contact">
-                        {pt ? "Entre em contato para um orçamento" : "Get in touch for a quote"}
-                        <ArrowUpRight size={16} />
+                    <div className="archive-links">
+                      <a href={p.repoUrl} target="_blank" rel="noreferrer">
+                        {ui.repo} <ArrowUpRight size={14} />
                       </a>
+                      {p.liveUrl && (
+                        <a href={p.liveUrl} target="_blank" rel="noreferrer">
+                          {p.liveLabel ?? ui.live} <ArrowUpRight size={14} />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </details>
               ))}
             </div>
+            <a className="more-link" href={githubUrl} target="_blank" rel="noreferrer">
+              <span className="more-prompt">$</span> {archive.more} <ArrowUpRight size={16} />
+            </a>
           </section>
-          <section id="process" className="process-section section-shell">
-            <div className="section-kicker micro">
-              <span>04 / {pt ? "COMO ACONTECE" : "HOW IT HAPPENS"}</span>
-            </div>
-            <Reveal>
-              <h2>
-                {pt ? "Uma boa parceria." : "A good partnership."}{" "}
-                <span className="serif">{pt ? "Do início ao fim." : "Start to finish."}</span>
-              </h2>
+
+          <ThornRule />
+
+          <section id="stack" className="layer">
+            <LayerHeader id="stack" index={5} label={stack.layer} />
+            <Reveal className="layer-intro">
+              <h2 className="layer-title">{stack.title}</h2>
             </Reveal>
-            <div className="process-grid">
-              {copy.process.steps.map((s) => (
-                <Reveal key={s.k}>
-                  <span className="process-number serif">{s.k}</span>
-                  <h3>{s.t}</h3>
-                  <p>{s.d}</p>
-                  <span className="micro">{s.meta}</span>
+            <div className="stack-grid">
+              {stack.groups.map((g, i) => (
+                <Reveal key={g.label} delay={i * 0.04} className="stack-group">
+                  <h3>
+                    <span aria-hidden="true">/{String(i).padStart(2, "0")}</span> {g.label}
+                  </h3>
+                  <ul>
+                    {g.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
                 </Reveal>
               ))}
             </div>
           </section>
-          <section id="faq" className="faq-section section-shell section-space">
-            <div>
-              <p className="micro">05 / FAQ</p>
-              <h2>
-                {pt ? "Antes do" : "Before our"}
-                <br />
-                <span className="serif">{pt ? "primeiro oi." : "first hello."}</span>
-              </h2>
-            </div>
-            <div>
-              {copy.faq.items.map((f) => (
-                <details className="faq-item" key={f.q}>
-                  <summary>
-                    {f.q}
-                    <Plus size={17} />
-                  </summary>
-                  <p>{f.a}</p>
-                </details>
-              ))}
+
+          <section id="offline" className="layer layer-offline">
+            <LayerHeader id="offline" index={6} label={offline.layer} />
+            <div className="offline-grid">
+              <Reveal>
+                <h2 className="layer-title">{offline.title}</h2>
+                <p>{offline.body}</p>
+              </Reveal>
+              <ul className="offline-words">
+                {offline.items.map((item, i) => (
+                  <li key={item} style={{ ["--i" as string]: i }}>
+                    <Glitch text={item} />
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
-          <section id="contact" className="contact-section section-space">
-            <div className="section-shell">
-              <div className="section-kicker micro">
-                <span>06 / {pt ? "O PRÓXIMO PROJETO" : "THE NEXT PROJECT"}</span>
-                <span>{pt ? "PODE SER O SEU" : "COULD BE YOURS"}</span>
-              </div>
+
+          <section id="connect" className="layer layer-connect">
+            <Sigil className="connect-sigil" />
+            <LayerHeader id="connect" index={7} label={connect.layer} />
+            <Reveal>
+              <Glitch as="h2" text={connect.title} className="connect-title" />
+            </Reveal>
+            <div className="connect-grid">
               <Reveal>
-                <a href={`mailto:${email}`} className="contact-title">
-                  <h2>
-                    {pt ? "Vamos criar" : "Let's create"}
-                    <br />
-                    <span className="serif">{pt ? "algo marcante." : "something lasting."}</span>
-                  </h2>
-                  <ArrowUpRight strokeWidth={0.8} />
-                </a>
+                <p className="connect-next">{connect.next}</p>
+                <p className="connect-body">{connect.body}</p>
               </Reveal>
-              <ContactForm />
-              <footer className="site-footer">
-                <a href="#top" className="brand" aria-label="Pablo Farina — home">
-                  <img src="/logo-pf.svg" width="46" height="46" alt="" />
+              <Reveal className="connect-actions">
+                <a className="connect-email" href={`mailto:${email}`}>
+                  {email}
                 </a>
-                <span className="micro">© {new Date().getFullYear()} PABLO FARINA</span>
-                <a
-                  href="https://github.com/pablozr"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="micro"
-                >
-                  GITHUB <ArrowUpRight size={12} />
-                </a>
-                <a href="#top" className="micro">
-                  {pt ? "DE VOLTA AO TOPO" : "BACK TO TOP"}
-                  <ArrowUp size={13} />
-                </a>
-              </footer>
+                <div className="connect-buttons">
+                  <a className="wire-button" href={`mailto:${email}`}>
+                    {connect.cta} <ArrowUpRight size={16} />
+                  </a>
+                  <CopyEmail label={connect.copy} done={connect.copied} />
+                  <a className="wire-button ghost" href={cvUrl} download>
+                    <Download size={16} /> {connect.cv}
+                  </a>
+                </div>
+                <div className="connect-links">
+                  <a href={linkedinUrl} target="_blank" rel="noreferrer">
+                    linkedin <ArrowUpRight size={14} />
+                  </a>
+                  <a href={githubUrl} target="_blank" rel="noreferrer">
+                    github <ArrowUpRight size={14} />
+                  </a>
+                </div>
+              </Reveal>
             </div>
+            <p className="connect-quote">“{connect.quote}”</p>
           </section>
         </main>
-        <a
-          className="whatsapp-fab"
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={pt ? "Conversar com Pablo pelo WhatsApp" : "Chat with Pablo on WhatsApp"}
-        >
-          <span className="whatsapp-tooltip">{pt ? "Vamos conversar?" : "Let's talk?"}</span>
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
-            <path d="M20.52 3.48A11.91 11.91 0 0 0 12.05 0C5.46 0 .1 5.36.1 11.95c0 2.1.55 4.16 1.6 5.98L0 24l6.24-1.64a11.94 11.94 0 0 0 5.8 1.48h.01C18.64 23.84 24 18.48 24 11.9c0-3.19-1.24-6.18-3.48-8.42ZM12.05 21.82h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.7.97.99-3.61-.24-.37a9.89 9.89 0 0 1-1.52-5.27c0-5.48 4.45-9.93 9.94-9.93a9.86 9.86 0 0 1 7.02 2.91 9.87 9.87 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.97 9.87Zm5.45-7.43c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.78-1.48-1.75-1.65-2.05-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.11.57-.08 1.77-.72 2.01-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35Z" />
-          </svg>
-        </a>
+
+        <footer className="footer">
+          <span>© {new Date().getFullYear()} pablo farina</span>
+          <span className="footer-jp" lang="ja" aria-hidden="true">
+            すべては繋がっている
+          </span>
+          <a href="#top">
+            {ui.backToTop} <ArrowUp size={13} />
+          </a>
+        </footer>
       </div>
     </MotionConfig>
   );

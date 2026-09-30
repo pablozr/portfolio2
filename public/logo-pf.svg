@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
-  <title>Pablo Farina — monograma PF</title>
-  <rect width="80" height="80" rx="19" fill="#D5FA42"/>
-  <path fill="#24251F" fill-rule="evenodd" d="M13 57V18h15c10 0 16 6 16 15s-6 15-16 15h-5v9H13Zm10-29v10h5c4 0 6-2 6-5s-2-5-6-5h-5Z" clip-rule="evenodd"/>
-  <path fill="#24251F" d="M47 18h22l-4 10H57v8h10l-4 10h-6v11H47V18Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <title>Pablo Farina — sigil</title>
+  <rect width="80" height="80" fill="#07050a"/>
+  <g fill="#ff2b4a" transform="translate(20 4) scale(0.2 0.18)">
+    <path id="h" d="M100 0 L103.5 200 L100 400 L96.5 200 Z M100 118 C72 110 42 82 18 26 C48 70 76 96 100 104 Z M100 58 C86 54 76 40 70 16 C80 36 90 46 100 49 Z M100 162 C74 168 52 156 36 128 C58 146 80 152 100 150 Z M100 214 C62 212 30 240 6 304 C40 258 70 236 100 228 Z M100 300 C82 308 70 336 72 384 C78 350 88 326 100 316 Z"/>
+    <use href="#h" transform="translate(200 0) scale(-1 1)"/>
+  </g>
 </svg>

@@ -1,126 +1,8 @@
 import type { Locale } from "./locales";
 
+export type Status = "active" | "research" | "paused" | "shipped" | "ongoing";
+
 export type SiteCopy = {
-  nav: {
-    work: string;
-    services: string;
-    process: string;
-    about: string;
-    faq: string;
-    ping: string;
-    languageLabel: string;
-  };
-  hero: {
-    availability: string;
-    titleLine1: string;
-    titleLine2: string;
-    titleAccent: string;
-    body: string;
-    ctaStart: string;
-    ctaServices: string;
-  };
-  services: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    badge: string;
-    fitTitle: string;
-    fitIntro: string;
-    fitItems: string[];
-    itemsLabel: string;
-    items: Array<{
-      code: string;
-      title: string;
-      body: string;
-      bullets: string[];
-      prices: string[];
-    }>;
-  };
-  process: {
-    titleLine1: string;
-    titleAccent: string;
-    titleLine2: string;
-    body: string;
-    meta: string[];
-    steps: Array<{
-      k: string;
-      t: string;
-      d: string;
-      meta: string;
-      deliver: string[];
-    }>;
-  };
-  about: {
-    titleLine1: string;
-    titleLine2: string;
-    p1: string;
-    p2: string;
-    p3: string;
-    p4?: string;
-    stats: Array<{ k: string; v: string }>;
-  };
-  work: {
-    title: string;
-    intro: string;
-    modalStackLabel: string;
-    modalHighlightsLabel: string;
-    modalRepoLabel: string;
-    modalLiveLabel: string;
-    projects: Array<{
-      title: string;
-      year: string;
-      body: string;
-      highlights: string[];
-      stack: string[];
-      repoUrl: string;
-      liveUrl?: string;
-    }>;
-  };
-  faq: {
-    titleLine1: string;
-    titleLine2: string;
-    preContact: string;
-    contactLink: string;
-    postContact: string;
-    items: Array<{ q: string; a: string }>;
-  };
-  contact: {
-    titleLine1: string;
-    titleLine2: string;
-    body: string;
-    details: Array<{ k: string; v: string }>;
-    labels: {
-      name: string;
-      email: string;
-      budget: string;
-      project: string;
-    };
-    placeholders: {
-      name: string;
-      email: string;
-      budget: string;
-      project: string;
-    };
-    statusIdle: string;
-    statusSent: string;
-    submitIdle: string;
-    submitSending: string;
-    errors: {
-      nameRequired: string;
-      invalidEmail: string;
-      messageMin: string;
-    };
-    mail: {
-      subjectPrefix: string;
-      fieldName: string;
-      fieldEmail: string;
-      fieldBudget: string;
-      budgetFallback: string;
-    };
-  };
-  footer: {
-    rights: string;
-  };
   meta: {
     title: string;
     description: string;
@@ -128,603 +10,671 @@ export type SiteCopy = {
     ogDescription: string;
     ogImageAlt: string;
   };
+  ui: {
+    skip: string;
+    nav: Array<{ href: string; label: string }>;
+    connect: string;
+    boot: string[];
+    bootSkip: string;
+    statusLabels: Record<Status, string>;
+    repo: string;
+    live: string;
+    motionOn: string;
+    motionOff: string;
+    backToTop: string;
+  };
+  hero: {
+    kicker: string;
+    role: string;
+    body: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    readout: Array<{ k: string; v: string }>;
+  };
+  whoami: {
+    layer: string;
+    title: string;
+    paragraphs: string[];
+    quote: string;
+    facts: Array<{ k: string; v: string }>;
+    photoAlt: string;
+  };
+  protocol: {
+    layer: string;
+    title: string;
+    intro: string;
+    jobs: Array<{
+      org: string;
+      role: string;
+      period: string;
+      place: string;
+      bullets: string[];
+      stack: string[];
+    }>;
+    education: { label: string; school: string; degree: string; period: string };
+  };
+  signals: {
+    layer: string;
+    title: string;
+    intro: string;
+    items: Array<{
+      code: string;
+      name: string;
+      status: Status;
+      body: string;
+      tags: string[];
+      repoUrl?: string;
+    }>;
+    reading: { label: string; items: string[] };
+  };
+  archive: {
+    layer: string;
+    title: string;
+    intro: string;
+    projects: Array<{
+      name: string;
+      year: string;
+      kind: string;
+      body: string;
+      stack: string[];
+      repoUrl: string;
+      liveUrl?: string;
+      liveLabel?: string;
+    }>;
+    more: string;
+  };
+  stack: {
+    layer: string;
+    title: string;
+    groups: Array<{ label: string; items: string[] }>;
+  };
+  offline: {
+    layer: string;
+    title: string;
+    body: string;
+    items: string[];
+  };
+  connect: {
+    layer: string;
+    title: string;
+    next: string;
+    body: string;
+    cta: string;
+    cv: string;
+    copy: string;
+    copied: string;
+    quote: string;
+  };
+};
+
+const links = {
+  prisma: "https://github.com/pablozr/PRISMA",
+};
+
+const shared = {
+  stackGroups: {
+    backend: ["Python", "FastAPI", "Java", "Spring Boot", "REST"],
+    data: ["PostgreSQL", "Redis", "RabbitMQ", "MongoDB"],
+    ai: ["RAG", "Embeddings", "BM25", "LLMs locais", "Agents"],
+    front: ["TypeScript", "React 19", "Next.js 15", "Angular", "Phaser"],
+    infra: ["Docker", "ERP integrations", "SSO", "WebRTC", "Bun test"],
+    exploring: ["Rust", "GPUI", "Transformers", "OpenCode"],
+  },
 };
 
 export const siteCopy: Record<Locale, SiteCopy> = {
   "pt-BR": {
-    nav: {
-      work: "projetos",
-      services: "serviços",
-      process: "processo",
-      about: "sobre",
-      faq: "faq",
-      ping: "contato",
-      languageLabel: "Idioma",
+    meta: {
+      title: "Pablo Farina — backend, arquitetura & IA aplicada",
+      description:
+        "Pablo Farina: desenvolvedor na Bagaggio e graduando da UNIRIO. Backend, arquitetura de software, RAG, agentes e ferramentas para desenvolvedores.",
+      ogTitle: "Pablo Farina — present day, present time",
+      ogDescription:
+        "Backend, arquitetura, IA aplicada e ferramentas que ainda não existem direito.",
+      ogImageAlt: "Pablo Farina — capa do portfólio",
+    },
+    ui: {
+      skip: "Pular para o conteúdo",
+      nav: [
+        { href: "#whoami", label: "whoami" },
+        { href: "#protocol", label: "protocolo" },
+        { href: "#signals", label: "sinais" },
+        { href: "#archive", label: "arquivo" },
+      ],
+      connect: "conectar",
+      boot: [
+        "NAVI BIOS v0.98 ........................ OK",
+        "detectando nó local: rio de janeiro, br",
+        "montando /dev/curiosidade .............. OK",
+        "carregando backend.ko arquitetura.ko ia.ko",
+        "handshake com a wired ....... ESTABELECIDO",
+        "PRESENT DAY. PRESENT TIME.",
+      ],
+      bootSkip: "clique ou pressione qualquer tecla",
+      statusLabels: {
+        active: "ativo",
+        research: "pesquisa",
+        paused: "pausado",
+        shipped: "entregue",
+        ongoing: "contínuo",
+      },
+      repo: "código",
+      live: "online",
+      motionOn: "pausar animações",
+      motionOff: "retomar animações",
+      backToTop: "voltar ao topo",
     },
     hero: {
-      availability: "",
-      titleLine1: "Sites que passam confiança",
-      titleLine2: "e vendem antes do",
-      titleAccent: "primeiro contato.",
-      body: "Sites profissionais para negócios locais que precisam parecer confiáveis, explicar seus serviços e transformar visitantes em conversas pelo WhatsApp.",
-      ctaStart: "Quero um site assim",
-      ctaServices: "Ver projetos",
-    },
-    services: {
-      eyebrow: "serviços",
-      title: "O que eu construo",
-      intro:
-        "Desenvolvimento de landing pages, sistemas, dashboards e integrações com foco em confiabilidade, boa experiência de uso e manutenção no longo prazo.",
-      badge: "serviço",
-      fitTitle: "Quando faz sentido me chamar",
-      fitIntro:
-        "Trabalho bem em cenários onde você precisa transformar uma necessidade operacional em software utilizável.",
-      fitItems: [
-        "validar uma ideia com landing page ou MVP simples",
-        "trocar planilhas e processos manuais por painel interno",
-        "criar dashboard administrativo para acompanhar operação",
-        "integrar usuários, pagamentos, dados ou ferramentas externas",
-        "organizar um backend que consiga crescer sem virar remendo",
+      kicker: "PRESENT DAY · PRESENT TIME",
+      role: "backend · arquitetura de software · IA aplicada",
+      body: "Eu construo para entender. Sistemas distribuídos, agentes, RAG e ferramentas para quem desenvolve — de preferência as que ainda não existem direito.",
+      ctaPrimary: "entrar na wired",
+      ctaSecondary: "abrir conexão",
+      readout: [
+        { k: "NODE", v: "Rio de Janeiro, BR" },
+        { k: "LINK", v: "Bagaggio — estágio full stack" },
+        { k: "UPLINK", v: "UNIRIO — Sistemas de Informação" },
+        { k: "SEEKING", v: "posição júnior" },
       ],
-      itemsLabel: "[ 04 / SERVIÇOS ]",
+    },
+    whoami: {
+      layer: "whoami",
+      title:
+        "De “quero ser um bom programador” para “quero entender como se constroem sistemas bons”.",
+      paragraphs: [
+        "Sou o Pablo, graduando em Sistemas de Informação na UNIRIO e estagiário full stack na Bagaggio. Comecei como dev web, mas hoje passo a maior parte do tempo em backend, arquitetura de software e IA aplicada — RAG, agentes, embeddings, sistemas distribuídos e ferramentas para desenvolvedores.",
+        "Meu jeito de aprender é exploratório: começo com “não sei direito o que é isso” e pouco depois estou perguntando sobre detalhes de implementação. Entro em Rust, GPUI, LLMs locais ou BM25 sem dominar tudo antes, porque quero ver as peças funcionando por baixo — não só fazer rodar.",
+        "Costumo transformar incômodos do dia a dia em hipóteses mais gerais. Quando agentes começaram a escrever código demais, a pergunta deixou de ser “como escrever código?” e virou “como manter compreensão, decisões e controle arquitetural?”. É desse tipo de problema — novo, ainda meio sem nome — que eu gosto.",
+      ],
+      quote:
+        "curiosidade técnica + vontade de construir. entender a ideia não basta: preciso implementar para descobrir se ela funciona.",
+      facts: [
+        { k: "projetos internos entregues", v: "10+" },
+        { k: "lojas usando o que construí", v: "200+" },
+        { k: "idiomas", v: "PT nativo · EN C1" },
+        { k: "cidadania", v: "BR · ES (UE)" },
+      ],
+      photoAlt: "Retrato de Pablo Farina com tratamento visual em tons de vermelho",
+    },
+    protocol: {
+      layer: "protocolo",
+      title: "Onde eu rodo em produção.",
+      intro:
+        "Experiência real, com usuários reais: automação de processos, integrações entre sistemas e entregas de ponta a ponta.",
+      jobs: [
+        {
+          org: "Bagaggio",
+          role: "Estagiário de Desenvolvimento Full Stack",
+          period: "set 2025 — atual",
+          place: "Rio de Janeiro",
+          bullets: [
+            "Mais de 10 projetos internos estratégicos, usados por 200+ lojas e por todos os setores da empresa — trocando processos manuais por aplicações simples e reduzindo a dependência de soluções terceirizadas.",
+            "Integrações REST entre serviços externos, ERP e APIs internas, centralizando a troca de dados entre sistemas corporativos.",
+            "Entregas de ponta a ponta: reuniões e levantamento de requisitos, definição, execução, deploy e monitoramento da saúde das APIs.",
+            "Um dos projetos melhorou tempo de resposta, nota e posição da empresa em indicadores de reputação — e apoiou a conquista de uma premiação.",
+            "Manutenção de legado em Java/Spring Boot e implementação de login único (SSO) em um portal interno.",
+          ],
+          stack: ["Python", "FastAPI", "Java", "Spring Boot", "ERP", "Docker"],
+        },
+        {
+          org: "Bessa",
+          role: "Desenvolvedor Full Stack · freelance",
+          period: "mar — jun 2025",
+          place: "remoto",
+          bullets: [
+            "Evolução de uma plataforma contábil em Next.js 15 e React 19, com módulos de comunicação, automação de processos e gestão de dados.",
+            "Arquitetura modular e componentes reutilizáveis em TypeScript para manter consistência entre módulos.",
+            "Testes unitários com Bun e migração de arquivos para a nuvem.",
+          ],
+          stack: ["Next.js 15", "React 19", "TypeScript", "Bun"],
+        },
+        {
+          org: "UNIRIO",
+          role: "Desenvolvedor de Jogos Educativos",
+          period: "ago 2024 — atual",
+          place: "Rio de Janeiro",
+          bullets: [
+            "Jogos de tabuleiro digitais em JavaScript e Phaser que transformam conceitos matemáticos em experiências interativas.",
+            "Documentação técnica, manutenção evolutiva e melhorias de usabilidade e desempenho.",
+          ],
+          stack: ["JavaScript", "Phaser"],
+        },
+        {
+          org: "UNIRIO · Clube de Xadrez",
+          role: "Bolsista de Extensão",
+          period: "nov 2023 — ago 2024",
+          place: "Rio de Janeiro",
+          bullets: [
+            "Estruturei um grupo de estudos de xadrez, liderei os encontros presenciais e organizei campeonatos internos.",
+          ],
+          stack: ["liderança", "ensino"],
+        },
+      ],
+      education: {
+        label: "formação",
+        school: "UNIRIO",
+        degree: "Bacharelado em Sistemas de Informação",
+        period: "2023 — 2027",
+      },
+    },
+    signals: {
+      layer: "sinais",
+      title: "Problemas que ainda não têm nome direito.",
+      intro:
+        "O que estou pesquisando e construindo agora. Algumas coisas são produto; outras ainda são hipótese.",
       items: [
         {
-          code: "01 / LP",
-          title: "Landing Pages",
-          body: "Superfícies de marketing para alta conversão. Design customizado, motion e estrutura pensada para copy. Feitas para performance e Lighthouse 95+.",
-          bullets: ["Design + dev custom", "Com CMS ou estático", "Pronto para A/B"],
-          prices: [],
+          code: "JVG",
+          name: "JevGuard",
+          status: "research",
+          body: "Nasceu de um problema concreto: agentes de código que alteram muito além do necessário. Virou a ideia de um semantic linter / review gate — algo que entende a intenção de uma mudança e barra o que sai do escopo antes do merge.",
+          tags: ["agents", "code review", "LLM", "análise semântica"],
         },
         {
-          code: "02 / SYS",
-          title: "Sistemas Sob Medida",
-          body: "Aplicações fullstack ponta a ponta. Auth, pagamentos, dashboards e jobs. Arquitetura limpa para sua equipe manter sem caos.",
-          bullets: ["Auth + perfis", "Stripe / cobrança", "APIs tipadas"],
-          prices: [],
+          code: "MEM",
+          name: "Memória decisional",
+          status: "research",
+          body: "Se agentes produzem cada vez mais código, o gargalo passa a ser compreensão. Exploro formas de registrar e recuperar decisões arquiteturais — o porquê, não só o quê — para que pessoas e agentes mantenham controle sobre sistemas que crescem rápido.",
+          tags: ["RAG", "embeddings", "BM25", "arquitetura"],
         },
         {
-          code: "03 / INT",
-          title: "Ferramentas Internas",
-          body: "Painel admin e dashboards operacionais no lugar da planilha frágil. Rápidos para evoluir, difíceis de quebrar.",
-          bullets: ["UI por permissão", "CRUD + relatórios", "Logs de auditoria"],
-          prices: [],
+          code: "PRS",
+          name: "PRISMA · TCC",
+          status: "active",
+          body: "Nasceu do SABE e se conecta ao FLOW: facilitar o acesso a oportunidades acadêmicas da UNIRIO. Por cima do produto, uma camada de recomendação semântica — embeddings, similaridade e avaliação com precisão e recall.",
+          tags: ["FastAPI", "Angular", "PostgreSQL", "embeddings"],
+          repoUrl: links.prisma,
         },
         {
-          code: "04 / AUTO",
-          title: "Automação e Integrações",
-          body: "Webhooks, filas e colagem de API entre ferramentas que você já usa. Menos trabalho manual, mais alavancagem.",
-          bullets: ["Make / Zapier", "Workers custom", "CRM / Stripe"],
-          prices: [],
+          code: "DRV",
+          name: "Dirigindo sistemas que programam",
+          status: "ongoing",
+          body: "Uma segunda disciplina ao lado da programação: qual modelo é bom para pensar e qual é bom para implementar, como separar tarefas, dar contexto, impor políticas e impedir que o agente saia do escopo.",
+          tags: ["OpenCode", "LLMs locais", "políticas", "contexto"],
+        },
+        {
+          code: "CRC",
+          name: "Crucible",
+          status: "paused",
+          body: "Pausado de propósito para concentrar energia em outro projeto. Perseguir dez ideias ao mesmo tempo é o meu risco favorito — estou aprendendo a escolher.",
+          tags: ["foco"],
         },
       ],
+      reading: {
+        label: "na fila de estudo",
+        items: [
+          "Transformers a partir dos princípios",
+          "trade-offs de arquitetura de software",
+          "sistemas distribuídos",
+          "Rust + GPUI",
+        ],
+      },
     },
-    work: {
-      title: "Experiência em projetos",
-      intro:
-        "Ao longo da minha trajetória, desenvolvi projetos completos com backend, frontend, autenticação, integrações externas, mensageria, cache, pagamentos, dashboards e arquitetura modular. Foco em resolver problemas reais com soluções organizadas, seguras e preparadas para evolução.",
-      modalStackLabel: "Stack",
-      modalHighlightsLabel: "Destaques técnicos",
-      modalRepoLabel: "Abrir no GitHub",
-      modalLiveLabel: "Abrir demo",
+    archive: {
+      layer: "arquivo",
+      title: "Coisas que já saíram do papel.",
+      intro: "Projetos completos, com backend, filas, cache, autenticação e integrações.",
       projects: [
         {
-          title: "Self Checkout Monolith",
+          name: "Self Checkout Monolith",
           year: "2025",
-          body: "Sistema para restaurante vender pelo próprio menu digital, receber pagamentos online e acompanhar pedidos em tempo real no painel administrativo.",
-          highlights: [
-            "Checkout com Stripe e reconciliação segura de pagamento",
-            "Carrinho por mesa para reduzir fricção no pedido",
-            "Atualização em tempo real para operação acompanhar vendas",
-          ],
-          stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
+          kind: "commerce / pagamentos",
+          body: "Restaurante vendendo pelo próprio menu digital: carrinho por mesa, pagamento online com Stripe e reconciliação segura, pedidos acompanhados em tempo real no painel.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Stripe"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
         },
         {
-          title: "PRISMA",
+          name: "WiredApply",
           year: "2025",
-          body: "Plataforma institucional para publicar projetos universitários, organizar permissões e dar autonomia para equipes administrarem conteúdo sem depender de alterações manuais.",
-          highlights: [
-            "Catálogo público com base administrativa",
-            "Login e permissões por perfil para proteger áreas internas",
-            "Estrutura modular preparada para evolução do produto",
-          ],
-          stack: ["FastAPI", "Angular", "PostgreSQL", "Redis", "RabbitMQ", "JWT"],
-          repoUrl: "https://github.com/pablozr/PRISMA",
-          liveUrl: "https://github.com/pablozr/siepa-front",
-        },
-        {
-          title: "WiredApply",
-          year: "2025",
-          body: "Ferramenta para organizar a busca de vagas, priorizar oportunidades por aderência e transformar candidaturas em um fluxo acompanhável no dia a dia.",
-          highlights: [
-            "Ranking de oportunidades para reduzir decisão manual",
-            "Acompanhamento de candidaturas e feedback do usuário",
-            "Resumo diário para manter rotina de busca ativa",
-          ],
+          kind: "carreira / automação",
+          body: "Organiza a busca de vagas: ranking de oportunidades por aderência, acompanhamento de candidaturas e resumo diário para manter a rotina ativa.",
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
           repoUrl: "https://github.com/pablozr/wired-apply",
         },
         {
-          title: "Subscription Monolith",
+          name: "Subscription Monolith",
           year: "2025",
-          body: "Sistema para acompanhar assinaturas, evitar renovações esquecidas e dar visibilidade sobre custos recorrentes antes que eles virem desperdício.",
-          highlights: [
-            "Controle centralizado de custos recorrentes",
-            "Lembretes automáticos antes da renovação",
-            "Base organizada para relatórios e evolução futura",
-          ],
+          kind: "finanças / controle",
+          body: "Acompanha assinaturas, dispara lembretes antes da renovação e dá visibilidade sobre custos recorrentes antes que virem desperdício.",
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "SMTP"],
           repoUrl: "https://github.com/pablozr/subscription-monolith",
         },
         {
-          title: "FastAPI Template / Angular Template",
+          name: "FastAPI / Angular Templates",
           year: "2025",
-          body: "Bases reutilizáveis para começar novos produtos com estrutura, autenticação, organização por módulos e convenções claras desde o primeiro commit.",
-          highlights: [
-            "Menos tempo gasto em setup repetitivo",
-            "Organização inicial para backend e frontend crescerem sem bagunça",
-            "Ponto de partida para MVPs, dashboards e sistemas internos",
-          ],
+          kind: "developer tools",
+          body: "Bases reutilizáveis com autenticação, organização por módulos e convenções claras desde o primeiro commit — menos setup repetitivo, menos bagunça depois.",
           stack: ["FastAPI", "Angular", "TypeScript", "Docker"],
           repoUrl: "https://github.com/pablozr/fastapi-template",
           liveUrl: "https://github.com/pablozr/angular-template",
+          liveLabel: "angular",
         },
         {
-          title: "SIEPA Front",
+          name: "SIEPA Front",
           year: "2025",
-          body: "Base frontend para gestão de projetos, com áreas protegidas, continuidade de sessão e estrutura reutilizável para catálogo e administração.",
-          highlights: [
-            "Módulos Angular organizados por funcionalidade",
-            "Rotas protegidas com recuperação de sessão",
-            "Base para catálogo e áreas administrativas",
-          ],
+          kind: "arquitetura frontend",
+          body: "Frontend de gestão de projetos com rotas protegidas, recuperação de sessão e módulos Angular organizados por funcionalidade.",
           stack: ["Angular 19", "TypeScript", "PrimeNG"],
           repoUrl: "https://github.com/pablozr/siepa-front",
         },
         {
-          title: "Qual é o Segredo?",
+          name: "Qual é o Segredo?",
           year: "2024",
-          body: "Jogo de lógica em JavaScript para descobrir um número secreto a partir de pistas, com persistência no Supabase para estatísticas e tempo de jogo.",
-          highlights: [
-            "Versão pública online",
-            "Persistência de dados no Supabase",
-            "Estatísticas e sessões cronometradas",
-          ],
+          kind: "experiência interativa",
+          body: "Jogo de lógica para descobrir um número secreto a partir de pistas, com estatísticas e sessões cronometradas persistidas no Supabase.",
           stack: ["JavaScript", "Supabase", "Vercel"],
           repoUrl: "https://github.com/pablozr/qual-e-o-segredo",
           liveUrl: "https://qual-e-o-segredo.vercel.app",
         },
       ],
+      more: "mais código no github",
     },
-    process: {
-      titleLine1: "Da primeira call até",
-      titleAccent: "produção",
-      titleLine2: "em quatro etapas honestas.",
-      body: "Um fluxo simples para sair de uma necessidade solta e chegar em uma entrega validável. Você entende o escopo, acompanha versões em staging e recebe o código pronto para continuar.",
-      meta: ["média de 3-6 semanas", "preço fechado", "escopo claro"],
-      steps: [
-        {
-          k: "01",
-          t: "Descoberta",
-          d: "Uma call de 30 minutos para mapear o problema real, não apenas o pedido superficial. Você sai com clareza mesmo que não fechemos.",
-          meta: "30 min · grátis",
-          deliver: ["Resumo do problema", "Direção técnica", "Estimativa inicial"],
-        },
-        {
-          k: "02",
-          t: "Escopo",
-          d: "Proposta de preço fixo com marcos, entregáveis e cronograma fechado. Sem surpresas de cobrança por hora.",
-          meta: "retorno em 48h",
-          deliver: ["Marcos", "Orçamento fixo", "Data de início"],
-        },
-        {
-          k: "03",
-          t: "Construção",
-          d: "Demos semanais, ambiente de staging desde o primeiro dia e acompanhamento contínuo da evolução. Nada de semanas em silêncio em caixa-preta.",
-          meta: "demos semanais",
-          deliver: ["URL de staging", "Loom semanal", "Canal no Slack"],
-        },
-        {
-          k: "04",
-          t: "Entrega",
-          d: "Deploy, monitoramento e documentação. Você recebe as chaves, o código e o runbook sem dependência de mim.",
-          meta: "handover incluso",
-          deliver: ["Deploy em produção", "Docs + runbook", "Suporte de 30 dias"],
-        },
+    stack: {
+      layer: "stack",
+      title: "Ferramentas. Não identidade.",
+      groups: [
+        { label: "backend", items: shared.stackGroups.backend },
+        { label: "dados & mensageria", items: shared.stackGroups.data },
+        { label: "ia aplicada", items: shared.stackGroups.ai },
+        { label: "frontend", items: shared.stackGroups.front },
+        { label: "infra & integração", items: shared.stackGroups.infra },
+        { label: "explorando", items: shared.stackGroups.exploring },
       ],
     },
-    about: {
-      titleLine1: "Sites e sistemas para pequenos negócios",
-      titleLine2: "que querem parecer profissionais online.",
-      p1: "Ajudo pequenas empresas, profissionais autônomos e negócios locais a transformarem uma presença digital improvisada em algo mais claro, bonito e confiável.",
-      p2: "Crio sites, landing pages e soluções web para apresentar serviços, facilitar o contato pelo WhatsApp e melhorar a forma como o cliente encontra e entende o seu negócio.",
-      p3: "Meu foco é entregar algo simples de usar, bem estruturado e pronto para gerar mais confiança desde o primeiro acesso.",
-      p4: "Por trás dos projetos, posso incluir sites responsivos, formulários, botão de WhatsApp, integração com Instagram, SEO local básico, painéis internos, automações e sistemas sob medida.",
-      stats: [
-        { k: "Sites responsivos", v: "boa navegação no celular e computador" },
-        { k: "WhatsApp e contato", v: "caminhos claros para receber mensagens" },
-        { k: "SEO local básico", v: "estrutura para ser encontrado com mais facilidade" },
-        { k: "Sistemas simples", v: "painéis, formulários e automações sob medida" },
-      ],
+    offline: {
+      layer: "offline",
+      title: "Fora da wired.",
+      body: "Não existe muita separação entre o meu gosto técnico e o visual. Prefiro coisas minimalistas, confortáveis e bem distantes do SaaS genérico — este site incluso.",
+      items: ["hard techno", "emo", "anime", "cybersigilism", "tatuagens", "xadrez"],
     },
-    faq: {
-      titleLine1: "Perguntas",
-      titleLine2: "frequentes.",
-      preContact: "Faltou algo?",
-      contactLink: "Me manda uma mensagem",
-      postContact: "— respondo em até 24 horas.",
-      items: [
-        {
-          q: "Quanto custa um projeto?",
-          a: "Cada projeto tem necessidades próprias. Entre em contato e me conte sua ideia para receber um orçamento personalizado, com escopo, prazo e entregas bem definidos.",
-        },
-        {
-          q: "Em quanto tempo vejo resultado?",
-          a: "Landing pages normalmente saem em 1 a 2 semanas. Sistemas e dashboards em 3 a 6 semanas. Você recebe staging desde a primeira semana e demos recorrentes.",
-        },
-        {
-          q: "O código fica comigo?",
-          a: "Sim, 100%. Código, arquivos de design, acesso à infra e documentação são entregues no encerramento. Zero lock-in.",
-        },
-        {
-          q: "Qual stack você usa?",
-          a: "Uso FastAPI e Spring Boot para APIs e regras de negócio, PostgreSQL e Redis para dados e performance, RabbitMQ para filas e processamento assíncrono, Docker para ambientes previsíveis e Angular para dashboards e interfaces web.",
-        },
-        {
-          q: "Você oferece suporte depois do lançamento?",
-          a: "Todo projeto inclui 30 dias de suporte gratuito pós-lançamento para correção de bugs. Depois disso, posso atuar em retainer mensal opcional.",
-        },
-        {
-          q: "Você trabalha junto com meu time atual?",
-          a: "Sim. Integro com Slack, Linear/Jira, GitHub e rituais do time quando necessário, mantendo comunicação clara e alinhamento contínuo.",
-        },
-      ],
-    },
-    contact: {
-      titleLine1: "Tem um projeto",
-      titleLine2: "em mente?",
-      body: "Me conta sobre ele, mesmo que ainda esteja embrionário. Eu respondo em até 24h com feedback honesto de escopo, prazo e investimento.",
-      details: [
-        { k: "E-mail", v: "pablo.farina28@outlook.com" },
-        { k: "Resposta", v: "Em até 24h" },
-      ],
-      labels: {
-        name: "Nome",
-        email: "E-mail",
-        budget: "Orçamento",
-        project: "Projeto",
-      },
-      placeholders: {
-        name: "Seu nome",
-        email: "você@empresa.com",
-        budget: "Se já tiver um valor em mente (opcional)",
-        project: "O que você quer construir?",
-      },
-      statusIdle: "Abre seu cliente de e-mail com tudo preenchido.",
-      statusSent: "✓ Cliente de e-mail aberto — nos falamos em breve.",
-      submitIdle: "Enviar mensagem",
-      submitSending: "Enviando...",
-      errors: {
-        nameRequired: "Nome é obrigatório",
-        invalidEmail: "E-mail inválido",
-        messageMin: "Conte um pouco mais (10+ caracteres)",
-      },
-      mail: {
-        subjectPrefix: "Novo projeto",
-        fieldName: "Nome",
-        fieldEmail: "E-mail",
-        fieldBudget: "Orçamento",
-        budgetFallback: "-",
-      },
-    },
-    footer: {
-      rights: "todos os sistemas operacionais",
-    },
-    meta: {
-      title: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
-      description:
-        "Desenvolvedor fullstack freelancer criando landing pages, sistemas sob medida, ferramentas internas e automações.",
-      ogTitle: "Pablo Farina — Desenvolvedor Fullstack Freelancer",
-      ogDescription: "Landing pages, sistemas sob medida, ferramentas internas e automações.",
-      ogImageAlt: "Preview do portfolio de Pablo Farina",
+    connect: {
+      layer: "conectar",
+      title: "Próximo nó.",
+      next: "Procuro uma posição júnior para ganhar muita experiência prática em backend e sistemas. Depois da graduação, Europa — Suíça no topo da lista, com cidadania espanhola.",
+      body: "Se você está construindo algo difícil e interessante, me chama.",
+      cta: "enviar e-mail",
+      cv: "baixar currículo",
+      copy: "copiar e-mail",
+      copied: "copiado",
+      quote: "No matter where you go, everyone's connected.",
     },
   },
   en: {
-    nav: {
-      work: "work",
-      services: "services",
-      process: "process",
-      about: "about",
-      faq: "faq",
-      ping: "ping",
-      languageLabel: "Language",
+    meta: {
+      title: "Pablo Farina — backend, architecture & applied AI",
+      description:
+        "Pablo Farina: developer at Bagaggio and Information Systems student at UNIRIO. Backend, software architecture, RAG, agents and developer tools.",
+      ogTitle: "Pablo Farina — present day, present time",
+      ogDescription: "Backend, architecture, applied AI and tools that don't quite exist yet.",
+      ogImageAlt: "Pablo Farina — portfolio cover",
+    },
+    ui: {
+      skip: "Skip to content",
+      nav: [
+        { href: "#whoami", label: "whoami" },
+        { href: "#protocol", label: "protocol" },
+        { href: "#signals", label: "signals" },
+        { href: "#archive", label: "archive" },
+      ],
+      connect: "connect",
+      boot: [
+        "NAVI BIOS v0.98 ........................ OK",
+        "resolving local node: rio de janeiro, br",
+        "mounting /dev/curiosity ................ OK",
+        "loading backend.ko architecture.ko ai.ko",
+        "handshake with the wired ....... ESTABLISHED",
+        "PRESENT DAY. PRESENT TIME.",
+      ],
+      bootSkip: "click or press any key",
+      statusLabels: {
+        active: "active",
+        research: "research",
+        paused: "paused",
+        shipped: "shipped",
+        ongoing: "ongoing",
+      },
+      repo: "source",
+      live: "live",
+      motionOn: "pause motion",
+      motionOff: "resume motion",
+      backToTop: "back to top",
     },
     hero: {
-      availability: "",
-      titleLine1: "Websites that build trust",
-      titleLine2: "and sell before the",
-      titleAccent: "first contact.",
-      body: "Professional websites for local businesses that need to look credible, explain their services, and turn visitors into WhatsApp conversations.",
-      ctaStart: "I want a site like this",
-      ctaServices: "View projects",
-    },
-    services: {
-      eyebrow: "services",
-      title: "What I build",
-      intro:
-        "I build landing pages, systems, dashboards, and integrations with focus on reliability, strong UX, and long-term maintainability.",
-      badge: "service",
-      fitTitle: "When it makes sense to call me",
-      fitIntro:
-        "I am most useful when an operational need has to become production-ready software.",
-      fitItems: [
-        "validate an idea with a landing page or a simple MVP",
-        "replace spreadsheets and manual routines with an internal panel",
-        "build an admin dashboard to track operations",
-        "integrate users, payments, data, or external tools",
-        "organize a backend that can grow without turning into patchwork",
+      kicker: "PRESENT DAY · PRESENT TIME",
+      role: "backend · software architecture · applied AI",
+      body: "I build to understand. Distributed systems, agents, RAG and developer tools — preferably the ones that don't quite exist yet.",
+      ctaPrimary: "enter the wired",
+      ctaSecondary: "open a connection",
+      readout: [
+        { k: "NODE", v: "Rio de Janeiro, BR" },
+        { k: "LINK", v: "Bagaggio — full stack intern" },
+        { k: "UPLINK", v: "UNIRIO — Information Systems" },
+        { k: "SEEKING", v: "junior role" },
       ],
-      itemsLabel: "[ 04 / SERVICES ]",
+    },
+    whoami: {
+      layer: "whoami",
+      title:
+        "From “I want to be a good programmer” to “I want to understand how good systems get built”.",
+      paragraphs: [
+        "I'm Pablo, an Information Systems student at UNIRIO and a full stack intern at Bagaggio. I started out as a web developer, but these days I spend most of my time on backend, software architecture and applied AI — RAG, agents, embeddings, distributed systems and developer tools.",
+        "I learn by exploring: I start with “I don't really know what this is” and shortly after I'm asking about implementation details. I dive into Rust, GPUI, local LLMs or BM25 without mastering them first, because I want to see the parts working underneath — not just get it running.",
+        "I tend to turn everyday friction into broader hypotheses. When agents started writing too much code, the question stopped being “how do we write code?” and became “how do we keep understanding, decisions and architectural control?”. That kind of problem — new, not quite named yet — is what I'm drawn to.",
+      ],
+      quote:
+        "technical curiosity + the urge to build. understanding an idea isn't enough: I need to implement it to find out if it works.",
+      facts: [
+        { k: "internal projects shipped", v: "10+" },
+        { k: "stores using what I built", v: "200+" },
+        { k: "languages", v: "PT native · EN C1" },
+        { k: "citizenship", v: "BR · ES (EU)" },
+      ],
+      photoAlt: "Portrait of Pablo Farina with a red-toned visual treatment",
+    },
+    protocol: {
+      layer: "protocol",
+      title: "Where I run in production.",
+      intro:
+        "Real experience with real users: process automation, integrations between systems and end-to-end delivery.",
+      jobs: [
+        {
+          org: "Bagaggio",
+          role: "Full Stack Development Intern",
+          period: "sep 2025 — now",
+          place: "Rio de Janeiro",
+          bullets: [
+            "10+ strategic internal projects used by 200+ stores and every department — replacing manual processes with simple applications and reducing reliance on third-party solutions.",
+            "REST integrations between external services, ERP systems and internal APIs, centralizing data exchange across corporate systems.",
+            "End-to-end delivery: meetings and requirements gathering, definition, execution, deployment and API health monitoring.",
+            "One project improved response time, rating and the company's position in reputation rankings — and helped win an award.",
+            "Maintaining legacy Java/Spring Boot applications and implementing single sign-on (SSO) for an internal portal.",
+          ],
+          stack: ["Python", "FastAPI", "Java", "Spring Boot", "ERP", "Docker"],
+        },
+        {
+          org: "Bessa",
+          role: "Full Stack Developer · freelance",
+          period: "mar — jun 2025",
+          place: "remote",
+          bullets: [
+            "Evolved an accounting platform in Next.js 15 and React 19, with communication, process automation and data management modules.",
+            "Modular architecture and reusable TypeScript components to keep modules consistent.",
+            "Unit tests with Bun and migration of files to the cloud.",
+          ],
+          stack: ["Next.js 15", "React 19", "TypeScript", "Bun"],
+        },
+        {
+          org: "UNIRIO",
+          role: "Educational Game Developer",
+          period: "aug 2024 — now",
+          place: "Rio de Janeiro",
+          bullets: [
+            "Digital board games in JavaScript and Phaser that turn math concepts into interactive experiences.",
+            "Technical documentation, ongoing maintenance and usability and performance improvements.",
+          ],
+          stack: ["JavaScript", "Phaser"],
+        },
+        {
+          org: "UNIRIO · Chess Club",
+          role: "Outreach Scholarship Holder",
+          period: "nov 2023 — aug 2024",
+          place: "Rio de Janeiro",
+          bullets: [
+            "Set up a chess study group, led the in-person meetings and organized internal tournaments.",
+          ],
+          stack: ["leadership", "teaching"],
+        },
+      ],
+      education: {
+        label: "education",
+        school: "UNIRIO",
+        degree: "B.Sc. in Information Systems",
+        period: "2023 — 2027",
+      },
+    },
+    signals: {
+      layer: "signals",
+      title: "Problems that don't quite have a name yet.",
+      intro:
+        "What I'm researching and building right now. Some of it is product; some of it is still a hypothesis.",
       items: [
         {
-          code: "01 / LP",
-          title: "Landing Pages",
-          body: "High-conversion marketing surfaces. Custom design, motion, and copy-aware structure. Built for speed and Lighthouse 95+.",
-          bullets: ["Custom design + dev", "CMS or static", "A/B ready"],
-          prices: [],
+          code: "JVG",
+          name: "JevGuard",
+          status: "research",
+          body: "Born from a concrete problem: coding agents that change far more than they need to. It grew into a semantic linter / review gate — something that understands the intent of a change and blocks what falls outside its scope before merge.",
+          tags: ["agents", "code review", "LLM", "semantic analysis"],
         },
         {
-          code: "02 / SYS",
-          title: "Custom Systems",
-          body: "End-to-end fullstack apps. Auth, payments, dashboards, jobs. Clean architecture you can hand off without panic.",
-          bullets: ["Auth + roles", "Stripe / billing", "Typed APIs"],
-          prices: [],
+          code: "MEM",
+          name: "Decision memory",
+          status: "research",
+          body: "If agents produce more and more code, the bottleneck becomes understanding. I'm exploring ways to record and retrieve architectural decisions — the why, not just the what — so people and agents stay in control of fast-growing systems.",
+          tags: ["RAG", "embeddings", "BM25", "architecture"],
         },
         {
-          code: "03 / INT",
-          title: "Internal Tools",
-          body: "Admin panels and ops dashboards that replace your fragile spreadsheet. Fast to iterate, hard to break.",
-          bullets: ["Role-based UI", "CRUD + reports", "Audit logs"],
-          prices: [],
+          code: "PRS",
+          name: "PRISMA · thesis",
+          status: "active",
+          body: "Grew out of SABE and connects to FLOW: making UNIRIO's academic opportunities easier to find. On top of the product, a semantic recommendation layer — embeddings, similarity and evaluation with precision and recall.",
+          tags: ["FastAPI", "Angular", "PostgreSQL", "embeddings"],
+          repoUrl: links.prisma,
         },
         {
-          code: "04 / AUTO",
-          title: "Automation & Integrations",
-          body: "Webhooks, queues and API glue between the tools you already use. Less manual work, more leverage.",
-          bullets: ["Make / Zapier", "Custom workers", "CRM / Stripe"],
-          prices: [],
+          code: "DRV",
+          name: "Steering systems that code",
+          status: "ongoing",
+          body: "A second discipline next to programming: which model is good at thinking and which is good at implementing, how to split tasks, give context, enforce policies and keep the agent from leaving scope.",
+          tags: ["OpenCode", "local LLMs", "policies", "context"],
+        },
+        {
+          code: "CRC",
+          name: "Crucible",
+          status: "paused",
+          body: "Paused on purpose to focus energy on another project. Chasing ten ideas at once is my favorite risk — I'm learning to choose.",
+          tags: ["focus"],
         },
       ],
+      reading: {
+        label: "study queue",
+        items: [
+          "Transformers from first principles",
+          "software architecture trade-offs",
+          "distributed systems",
+          "Rust + GPUI",
+        ],
+      },
     },
-    work: {
-      title: "Real projects",
-      intro:
-        "Public repositories with clear technical scope. No inflated metrics and no claims of finished products when they are still a prototype or technical base.",
-      modalStackLabel: "Stack",
-      modalHighlightsLabel: "Highlights",
-      modalRepoLabel: "Open on GitHub",
-      modalLiveLabel: "Open demo",
+    archive: {
+      layer: "archive",
+      title: "Things that made it off paper.",
+      intro: "Complete projects with backend, queues, caching, authentication and integrations.",
       projects: [
         {
-          title: "Self Checkout Monolith",
+          name: "Self Checkout Monolith",
           year: "2025",
-          body: "Restaurant self-checkout system for digital menus, online payments and real-time order monitoring in an admin panel.",
-          highlights: [
-            "Stripe checkout with safe payment reconciliation",
-            "Table-based carts to reduce order friction",
-            "Real-time updates for operational monitoring",
-          ],
-          stack: ["FastAPI", "PostgreSQL", "Redis", "Stripe", "RabbitMQ"],
+          kind: "commerce / payments",
+          body: "A restaurant selling through its own digital menu: per-table carts, online payment with Stripe and safe reconciliation, orders tracked in real time on the dashboard.",
+          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Stripe"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
         },
         {
-          title: "PRISMA",
+          name: "WiredApply",
           year: "2025",
-          body: "Institutional platform for publishing academic projects, organizing access permissions and giving teams autonomy to manage content.",
-          highlights: [
-            "Public catalog backed by admin workflows",
-            "Role-based access for protected internal areas",
-            "Modular architecture prepared for product evolution",
-          ],
-          stack: ["FastAPI", "Angular", "PostgreSQL", "Redis", "RabbitMQ", "JWT"],
-          repoUrl: "https://github.com/pablozr/PRISMA",
-          liveUrl: "https://github.com/pablozr/siepa-front",
-        },
-        {
-          title: "WiredApply",
-          year: "2025",
-          body: "Tool to organize job searches, prioritize better-fit opportunities and turn applications into a trackable daily workflow.",
-          highlights: [
-            "Opportunity ranking to reduce manual filtering",
-            "Application tracking with user feedback",
-            "Daily digest to keep the routine moving",
-          ],
+          kind: "career / automation",
+          body: "Organizes the job hunt: opportunities ranked by fit, application tracking and a daily digest to keep the routine going.",
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
           repoUrl: "https://github.com/pablozr/wired-apply",
         },
         {
-          title: "Subscription Monolith",
+          name: "Subscription Monolith",
           year: "2025",
-          body: "System for tracking subscriptions, avoiding forgotten renewals and understanding recurring costs before they become waste.",
-          highlights: [
-            "Centralized recurring-cost tracking",
-            "Automatic reminders before renewals",
-            "Organized foundation for reports and future development",
-          ],
+          kind: "finance / control",
+          body: "Tracks subscriptions, sends reminders before renewals and gives visibility into recurring costs before they turn into waste.",
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "SMTP"],
           repoUrl: "https://github.com/pablozr/subscription-monolith",
         },
         {
-          title: "FastAPI Template / Angular Template",
+          name: "FastAPI / Angular Templates",
           year: "2025",
-          body: "Reusable foundations for new products with authentication, modular organization and clear conventions from the first commit.",
-          highlights: [
-            "Less repetitive setup work",
-            "Organized foundations for backend and frontend growth",
-            "Starting point for MVPs, dashboards and internal systems",
-          ],
+          kind: "developer tools",
+          body: "Reusable foundations with authentication, module-based structure and clear conventions from the first commit — less repetitive setup, less mess later.",
           stack: ["FastAPI", "Angular", "TypeScript", "Docker"],
           repoUrl: "https://github.com/pablozr/fastapi-template",
           liveUrl: "https://github.com/pablozr/angular-template",
+          liveLabel: "angular",
         },
         {
-          title: "SIEPA Front",
+          name: "SIEPA Front",
           year: "2025",
-          body: "Frontend foundation for project management, with protected areas, session continuity and reusable catalog and admin structures.",
-          highlights: [
-            "Feature-based Angular modules",
-            "Protected routes with session rehydration",
-            "Foundations for catalog and admin areas",
-          ],
+          kind: "frontend architecture",
+          body: "Project management frontend with protected routes, session recovery and Angular modules organized by feature.",
           stack: ["Angular 19", "TypeScript", "PrimeNG"],
           repoUrl: "https://github.com/pablozr/siepa-front",
         },
         {
-          title: "Qual é o Segredo?",
+          name: "Qual é o Segredo?",
           year: "2024",
-          body: "JavaScript logic game where players infer a secret number from clues, with Supabase persistence for clues, stats and game time.",
-          highlights: [
-            "Public live deployment",
-            "Supabase persistence for game data",
-            "Stat tracking and timed sessions",
-          ],
+          kind: "interactive experience",
+          body: "A logic game about finding a secret number from clues, with stats and timed sessions persisted in Supabase.",
           stack: ["JavaScript", "Supabase", "Vercel"],
           repoUrl: "https://github.com/pablozr/qual-e-o-segredo",
           liveUrl: "https://qual-e-o-segredo.vercel.app",
         },
       ],
+      more: "more code on github",
     },
-    process: {
-      titleLine1: "From first call to",
-      titleAccent: "production",
-      titleLine2: "in four honest steps.",
-      body: "A simple flow to turn a loose need into a validated delivery. You understand the scope, review staging builds, and receive code that can keep evolving.",
-      meta: ["avg. 3-6 weeks", "fixed price", "clear scope"],
-      steps: [
+    stack: {
+      layer: "stack",
+      title: "Tools. Not identity.",
+      groups: [
+        { label: "backend", items: shared.stackGroups.backend },
+        { label: "data & messaging", items: shared.stackGroups.data },
         {
-          k: "01",
-          t: "Discovery",
-          d: "A 30-minute call to map the real problem, not the surface ask. You leave with clarity, even if we never work together.",
-          meta: "30 min · free",
-          deliver: ["Problem brief", "Tech direction", "Rough estimate"],
+          label: "applied ai",
+          items: shared.stackGroups.ai.map((i) => (i === "LLMs locais" ? "local LLMs" : i)),
         },
-        {
-          k: "02",
-          t: "Scope",
-          d: "Fixed-price proposal with milestones, deliverables and a hard timeline. No hourly billing surprises.",
-          meta: "48h turnaround",
-          deliver: ["Milestones", "Fixed quote", "Start date"],
-        },
-        {
-          k: "03",
-          t: "Build",
-          d: "Weekly demos, shared staging from day one, and continuous visibility into progress. No black-box weeks of silence.",
-          meta: "weekly demos",
-          deliver: ["Staging URL", "Weekly Loom", "Slack channel"],
-        },
-        {
-          k: "04",
-          t: "Ship",
-          d: "Deploy, monitor, document. You get the keys, the code and the runbook with zero dependency on me.",
-          meta: "handover included",
-          deliver: ["Production deploy", "Docs + runbook", "30-day support"],
-        },
+        { label: "frontend", items: shared.stackGroups.front },
+        { label: "infra & integration", items: shared.stackGroups.infra },
+        { label: "exploring", items: shared.stackGroups.exploring },
       ],
     },
-    about: {
-      titleLine1: "Websites and systems for small businesses",
-      titleLine2: "that want to look professional online.",
-      p1: "I help small companies, independent professionals, and local businesses turn an improvised digital presence into something clearer, better-looking, and more trustworthy.",
-      p2: "I build websites, landing pages, and web solutions to present services, make WhatsApp contact easier, and improve how customers find and understand the business.",
-      p3: "My focus is delivering something easy to use, well structured, and ready to build confidence from the first visit.",
-      p4: "Behind the scenes, projects can include responsive pages, forms, WhatsApp buttons, Instagram integration, basic local SEO, internal panels, automation, and custom systems.",
-      stats: [
-        { k: "Responsive websites", v: "good navigation on mobile and desktop" },
-        { k: "WhatsApp and contact", v: "clear paths to receive messages" },
-        { k: "Basic local SEO", v: "structure to be found more easily" },
-        { k: "Simple systems", v: "panels, forms, and custom automation" },
-      ],
+    offline: {
+      layer: "offline",
+      title: "Outside the wired.",
+      body: "There isn't much separation between my technical taste and my visual one. I like things minimal, comfortable and far from generic SaaS — this site included.",
+      items: ["hard techno", "emo", "anime", "cybersigilism", "tattoos", "chess"],
     },
-    faq: {
-      titleLine1: "Frequently",
-      titleLine2: "asked.",
-      preContact: "Something not covered here?",
-      contactLink: "Send a message",
-      postContact: "— I reply within 24 hours.",
-      items: [
-        {
-          q: "How much does a project cost?",
-          a: "Every project has its own needs. Get in touch and tell me about your idea for a personalized quote with a clear scope, timeline and deliverables.",
-        },
-        {
-          q: "How long until I see results?",
-          a: "Landing pages ship in 1-2 weeks. Custom systems and dashboards take 3-6 weeks depending on scope. You see a staging URL from week one and weekly demos throughout.",
-        },
-        {
-          q: "Do I own the code?",
-          a: "Yes, 100%. Code, design files, infrastructure access and documentation are handed over on completion. Zero lock-in.",
-        },
-        {
-          q: "What is your stack?",
-          a: "I use FastAPI and Spring Boot for APIs and business rules, PostgreSQL and Redis for data and performance, RabbitMQ for queues and async processing, Docker for predictable environments, and Angular for dashboards and web interfaces.",
-        },
-        {
-          q: "Do you offer support after launch?",
-          a: "Every project includes 30 days of free post-launch support for bug fixes. After that, optional monthly retainers are available.",
-        },
-        {
-          q: "Can you work with my existing team?",
-          a: "Absolutely. I integrate into your Slack, Linear/Jira, GitHub, and team rituals as needed, with clear communication and consistent alignment.",
-        },
-      ],
-    },
-    contact: {
-      titleLine1: "Have a project",
-      titleLine2: "in mind?",
-      body: "Tell me about it, even if it is still rough. I reply within 24h with honest feedback on scope, timeline and price.",
-      details: [
-        { k: "Email", v: "pablo.farina28@outlook.com" },
-        { k: "Response", v: "Under 24h" },
-      ],
-      labels: {
-        name: "Name",
-        email: "Email",
-        budget: "Budget",
-        project: "Project",
-      },
-      placeholders: {
-        name: "Your name",
-        email: "you@company.com",
-        budget: "If you have a budget in mind (optional)",
-        project: "What are you trying to build?",
-      },
-      statusIdle: "Opens your mail client with everything filled in.",
-      statusSent: "✓ Opened your mail client — see you on the other side.",
-      submitIdle: "Send message",
-      submitSending: "Sending...",
-      errors: {
-        nameRequired: "Name is required",
-        invalidEmail: "Invalid email",
-        messageMin: "Tell me a bit more (10+ chars)",
-      },
-      mail: {
-        subjectPrefix: "New project",
-        fieldName: "Name",
-        fieldEmail: "Email",
-        fieldBudget: "Budget",
-        budgetFallback: "-",
-      },
-    },
-    footer: {
-      rights: "all systems nominal",
-    },
-    meta: {
-      title: "Pablo Farina — Freelance Fullstack Developer",
-      description:
-        "Freelance fullstack developer building landing pages, custom systems, internal tools and automation.",
-      ogTitle: "Pablo Farina — Freelance Fullstack Developer",
-      ogDescription: "Landing pages, custom systems, internal tools and automation.",
-      ogImageAlt: "Pablo Farina portfolio preview",
+    connect: {
+      layer: "connect",
+      title: "Next node.",
+      next: "I'm looking for a junior role to gain a lot of hands-on experience in backend and systems. After graduating, Europe — Switzerland at the top of the list, with Spanish (EU) citizenship.",
+      body: "If you're building something hard and interesting, reach out.",
+      cta: "send an email",
+      cv: "download résumé",
+      copy: "copy email",
+      copied: "copied",
+      quote: "No matter where you go, everyone's connected.",
     },
   },
 };
