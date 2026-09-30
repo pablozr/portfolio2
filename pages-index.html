@@ -12,10 +12,23 @@
     <link rel="icon" type="image/svg+xml" href="/logo-pf.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <!-- Load fonts without blocking first paint; text falls back to system fonts meanwhile. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Anton&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600&amp;family=UnifrakturMaguntia&amp;family=VT323&amp;display=swap"
+    />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Anton&amp;family=JetBrains+Mono:wght@400;500&amp;family=Noto+Sans+JP:wght@400;700&amp;family=Space+Grotesk:wght@400;500;600&amp;family=UnifrakturMaguntia&amp;family=VT323&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anton&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600&amp;family=UnifrakturMaguntia&amp;family=VT323&amp;display=swap"
+      media="print"
+      onload="this.media = 'all'"
     />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Anton&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600&amp;family=UnifrakturMaguntia&amp;family=VT323&amp;display=swap"
+    /></noscript>
   </head>
   <body style="background: #07050a">
     <div id="root"></div>

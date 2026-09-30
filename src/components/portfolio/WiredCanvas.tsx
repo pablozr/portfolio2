@@ -67,10 +67,57 @@ function point(wire: Wire, t: number, hum: number) {
   };
 }
 
+function glowSprite() {
+  const size = 64;
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const g = c.getContext("2d");
+  if (g) {
+    const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    grad.addColorStop(0, "rgba(255, 220, 226, 1)");
+    grad.addColorStop(0.14, "rgba(255, 51, 85, 0.95)");
+    grad.addColorStop(0.3, "rgba(255, 43, 74, 0.35)");
+    grad.addColorStop(1, "rgba(255, 43, 74, 0)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, size, size);
+  }
+  return c;
+}
+
+// Sky and horizon glow never change between frames, so they are painted once per resize.
+function paintBackdrop(width: number, height: number, dpr: number) {
+  const c = document.createElement("canvas");
+  c.width = width;
+  c.height = height;
+  const g = c.getContext("2d");
+  if (!g) return null;
+  const w = width / dpr;
+  const h = height / dpr;
+  g.scale(dpr, dpr);
+  const sky = g.createLinearGradient(0, 0, 0, h);
+  sky.addColorStop(0, "#050306");
+  sky.addColorStop(0.55, "#16040b");
+  sky.addColorStop(0.86, "#4d0718");
+  sky.addColorStop(1, "#7a0c22");
+  g.fillStyle = sky;
+  g.fillRect(0, 0, w, h);
+  const glow = g.createRadialGradient(w * 0.7, h * 0.95, 0, w * 0.7, h * 0.95, w * 0.55);
+  glow.addColorStop(0, "rgba(255, 43, 74, 0.35)");
+  glow.addColorStop(1, "rgba(255, 43, 74, 0)");
+  g.fillStyle = glow;
+  g.fillRect(0, 0, w, h);
+  return c;
+}
+
 export function WiredCanvas({ paused }: { paused: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pausedRef = useRef(paused);
+  const wakeRef = useRef<() => void>(() => {});
   pausedRef.current = paused;
+
+  useEffect(() => {
+    wakeRef.current();
+  }, [paused]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -84,19 +131,22 @@ export function WiredCanvas({ paused }: { paused: boolean }) {
     let h = 0;
     let raf = 0;
     let visible = true;
+    let backdrop: HTMLCanvasElement | null = null;
+    const sprite = glowSprite();
     let pointer = 0;
     let time = 0;
     let last = performance.now();
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       w = rect.width;
       h = rect.height;
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       scene = buildScene(w, h);
+      backdrop = paintBackdrop(canvas.width, canvas.height, dpr);
       pulses = Array.from({ length: Math.round(w / 55) }, () => spawn());
       draw();
     };
@@ -109,22 +159,7 @@ export function WiredCanvas({ paused }: { paused: boolean }) {
     });
 
     const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-
-      const sky = ctx.createLinearGradient(0, 0, 0, h);
-      sky.addColorStop(0, "#050306");
-      sky.addColorStop(0.55, "#16040b");
-      sky.addColorStop(0.86, "#4d0718");
-      sky.addColorStop(1, "#7a0c22");
-      ctx.fillStyle = sky;
-      ctx.fillRect(0, 0, w, h);
-
-      // Sun-bleed glow sitting on the horizon.
-      const glow = ctx.createRadialGradient(w * 0.7, h * 0.95, 0, w * 0.7, h * 0.95, w * 0.55);
-      glow.addColorStop(0, "rgba(255, 43, 74, 0.35)");
-      glow.addColorStop(1, "rgba(255, 43, 74, 0)");
-      ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, w, h);
+      if (backdrop) ctx.drawImage(backdrop, 0, 0, w, h);
 
       for (const depth of [0.45, 1]) {
         const shift = pointer * (depth === 1 ? 14 : 5);
@@ -164,26 +199,32 @@ export function WiredCanvas({ paused }: { paused: boolean }) {
           }
         });
 
-        ctx.fillStyle = "rgba(255, 51, 85, 0.95)";
-        ctx.shadowColor = "#ff2b4a";
-        ctx.shadowBlur = 12;
+        // Pre-rendered glow sprite: much cheaper than shadowBlur per pulse.
         pulses.forEach((pulse) => {
           const wire = scene.wires[pulse.wire];
           if (!wire || wire.depth !== depth) return;
           const { x, y } = point(wire, pulse.t, 0);
-          ctx.beginPath();
-          ctx.arc(x, y, pulse.size * depth + 0.4, 0, Math.PI * 2);
-          ctx.fill();
+          const r = (pulse.size * depth + 0.4) * 6;
+          ctx.drawImage(sprite, x - r, y - r, r * 2, r * 2);
         });
         ctx.restore();
       }
     };
 
+    // The loop only runs while the hero is on screen and motion is allowed.
+    const wake = () => {
+      if (raf || reduced || !visible || pausedRef.current) return;
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
+    };
+    wakeRef.current = wake;
+
     const tick = (now: number) => {
+      raf = 0;
+      if (!visible || pausedRef.current) return;
       raf = requestAnimationFrame(tick);
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
-      if (!visible || pausedRef.current) return;
       time += dt;
       pulses.forEach((pulse, i) => {
         pulse.t += pulse.speed * dt;
@@ -198,6 +239,7 @@ export function WiredCanvas({ paused }: { paused: boolean }) {
 
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      wake();
     });
     observer.observe(canvas);
     const resizeObserver = new ResizeObserver(resize);
@@ -205,11 +247,12 @@ export function WiredCanvas({ paused }: { paused: boolean }) {
     resize();
     if (!reduced) {
       window.addEventListener("pointermove", onPointer, { passive: true });
-      raf = requestAnimationFrame(tick);
+      wake();
     }
 
     return () => {
       cancelAnimationFrame(raf);
+      wakeRef.current = () => {};
       observer.disconnect();
       resizeObserver.disconnect();
       window.removeEventListener("pointermove", onPointer);

@@ -9,7 +9,7 @@ import {
 } from "react";
 import { flushSync } from "react-dom";
 import { DEFAULT_LOCALE, type Locale } from "./locales";
-import type { SiteCopy } from "./site-copy";
+import { siteCopy, type SiteCopy } from "./site-copy";
 
 const STORAGE_KEY = "portfolio.locale";
 
@@ -23,7 +23,6 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
-  const [dictionary, setDictionary] = useState<Record<Locale, SiteCopy> | null>(null);
   const transitionRef = useRef<{ skipTransition: () => void } | null>(null);
 
   useEffect(() => {
@@ -67,28 +66,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
   }, [locale]);
 
-  useEffect(() => {
-    let active = true;
-
-    import("./site-copy").then((module) => {
-      if (active) {
-        setDictionary(module.siteCopy);
-      }
-    });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const value = useMemo(
-    () => (dictionary ? { locale, setLocale, copy: dictionary[locale] } : null),
-    [dictionary, locale, setLocale],
-  );
-
-  if (!value) {
-    return null;
-  }
+  const value = useMemo(() => ({ locale, setLocale, copy: siteCopy[locale] }), [locale, setLocale]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }

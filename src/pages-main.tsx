@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { LanguageProvider } from "@/i18n/language";
-import { Page } from "@/routes/index";
+import { Page } from "@/components/portfolio/PortfolioPage";
 import "./styles.css";
 
 function StaticApp() {

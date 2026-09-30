@@ -88,12 +88,6 @@ export type SiteCopy = {
     title: string;
     groups: Array<{ label: string; items: string[] }>;
   };
-  offline: {
-    layer: string;
-    title: string;
-    body: string;
-    items: string[];
-  };
   connect: {
     layer: string;
     title: string;
@@ -192,7 +186,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { k: "projetos internos entregues", v: "10+" },
         { k: "lojas usando o que construí", v: "200+" },
         { k: "idiomas", v: "PT nativo · EN C1" },
-        { k: "cidadania", v: "BR · ES (UE)" },
+        { k: "formação prevista", v: "UNIRIO · 2027" },
       ],
       photoAlt: "Retrato de Pablo Farina",
     },
@@ -271,11 +265,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           tags: ["agents", "code review", "LLM", "análise semântica"],
         },
         {
-          code: "MEM",
-          name: "Memória decisional",
-          status: "research",
-          body: "Se agentes produzem cada vez mais código, o gargalo passa a ser compreensão. Exploro formas de registrar e recuperar decisões arquiteturais — o porquê, não só o quê — para que pessoas e agentes mantenham controle sobre sistemas que crescem rápido.",
-          tags: ["RAG", "embeddings", "BM25", "arquitetura"],
+          code: "XMN",
+          name: "Xemnas",
+          status: "active",
+          body: "Agentes de código tomam dezenas de decisões por sessão, e quase todas se perdem no histórico do chat. O Xemnas acompanha esse trabalho, propõe as decisões que apareceram com a evidência que as sustenta e guarda as que você confirmar — uma memória versionada e pesquisável do projeto que volta ao agente como contexto, via Context Pack e um servidor MCP somente leitura. App desktop nativo em Rust + GPUI, local-first, com SQLite e extração sem rede.",
+          tags: ["Rust", "GPUI", "SQLite + FTS5", "MCP", "OpenCode"],
         },
         {
           code: "PRS",
@@ -292,13 +286,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           body: "Uma segunda disciplina ao lado da programação: qual modelo é bom para pensar e qual é bom para implementar, como separar tarefas, dar contexto, impor políticas e impedir que o agente saia do escopo.",
           tags: ["OpenCode", "LLMs locais", "políticas", "contexto"],
         },
-        {
-          code: "CRC",
-          name: "Crucible",
-          status: "paused",
-          body: "Pausado de propósito para concentrar energia em outro projeto. Perseguir dez ideias ao mesmo tempo é o meu risco favorito — estou aprendendo a escolher.",
-          tags: ["foco"],
-        },
       ],
       reading: {
         label: "na fila de estudo",
@@ -306,7 +293,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           "Transformers a partir dos princípios",
           "trade-offs de arquitetura de software",
           "sistemas distribuídos",
-          "Rust + GPUI",
+          "recuperação híbrida e avaliação de RAG",
         ],
       },
     },
@@ -322,14 +309,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           body: "Restaurante vendendo pelo próprio menu digital: carrinho por mesa, pagamento online com Stripe e reconciliação segura, pedidos acompanhados em tempo real no painel.",
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Stripe"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
-        },
-        {
-          name: "WiredApply",
-          year: "2025",
-          kind: "carreira / automação",
-          body: "Organiza a busca de vagas: ranking de oportunidades por aderência, acompanhamento de candidaturas e resumo diário para manter a rotina ativa.",
-          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
-          repoUrl: "https://github.com/pablozr/wired-apply",
         },
         {
           name: "Subscription Monolith",
@@ -350,12 +329,12 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           liveLabel: "angular",
         },
         {
-          name: "SIEPA Front",
-          year: "2025",
-          kind: "arquitetura frontend",
-          body: "Frontend de gestão de projetos com rotas protegidas, recuperação de sessão e módulos Angular organizados por funcionalidade.",
-          stack: ["Angular 19", "TypeScript", "PrimeNG"],
-          repoUrl: "https://github.com/pablozr/siepa-front",
+          name: "PRISMA Front",
+          year: "2026",
+          kind: "plataforma acadêmica",
+          body: "Interface do PRISMA, sistema da UNIRIO para consulta pública e gestão de projetos acadêmicos importados do SIE: catálogo com busca e filtros, login institucional via Google, área de professores para editar os próprios projetos e painel administrativo com métricas e sincronizações.",
+          stack: ["Angular 19", "TypeScript", "PrimeNG", "RxJS", "Playwright"],
+          repoUrl: "https://github.com/pablozr/prisma-front",
         },
         {
           name: "Qual é o Segredo?",
@@ -381,16 +360,10 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { label: "explorando", items: shared.stackGroups.exploring },
       ],
     },
-    offline: {
-      layer: "offline",
-      title: "Fora da wired.",
-      body: "Não existe muita separação entre o meu gosto técnico e o visual. Prefiro coisas minimalistas, confortáveis e bem distantes do SaaS genérico — este site incluso.",
-      items: ["hard techno", "emo", "anime", "cybersigilism", "tatuagens", "xadrez"],
-    },
     connect: {
       layer: "conectar",
       title: "Próximo nó.",
-      next: "Procuro uma posição júnior para ganhar muita experiência prática em backend e sistemas. Depois da graduação, Europa — Suíça no topo da lista, com cidadania espanhola.",
+      next: "Procuro uma posição júnior para ganhar muita experiência prática em backend e sistemas.",
       body: "Se você está construindo algo difícil e interessante, me chama.",
       cta: "enviar e-mail",
       cv: "baixar currículo",
@@ -467,7 +440,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { k: "internal projects shipped", v: "10+" },
         { k: "stores using what I built", v: "200+" },
         { k: "languages", v: "PT native · EN C1" },
-        { k: "citizenship", v: "BR · ES (EU)" },
+        { k: "expected graduation", v: "UNIRIO · 2027" },
       ],
       photoAlt: "Portrait of Pablo Farina",
     },
@@ -546,11 +519,11 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           tags: ["agents", "code review", "LLM", "semantic analysis"],
         },
         {
-          code: "MEM",
-          name: "Decision memory",
-          status: "research",
-          body: "If agents produce more and more code, the bottleneck becomes understanding. I'm exploring ways to record and retrieve architectural decisions — the why, not just the what — so people and agents stay in control of fast-growing systems.",
-          tags: ["RAG", "embeddings", "BM25", "architecture"],
+          code: "XMN",
+          name: "Xemnas",
+          status: "active",
+          body: "Coding agents make dozens of decisions per session, and almost all of them get lost in chat history. Xemnas follows that work, proposes the decisions that showed up along with the evidence behind them, and keeps the ones you confirm — a versioned, searchable project memory that flows back to the agent as context through a Context Pack and a read-only MCP server. Native desktop app in Rust + GPUI, local-first, with SQLite and on-device extraction.",
+          tags: ["Rust", "GPUI", "SQLite + FTS5", "MCP", "OpenCode"],
         },
         {
           code: "PRS",
@@ -567,13 +540,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           body: "A second discipline next to programming: which model is good at thinking and which is good at implementing, how to split tasks, give context, enforce policies and keep the agent from leaving scope.",
           tags: ["OpenCode", "local LLMs", "policies", "context"],
         },
-        {
-          code: "CRC",
-          name: "Crucible",
-          status: "paused",
-          body: "Paused on purpose to focus energy on another project. Chasing ten ideas at once is my favorite risk — I'm learning to choose.",
-          tags: ["focus"],
-        },
       ],
       reading: {
         label: "study queue",
@@ -581,7 +547,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           "Transformers from first principles",
           "software architecture trade-offs",
           "distributed systems",
-          "Rust + GPUI",
+          "hybrid retrieval and RAG evaluation",
         ],
       },
     },
@@ -597,14 +563,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           body: "A restaurant selling through its own digital menu: per-table carts, online payment with Stripe and safe reconciliation, orders tracked in real time on the dashboard.",
           stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Stripe"],
           repoUrl: "https://github.com/pablozr/self-checkout-monolith",
-        },
-        {
-          name: "WiredApply",
-          year: "2025",
-          kind: "career / automation",
-          body: "Organizes the job hunt: opportunities ranked by fit, application tracking and a daily digest to keep the routine going.",
-          stack: ["FastAPI", "PostgreSQL", "Redis", "RabbitMQ", "Docker"],
-          repoUrl: "https://github.com/pablozr/wired-apply",
         },
         {
           name: "Subscription Monolith",
@@ -625,12 +583,12 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           liveLabel: "angular",
         },
         {
-          name: "SIEPA Front",
-          year: "2025",
-          kind: "frontend architecture",
-          body: "Project management frontend with protected routes, session recovery and Angular modules organized by feature.",
-          stack: ["Angular 19", "TypeScript", "PrimeNG"],
-          repoUrl: "https://github.com/pablozr/siepa-front",
+          name: "PRISMA Front",
+          year: "2026",
+          kind: "academic platform",
+          body: "The interface for PRISMA, UNIRIO's system for publicly browsing and managing academic projects imported from SIE: a catalog with search and filters, institutional Google sign-in, a faculty area to edit their own projects, and an admin panel with metrics and syncs.",
+          stack: ["Angular 19", "TypeScript", "PrimeNG", "RxJS", "Playwright"],
+          repoUrl: "https://github.com/pablozr/prisma-front",
         },
         {
           name: "Qual é o Segredo?",
@@ -659,16 +617,10 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { label: "exploring", items: shared.stackGroups.exploring },
       ],
     },
-    offline: {
-      layer: "offline",
-      title: "Outside the wired.",
-      body: "There isn't much separation between my technical taste and my visual one. I like things minimal, comfortable and far from generic SaaS — this site included.",
-      items: ["hard techno", "emo", "anime", "cybersigilism", "tattoos", "chess"],
-    },
     connect: {
       layer: "connect",
       title: "Next node.",
-      next: "I'm looking for a junior role to gain a lot of hands-on experience in backend and systems. After graduating, Europe — Switzerland at the top of the list, with Spanish (EU) citizenship.",
+      next: "I'm looking for a junior role to gain a lot of hands-on experience in backend and systems.",
       body: "If you're building something hard and interesting, reach out.",
       cta: "send an email",
       cv: "download résumé",

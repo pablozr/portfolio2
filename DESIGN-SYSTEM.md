@@ -4,16 +4,15 @@ Tema inspirado em _Serial Experiments Lain_ e em cybersigilism: CRT, estática, 
 
 A página é organizada em **layers** (como os episódios de Lain):
 
-| Layer | id          | Conteúdo                                                  |
-| ----- | ----------- | --------------------------------------------------------- |
-| 00    | `#top`      | Hero: nome, papel, readout do sistema, canvas dos fios    |
-| 01    | `#whoami`   | Quem sou, retrato tratado, citação, fatos                 |
-| 02    | `#protocol` | Experiência (Bagaggio, Bessa, UNIRIO) e formação          |
-| 03    | `#signals`  | Pesquisa e projetos em andamento (JevGuard, PRISMA, etc.) |
-| 04    | `#archive`  | Projetos entregues, em formato `ls -la` expansível        |
-| 05    | `#stack`    | Ferramentas agrupadas                                     |
-| 06    | `#offline`  | Gostos pessoais                                           |
-| 07    | `#connect`  | Próximos passos, contato, currículo                       |
+| Layer | id          | Conteúdo                                                     |
+| ----- | ----------- | ------------------------------------------------------------ |
+| 00    | `#top`      | Hero: nome, papel, readout do sistema, canvas dos fios       |
+| 01    | `#whoami`   | Quem sou, retrato tratado, citação, fatos                    |
+| 02    | `#protocol` | Experiência (Bagaggio, Bessa, UNIRIO) e formação             |
+| 03    | `#signals`  | Pesquisa e projetos em andamento (JevGuard, Xemnas, PRISMA…) |
+| 04    | `#archive`  | Projetos entregues, em formato `ls -la` expansível           |
+| 05    | `#stack`    | Ferramentas agrupadas                                        |
+| 06    | `#connect`  | Próximos passos, contato, currículo                          |
 
 Todo o texto (PT/EN) vive em `src/i18n/site-copy.ts`.
 
@@ -35,11 +34,11 @@ Vermelho é o único acento. Verde fósforo e âmbar só aparecem como indicador
 ## Tipografia
 
 - **Anton** — display: nome, títulos de experiência, stack.
-- **UnifrakturMaguntia** — blackletter: nome de cada layer e palavras do "offline". Só em palavras curtas.
+- **UnifrakturMaguntia** — blackletter: nome de cada layer. Só em palavras curtas.
 - **Space Grotesk** — corpo e títulos de seção.
 - **JetBrains Mono** — navegação, metadados, chips, arquivo.
 - **VT323** — terminal: boot, `LAYER:0X`, citações, e-mail.
-- **Noto Sans JP** — glifos japoneses decorativos (sempre `aria-hidden`).
+- Glifos japoneses decorativos usam fontes do sistema (sem webfont, por peso) e são sempre `aria-hidden`.
 
 ## Efeitos
 
@@ -56,3 +55,12 @@ Vermelho é o único acento. Verde fósforo e âmbar só aparecem como indicador
 - Botão de pausa no topo congela canvas e animações.
 - Texto decorativo japonês e ornamentos são `aria-hidden`.
 - Sem scroll horizontal até 360 px.
+
+## Performance
+
+- Fontes carregam sem bloquear a primeira pintura (`media="print"` + `onload`).
+- Textos (PT/EN) entram no bundle principal: sem espera por um segundo chunk antes de renderizar.
+- Retrato em WebP 720 px (~24 KB).
+- Canvas: fundo pintado uma vez por resize, brilho dos pulsos via sprite (sem `shadowBlur`), DPR limitado a 1.5 e loop parado fora da tela ou com animação pausada.
+- Sem `backdrop-filter` ou `mix-blend-mode` sobre camadas animadas.
+- Revelação por `IntersectionObserver` + CSS, sem biblioteca de animação.
