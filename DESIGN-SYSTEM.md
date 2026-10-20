@@ -8,11 +8,12 @@ A página é organizada em **layers** (como os episódios de Lain):
 | ----- | ----------- | ------------------------------------------------------------ |
 | 00    | `#top`      | Hero: nome, papel, readout do sistema, canvas dos fios       |
 | 01    | `#whoami`   | Quem sou, retrato tratado, citação, fatos                    |
-| 02    | `#protocol` | Experiência (Bagaggio, Bessa, UNIRIO) e formação             |
-| 03    | `#signals`  | Pesquisa e projetos em andamento (JevGuard, Xemnas, PRISMA…) |
-| 04    | `#archive`  | Projetos entregues, em formato `ls -la` expansível           |
-| 05    | `#stack`    | Ferramentas agrupadas                                        |
-| 06    | `#connect`  | Próximos passos, contato, currículo                          |
+| 02    | `#work`     | Trabalhos no ar e propostas, em cartões com "tela" e capa    |
+| 03    | `#protocol` | Experiência (Bagaggio, Bessa, UNIRIO) e formação             |
+| 04    | `#signals`  | Pesquisa e projetos em andamento (JevGuard, Xemnas, PRISMA…) |
+| 05    | `#archive`  | Projetos entregues, em formato `ls -la` expansível           |
+| 06    | `#stack`    | Ferramentas agrupadas                                        |
+| 07    | `#connect`  | Próximos passos, contato, currículo                          |
 
 Todo o texto (PT/EN) vive em `src/i18n/site-copy.ts`.
 
@@ -61,6 +62,7 @@ Vermelho é o único acento. Verde fósforo e âmbar só aparecem como indicador
 - Fontes carregam sem bloquear a primeira pintura (`media="print"` + `onload`).
 - Textos (PT/EN) entram no bundle principal: sem espera por um segundo chunk antes de renderizar.
 - Retrato em WebP 720 px (~24 KB).
+- Capas dos trabalhos em WebP 1200×750 (`src/assets/work/`, 30–45 KB cada), com `loading="lazy"`; os PDFs das propostas ficam em `public/work/`.
 - Canvas: fundo pintado uma vez por resize, brilho dos pulsos via sprite (sem `shadowBlur`), DPR limitado a 1.5 e loop parado fora da tela ou com animação pausada.
 - Sem `backdrop-filter` ou `mix-blend-mode` sobre camadas animadas.
 - Revelação por `IntersectionObserver` + CSS, sem biblioteca de animação.

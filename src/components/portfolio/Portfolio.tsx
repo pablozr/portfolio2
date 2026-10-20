@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
-import { ArrowUpRight, ArrowUp, Check, Copy, Download, Pause, Play } from "lucide-react";
+import { ArrowUpRight, ArrowUp, Check, Copy, Download, FileText, Pause, Play } from "lucide-react";
 import { useLanguage } from "@/i18n/language";
-import type { Status } from "@/i18n/site-copy";
+import type { Status, WorkImage } from "@/i18n/site-copy";
 import profilePhoto from "@/assets/profile-photo.webp";
+import cloudrsShot from "@/assets/work/cloudrs.webp";
+import conexaoShot from "@/assets/work/conexao-mental.webp";
+import lifelaserShot from "@/assets/work/lifelaser.webp";
 import { BootSequence } from "./BootSequence";
 import { Sigil, ThornRule } from "./Sigil";
 import { WiredCanvas } from "./WiredCanvas";
@@ -13,8 +16,16 @@ const githubUrl = "https://github.com/pablozr";
 const linkedinUrl = "https://www.linkedin.com/in/pablo-de-araujo-farina-893a8126b";
 const cvUrl = "/cv-pablo-farina.pdf";
 
+// No screenshot for Suisse Débarras yet: its card draws a typographic cover instead.
+const workShots: Partial<Record<WorkImage, string>> = {
+  cloudrs: cloudrsShot,
+  lifelaser: lifelaserShot,
+  conexao: conexaoShot,
+};
+
 const layerGlyphs: Record<string, string> = {
   whoami: "自己",
+  work: "作品",
   protocol: "プロトコル",
   signals: "信号",
   archive: "記録",
@@ -22,7 +33,7 @@ const layerGlyphs: Record<string, string> = {
   connect: "接続",
 };
 
-const layerIds = ["whoami", "protocol", "signals", "archive", "stack", "connect"];
+const layerIds = ["whoami", "work", "protocol", "signals", "archive", "stack", "connect"];
 
 function Reveal({
   children,
@@ -221,7 +232,7 @@ export function Portfolio() {
   const [paused, setPaused] = useState(false);
   const reduced = useReducedMotion();
   const active = useActiveLayer();
-  const { ui, hero, whoami, protocol, signals, archive, stack, connect } = copy;
+  const { ui, hero, whoami, work, protocol, signals, archive, stack, connect } = copy;
   useReveal([locale]);
 
   const marquee = [
@@ -388,8 +399,118 @@ export function Portfolio() {
 
         <ThornRule />
 
+        <section id="work" className="layer layer-work">
+          <LayerHeader id="work" index={2} label={work.layer} />
+          <Reveal className="layer-intro">
+            <h2 className="layer-title">{work.title}</h2>
+            <p>{work.intro}</p>
+          </Reveal>
+          <div className="work-grid">
+            {work.items.map((item, i) => {
+              const shot = workShots[item.image];
+              return (
+                <Reveal
+                  key={item.name}
+                  delay={(i % 2) * 0.08}
+                  className={`work-card work-${item.status}`}
+                >
+                  <article>
+                    <div className="work-screen">
+                      <div className="work-chrome" aria-hidden="true">
+                        <span className="work-lights">
+                          <span />
+                          <span />
+                          <span />
+                        </span>
+                        <span className="work-url">{item.domain}</span>
+                      </div>
+                      <div className="work-shot">
+                        {shot ? (
+                          <img
+                            src={shot}
+                            alt=""
+                            width={1200}
+                            height={750}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : (
+                          <div className={`work-cover work-cover-${item.image}`} aria-hidden="true">
+                            <span className="work-cover-kicker">débarras · suisse</span>
+                            <span className="work-cover-title">{item.name}</span>
+                            <span className="work-cover-domain">{item.domain}</span>
+                          </div>
+                        )}
+                        <span className="work-index" aria-hidden="true">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="work-body">
+                      <div className="work-meta">
+                        <StatusChip status={item.status} label={ui.statusLabels[item.status]} />
+                        <span>
+                          {item.kind} · {item.year}
+                        </span>
+                      </div>
+                      <h3>
+                        <Glitch text={item.name} />
+                      </h3>
+                      <p>{item.body}</p>
+                      <ul className="work-highlights">
+                        {item.highlights.map((h) => (
+                          <li key={h}>{h}</li>
+                        ))}
+                      </ul>
+                      <div className="chips">
+                        {item.stack.map((s) => (
+                          <span key={s}>{s}</span>
+                        ))}
+                      </div>
+                      <div className="work-links">
+                        {item.url && (
+                          <a
+                            className="wire-button"
+                            href={item.url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {work.visit} <ArrowUpRight size={16} />
+                          </a>
+                        )}
+                        {item.pdfUrl && (
+                          <a
+                            className="wire-button"
+                            href={item.pdfUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <FileText size={16} /> {work.proposal}
+                          </a>
+                        )}
+                        {item.repoUrl && (
+                          <a
+                            className="wire-button ghost"
+                            href={item.repoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {ui.repo} <ArrowUpRight size={16} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+        </section>
+
+        <ThornRule />
+
         <section id="protocol" className="layer">
-          <LayerHeader id="protocol" index={2} label={protocol.layer} />
+          <LayerHeader id="protocol" index={3} label={protocol.layer} />
           <Reveal className="layer-intro">
             <h2 className="layer-title">{protocol.title}</h2>
             <p>{protocol.intro}</p>
@@ -432,7 +553,7 @@ export function Portfolio() {
 
         <section id="signals" className="layer layer-signals">
           <div className="signals-dots" aria-hidden="true" />
-          <LayerHeader id="signals" index={3} label={signals.layer} />
+          <LayerHeader id="signals" index={4} label={signals.layer} />
           <Reveal className="layer-intro">
             <h2 className="layer-title">{signals.title}</h2>
             <p>{signals.intro}</p>
@@ -476,7 +597,7 @@ export function Portfolio() {
         </section>
 
         <section id="archive" className="layer">
-          <LayerHeader id="archive" index={4} label={archive.layer} />
+          <LayerHeader id="archive" index={5} label={archive.layer} />
           <Reveal className="layer-intro">
             <h2 className="layer-title">{archive.title}</h2>
             <p>{archive.intro}</p>
@@ -528,7 +649,7 @@ export function Portfolio() {
         <ThornRule />
 
         <section id="stack" className="layer">
-          <LayerHeader id="stack" index={5} label={stack.layer} />
+          <LayerHeader id="stack" index={6} label={stack.layer} />
           <Reveal className="layer-intro">
             <h2 className="layer-title">{stack.title}</h2>
           </Reveal>
@@ -550,7 +671,7 @@ export function Portfolio() {
 
         <section id="connect" className="layer layer-connect">
           <Sigil className="connect-sigil" />
-          <LayerHeader id="connect" index={6} label={connect.layer} />
+          <LayerHeader id="connect" index={7} label={connect.layer} />
           <Reveal>
             <Glitch as="h2" text={connect.title} className="connect-title" />
           </Reveal>

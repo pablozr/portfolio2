@@ -1,6 +1,8 @@
 import type { Locale } from "./locales";
 
-export type Status = "active" | "research" | "paused" | "shipped" | "ongoing";
+export type Status = "active" | "research" | "paused" | "shipped" | "ongoing" | "live" | "proposal";
+
+export type WorkImage = "cloudrs" | "suisse" | "lifelaser" | "conexao";
 
 export type SiteCopy = {
   meta: {
@@ -38,6 +40,27 @@ export type SiteCopy = {
     quote: string;
     facts: Array<{ k: string; v: string }>;
     photoAlt: string;
+  };
+  work: {
+    layer: string;
+    title: string;
+    intro: string;
+    visit: string;
+    proposal: string;
+    items: Array<{
+      name: string;
+      year: string;
+      kind: string;
+      status: Status;
+      image: WorkImage;
+      domain: string;
+      body: string;
+      highlights: string[];
+      stack: string[];
+      url?: string;
+      pdfUrl?: string;
+      repoUrl?: string;
+    }>;
   };
   protocol: {
     layer: string;
@@ -131,6 +154,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       skip: "Pular para o conteúdo",
       nav: [
         { href: "#whoami", label: "whoami" },
+        { href: "#work", label: "trabalhos" },
         { href: "#protocol", label: "protocolo" },
         { href: "#signals", label: "sinais" },
         { href: "#archive", label: "arquivo" },
@@ -151,6 +175,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         paused: "pausado",
         shipped: "entregue",
         ongoing: "contínuo",
+        live: "no ar",
+        proposal: "proposta",
       },
       repo: "código",
       live: "online",
@@ -189,6 +215,77 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { k: "formação prevista", v: "UNIRIO · 2027" },
       ],
       photoAlt: "Retrato de Pablo Farina",
+    },
+    work: {
+      layer: "trabalhos",
+      title: "Coisas que já estão no ar.",
+      intro:
+        "Produtos próprios e sites para clientes. As duas últimas são propostas para negócios locais: pesquisa, ideia e protótipo prontos antes da primeira conversa.",
+      visit: "visitar site",
+      proposal: "ver proposta (pdf)",
+      items: [
+        {
+          name: "cloudrs",
+          year: "2026",
+          kind: "app desktop + site",
+          status: "live",
+          image: "cloudrs",
+          domain: "cloudrs.dev",
+          body: "Cliente nativo e open source do SoundCloud para desktop, sem Electron: a interface é desenhada na GPU com GPUI, o framework do editor Zed, e o áudio é decodificado em Rust. Abre rápido, gasta pouca memória e tem Jam, para ouvir a mesma faixa no mesmo instante que os amigos a partir de um link.",
+          highlights: [
+            "fila de verdade e autoplay",
+            "waveform como barra de busca",
+            "Windows · Linux · macOS",
+          ],
+          stack: ["Rust", "GPUI", "Astro", "GitHub Actions"],
+          url: "https://cloudrs.dev",
+          repoUrl: "https://github.com/pablozr/cloudrs",
+        },
+        {
+          name: "Suisse Débarras",
+          year: "2026",
+          kind: "site para cliente",
+          status: "live",
+          image: "suisse",
+          domain: "suisse-debarras.ch",
+          body: "Site de uma empresa suíça de débarras, o serviço de esvaziar casas, apartamentos e escritórios. Feito para quem precisa resolver rápido: o que a empresa faz fica claro logo de cara e o contato está sempre a um toque.",
+          highlights: ["cliente na Suíça", "feito primeiro para o celular"],
+          stack: ["web design", "responsivo"],
+          url: "https://suisse-debarras.ch/",
+        },
+        {
+          name: "LifeLaser Clinic",
+          year: "2026",
+          kind: "site · protótipo",
+          status: "proposal",
+          image: "lifelaser",
+          domain: "lifelaser · vila prudente, sp",
+          body: "Clínica de depilação a laser com 4,7 no Google em 207 avaliações, mas quem chegava pelo Google encontrava só um Linktree. A proposta é uma página feita primeiro para o celular: a nota em destaque, as áreas atendidas, laser comparado com lâmina e cera, dúvidas, endereço e WhatsApp a um toque, com a flor da logo virando arte.",
+          highlights: [
+            "WhatsApp com mensagem pronta",
+            "nota do Google na primeira tela",
+            "versão mobile e desktop",
+          ],
+          stack: ["pesquisa", "UX mobile", "protótipo"],
+          pdfUrl: "/work/proposta-lifelaser.pdf",
+        },
+        {
+          name: "Clínica Conexão Mental",
+          year: "2026",
+          kind: "site · protótipo",
+          status: "proposal",
+          image: "conexao",
+          domain: "conexão mental · parque são jorge, sp",
+          body: "Clínica de psiquiatria, psicologia e neuropsicologia com nota 5,0 no Google e 73 opiniões no Doctoralia, mas sem um site próprio. A proposta mantém a identidade da clínica (o lótus e o tom pêssego), organiza especialidades e equipe e leva direto ao WhatsApp, com páginas por bairro para aparecer em buscas como “psiquiatra Tatuapé”.",
+          highlights: [
+            "identidade da clínica preservada",
+            "agendamento em 1 toque",
+            "SEO local por bairro",
+          ],
+          stack: ["pesquisa", "UX mobile", "SEO local"],
+          pdfUrl: "/work/proposta-conexao-mental.pdf",
+        },
+      ],
     },
     protocol: {
       layer: "protocolo",
@@ -385,6 +482,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
       skip: "Skip to content",
       nav: [
         { href: "#whoami", label: "whoami" },
+        { href: "#work", label: "work" },
         { href: "#protocol", label: "protocol" },
         { href: "#signals", label: "signals" },
         { href: "#archive", label: "archive" },
@@ -405,6 +503,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         paused: "paused",
         shipped: "shipped",
         ongoing: "ongoing",
+        live: "live",
+        proposal: "proposal",
       },
       repo: "source",
       live: "live",
@@ -443,6 +543,77 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         { k: "expected graduation", v: "UNIRIO · 2027" },
       ],
       photoAlt: "Portrait of Pablo Farina",
+    },
+    work: {
+      layer: "work",
+      title: "Things that are already live.",
+      intro:
+        "My own products and client sites. The last two are proposals for local businesses: research, idea and prototype ready before the first conversation.",
+      visit: "visit site",
+      proposal: "view proposal (pdf)",
+      items: [
+        {
+          name: "cloudrs",
+          year: "2026",
+          kind: "desktop app + site",
+          status: "live",
+          image: "cloudrs",
+          domain: "cloudrs.dev",
+          body: "A native, open source SoundCloud client for the desktop, with no Electron: the interface is drawn on the GPU with GPUI, the framework behind the Zed editor, and the audio is decoded in Rust. It opens fast, stays light on memory and has Jam, so friends hear the same track at the same moment from a shared link.",
+          highlights: [
+            "a real queue and autoplay",
+            "the waveform is the seek bar",
+            "Windows · Linux · macOS",
+          ],
+          stack: ["Rust", "GPUI", "Astro", "GitHub Actions"],
+          url: "https://cloudrs.dev",
+          repoUrl: "https://github.com/pablozr/cloudrs",
+        },
+        {
+          name: "Suisse Débarras",
+          year: "2026",
+          kind: "client site",
+          status: "live",
+          image: "suisse",
+          domain: "suisse-debarras.ch",
+          body: "The site for a Swiss clearance company, the service that empties houses, flats and offices. Made for people who need it sorted quickly: what the company does is clear at a glance and contact is always one tap away.",
+          highlights: ["client in Switzerland", "mobile first"],
+          stack: ["web design", "responsive"],
+          url: "https://suisse-debarras.ch/",
+        },
+        {
+          name: "LifeLaser Clinic",
+          year: "2026",
+          kind: "site · prototype",
+          status: "proposal",
+          image: "lifelaser",
+          domain: "lifelaser · vila prudente, são paulo",
+          body: "A laser hair removal clinic rated 4.7 on Google across 207 reviews, yet people arriving from Google only found a Linktree. The proposal is a mobile-first page: the rating up front, treatment areas, laser compared with razor and wax, FAQs, the address and WhatsApp one tap away, with the flower from the logo turned into art.",
+          highlights: [
+            "WhatsApp with a ready message",
+            "Google rating on the first screen",
+            "mobile and desktop versions",
+          ],
+          stack: ["research", "mobile UX", "prototype"],
+          pdfUrl: "/work/proposta-lifelaser.pdf",
+        },
+        {
+          name: "Clínica Conexão Mental",
+          year: "2026",
+          kind: "site · prototype",
+          status: "proposal",
+          image: "conexao",
+          domain: "conexão mental · parque são jorge, são paulo",
+          body: "A psychiatry, psychology and neuropsychology clinic rated 5.0 on Google with 73 reviews on Doctoralia, but no site of its own. The proposal keeps the clinic's identity (the lotus and the peach tone), organises specialties and team and leads straight to WhatsApp, with neighbourhood pages so it shows up in local searches.",
+          highlights: [
+            "the clinic's identity kept",
+            "booking in one tap",
+            "local SEO by neighbourhood",
+          ],
+          stack: ["research", "mobile UX", "local SEO"],
+          pdfUrl: "/work/proposta-conexao-mental.pdf",
+        },
+      ],
     },
     protocol: {
       layer: "protocol",
