@@ -1313,14 +1313,16 @@ ol {
 .work-screen::before {
   content: "";
   position: absolute;
-  inset: 14px -14px -14px 14px;
+  inset: 0;
   z-index: -1;
   background-image: var(--dots);
   background-size: 7px 7px;
   opacity: 0.35;
   mask-image: linear-gradient(135deg, transparent 30%, black);
   -webkit-mask-image: linear-gradient(135deg, transparent 30%, black);
-  transition: inset 0.5s var(--ease);
+  /* Moved with transform, not inset, so hover never re-rasterises the masked dots. */
+  transform: translate(14px, 14px);
+  transition: transform 0.5s var(--ease);
 }
 
 .work-card:hover .work-screen {
@@ -1328,7 +1330,7 @@ ol {
 }
 
 .work-card:hover .work-screen::before {
-  inset: 20px -20px -20px 20px;
+  transform: translate(20px, 20px);
 }
 
 .work-chrome {
@@ -1371,32 +1373,16 @@ ol {
   overflow: hidden;
 }
 
-.work-shot img {
+.work-shot > img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition:
-    transform 0.8s var(--ease),
-    filter 0.5s;
+  transition: transform 0.8s var(--ease);
 }
 
-.work-proposal .work-shot img {
-  filter: saturate(0.7);
-}
-
-.work-card:hover .work-shot img {
+.work-card:hover .work-shot > img {
   transform: scale(1.035);
-  filter: none;
-}
-
-/* CRT lines over the screenshot, so client work still reads as part of the wired. */
-.work-shot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 0 1px, transparent 1px 3px);
-  pointer-events: none;
 }
 
 .work-thumbs {
@@ -1435,10 +1421,6 @@ ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.work-card:hover .work-thumbs img {
-  transform: none;
 }
 
 .work-index {
@@ -1977,7 +1959,7 @@ ol {
   }
 
   .work-screen::before {
-    inset: 10px -8px -10px 8px;
+    transform: translate(8px, 10px);
   }
 
   .work-links .wire-button {

@@ -4,15 +4,6 @@ import { ArrowUpRight, ArrowUp, Check, Copy, Download, FileText, Pause, Play } f
 import { useLanguage } from "@/i18n/language";
 import type { Status, WorkImage } from "@/i18n/site-copy";
 import profilePhoto from "@/assets/profile-photo.webp";
-import cloudrsShot from "@/assets/work/cloudrs.webp";
-import cloudrsHome from "@/assets/work/cloudrs-home.webp";
-import cloudrsJam from "@/assets/work/cloudrs-jam.webp";
-import cloudrsSiteJam from "@/assets/work/cloudrs-site-jam.webp";
-import cloudrsTrack from "@/assets/work/cloudrs-track.webp";
-import conexaoShot from "@/assets/work/conexao-mental.webp";
-import lifelaserShot from "@/assets/work/lifelaser.webp";
-import suisseShot from "@/assets/work/suisse.webp";
-import suisseCantons from "@/assets/work/suisse-cantons.webp";
 import { BootSequence } from "./BootSequence";
 import { Sigil, ThornRule } from "./Sigil";
 import { WiredCanvas } from "./WiredCanvas";
@@ -22,13 +13,20 @@ const githubUrl = "https://github.com/pablozr";
 const linkedinUrl = "https://www.linkedin.com/in/pablo-de-araujo-farina-893a8126b";
 const cvUrl = "/cv-pablo-farina.pdf";
 
+// Each capture ships at 1200w, 600w (-sm) and a 160w strip thumbnail (-thumb).
+const workFiles = import.meta.glob<string>("../../assets/work/*.webp", {
+  eager: true,
+  import: "default",
+});
+const workFile = (name: string) => workFiles[`../../assets/work/${name}.webp`];
+
 // Site captures of cloudrs.dev and suisse-debarras.ch, plus the cloudrs app itself
 // (same shots cloudrs.dev shows, from cloudrs-site/public/assets/shots).
 const workShots: Record<WorkImage, string[]> = {
-  cloudrs: [cloudrsShot, cloudrsSiteJam, cloudrsHome, cloudrsJam, cloudrsTrack],
-  suisse: [suisseShot, suisseCantons],
-  lifelaser: [lifelaserShot],
-  conexao: [conexaoShot],
+  cloudrs: ["cloudrs", "cloudrs-site-jam", "cloudrs-home", "cloudrs-jam", "cloudrs-track"],
+  suisse: ["suisse", "suisse-cantons"],
+  lifelaser: ["lifelaser"],
+  conexao: ["conexao-mental"],
 };
 
 const layerGlyphs: Record<string, string> = {
@@ -171,7 +169,9 @@ function WorkShots({ shots, label }: { shots: string[]; label: string }) {
     <>
       <img
         key={shots[current]}
-        src={shots[current]}
+        src={workFile(`${shots[current]}-sm`)}
+        srcSet={`${workFile(`${shots[current]}-sm`)} 600w, ${workFile(shots[current])} 1200w`}
+        sizes="(max-width: 900px) 92vw, 600px"
         alt=""
         width={1200}
         height={750}
@@ -180,15 +180,22 @@ function WorkShots({ shots, label }: { shots: string[]; label: string }) {
       />
       {shots.length > 1 && (
         <div className="work-thumbs" role="group" aria-label={label}>
-          {shots.map((src, i) => (
+          {shots.map((name, i) => (
             <button
-              key={src}
+              key={name}
               type="button"
               aria-pressed={i === current}
               aria-label={`${label} ${i + 1} / ${shots.length}`}
               onClick={() => setCurrent(i)}
             >
-              <img src={src} alt="" width={120} height={75} loading="lazy" decoding="async" />
+              <img
+                src={workFile(`${name}-thumb`)}
+                alt=""
+                width={160}
+                height={100}
+                loading="lazy"
+                decoding="async"
+              />
             </button>
           ))}
         </div>
