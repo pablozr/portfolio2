@@ -5,6 +5,10 @@ import { useLanguage } from "@/i18n/language";
 import type { Status, WorkImage } from "@/i18n/site-copy";
 import profilePhoto from "@/assets/profile-photo.webp";
 import cloudrsShot from "@/assets/work/cloudrs.webp";
+import cloudrsHome from "@/assets/work/cloudrs-home.webp";
+import cloudrsJam from "@/assets/work/cloudrs-jam.webp";
+import cloudrsLibrary from "@/assets/work/cloudrs-library.webp";
+import cloudrsTrack from "@/assets/work/cloudrs-track.webp";
 import conexaoShot from "@/assets/work/conexao-mental.webp";
 import lifelaserShot from "@/assets/work/lifelaser.webp";
 import { BootSequence } from "./BootSequence";
@@ -17,10 +21,11 @@ const linkedinUrl = "https://www.linkedin.com/in/pablo-de-araujo-farina-893a8126
 const cvUrl = "/cv-pablo-farina.pdf";
 
 // No screenshot for Suisse Débarras yet: its card draws a typographic cover instead.
-const workShots: Partial<Record<WorkImage, string>> = {
-  cloudrs: cloudrsShot,
-  lifelaser: lifelaserShot,
-  conexao: conexaoShot,
+// cloudrs shots are the same captures cloudrs.dev shows (cloudrs-site/public/assets/shots).
+const workShots: Partial<Record<WorkImage, string[]>> = {
+  cloudrs: [cloudrsShot, cloudrsHome, cloudrsJam, cloudrsTrack, cloudrsLibrary],
+  lifelaser: [lifelaserShot],
+  conexao: [conexaoShot],
 };
 
 const layerGlyphs: Record<string, string> = {
@@ -154,6 +159,38 @@ function StatusChip({ status, label }: { status: Status; label: string }) {
       <span className="status-dot" aria-hidden="true" />
       {label}
     </span>
+  );
+}
+
+function WorkShots({ shots, label }: { shots: string[]; label: string }) {
+  const [current, setCurrent] = useState(0);
+  return (
+    <>
+      <img
+        key={shots[current]}
+        src={shots[current]}
+        alt=""
+        width={1200}
+        height={750}
+        loading="lazy"
+        decoding="async"
+      />
+      {shots.length > 1 && (
+        <div className="work-thumbs" role="group" aria-label={label}>
+          {shots.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              aria-pressed={i === current}
+              aria-label={`${label} ${i + 1} / ${shots.length}`}
+              onClick={() => setCurrent(i)}
+            >
+              <img src={src} alt="" width={120} height={75} loading="lazy" decoding="async" />
+            </button>
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -407,7 +444,7 @@ export function Portfolio() {
           </Reveal>
           <div className="work-grid">
             {work.items.map((item, i) => {
-              const shot = workShots[item.image];
+              const shots = workShots[item.image];
               return (
                 <Reveal
                   key={item.name}
@@ -425,18 +462,13 @@ export function Portfolio() {
                         <span className="work-url">{item.domain}</span>
                       </div>
                       <div className="work-shot">
-                        {shot ? (
-                          <img
-                            src={shot}
-                            alt=""
-                            width={1200}
-                            height={750}
-                            loading="lazy"
-                            decoding="async"
-                          />
+                        {shots ? (
+                          <WorkShots shots={shots} label={work.shots} />
                         ) : (
                           <div className={`work-cover work-cover-${item.image}`} aria-hidden="true">
-                            <span className="work-cover-kicker">débarras · suisse</span>
+                            <span className="work-cover-kicker">
+                              débarras &amp; nettoyage · suisse romande
+                            </span>
                             <span className="work-cover-title">{item.name}</span>
                             <span className="work-cover-domain">{item.domain}</span>
                           </div>

@@ -47,6 +47,7 @@ export type SiteCopy = {
     intro: string;
     visit: string;
     proposal: string;
+    shots: string;
     items: Array<{
       name: string;
       year: string;
@@ -223,6 +224,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "Produtos próprios e sites para clientes. As duas últimas são propostas para negócios locais: pesquisa, ideia e protótipo prontos antes da primeira conversa.",
       visit: "visitar site",
       proposal: "ver proposta (pdf)",
+      shots: "imagem",
       items: [
         {
           name: "cloudrs",
@@ -248,9 +250,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           status: "live",
           image: "suisse",
           domain: "suisse-debarras.ch",
-          body: "Site de uma empresa suíça de débarras, o serviço de esvaziar casas, apartamentos e escritórios. Feito para quem precisa resolver rápido: o que a empresa faz fica claro logo de cara e o contato está sempre a um toque.",
-          highlights: ["cliente na Suíça", "feito primeiro para o celular"],
-          stack: ["web design", "responsivo"],
+          body: "Site da Suisse Débarras, empresa com 10 anos de débarras e limpeza na Suíça romanda, de Genebra a Berna, que atende mais de 500 imóveis por ano: apartamentos, casas, chalés, fazendas e empresas. Logo de cara aparecem os serviços e os números, e o orçamento online, o telefone e o WhatsApp ficam sempre à mão.",
+          highlights: [
+            "francês, inglês e italiano",
+            "orçamento online",
+            "WhatsApp e telefone sempre visíveis",
+          ],
+          stack: ["web design", "multilíngue", "responsivo"],
           url: "https://suisse-debarras.ch/",
         },
         {
@@ -551,6 +557,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
         "My own products and client sites. The last two are proposals for local businesses: research, idea and prototype ready before the first conversation.",
       visit: "visit site",
       proposal: "view proposal (pdf)",
+      shots: "image",
       items: [
         {
           name: "cloudrs",
@@ -576,9 +583,13 @@ export const siteCopy: Record<Locale, SiteCopy> = {
           status: "live",
           image: "suisse",
           domain: "suisse-debarras.ch",
-          body: "The site for a Swiss clearance company, the service that empties houses, flats and offices. Made for people who need it sorted quickly: what the company does is clear at a glance and contact is always one tap away.",
-          highlights: ["client in Switzerland", "mobile first"],
-          stack: ["web design", "responsive"],
+          body: "The site for Suisse Débarras, a clearance and cleaning company with 10 years across French-speaking Switzerland, from Geneva to Bern, handling more than 500 properties a year: flats, houses, chalets, farms and businesses. Services and numbers show up front, and the online quote, phone and WhatsApp are always at hand.",
+          highlights: [
+            "French, English and Italian",
+            "online quote",
+            "WhatsApp and phone always visible",
+          ],
+          stack: ["web design", "multilingual", "responsive"],
           url: "https://suisse-debarras.ch/",
         },
         {

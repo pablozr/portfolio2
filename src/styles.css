@@ -1399,6 +1399,48 @@ ol {
   pointer-events: none;
 }
 
+.work-thumbs {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  background: rgba(7, 5, 10, 0.82);
+  border: 1px solid var(--line);
+}
+
+.work-thumbs button {
+  width: clamp(40px, 5vw, 64px);
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  cursor: pointer;
+  opacity: 0.6;
+  transition:
+    opacity 0.2s,
+    border-color 0.2s;
+}
+
+.work-thumbs button:hover,
+.work-thumbs button[aria-pressed="true"] {
+  border-color: var(--red);
+  opacity: 1;
+}
+
+.work-thumbs button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work-card:hover .work-thumbs img {
+  transform: none;
+}
+
 .work-index {
   position: absolute;
   right: 12px;
