@@ -8,7 +8,7 @@ A página é organizada em **layers** (como os episódios de Lain):
 | ----- | ----------- | ------------------------------------------------------------ |
 | 00    | `#top`      | Hero: nome, papel, readout do sistema, canvas dos fios       |
 | 01    | `#whoami`   | Quem sou, retrato tratado, citação, fatos                    |
-| 02    | `#work`     | Trabalhos no ar e propostas, em cartões com "tela" e capa    |
+| 02    | `#work`     | Trabalhos no ar e propostas, em cartões com "tela" e galeria |
 | 03    | `#protocol` | Experiência (Bagaggio, Bessa, UNIRIO) e formação             |
 | 04    | `#signals`  | Pesquisa e projetos em andamento (JevGuard, Xemnas, PRISMA…) |
 | 05    | `#archive`  | Projetos entregues, em formato `ls -la` expansível           |

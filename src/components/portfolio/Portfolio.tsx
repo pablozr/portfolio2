@@ -7,10 +7,12 @@ import profilePhoto from "@/assets/profile-photo.webp";
 import cloudrsShot from "@/assets/work/cloudrs.webp";
 import cloudrsHome from "@/assets/work/cloudrs-home.webp";
 import cloudrsJam from "@/assets/work/cloudrs-jam.webp";
-import cloudrsLibrary from "@/assets/work/cloudrs-library.webp";
+import cloudrsSiteJam from "@/assets/work/cloudrs-site-jam.webp";
 import cloudrsTrack from "@/assets/work/cloudrs-track.webp";
 import conexaoShot from "@/assets/work/conexao-mental.webp";
 import lifelaserShot from "@/assets/work/lifelaser.webp";
+import suisseShot from "@/assets/work/suisse.webp";
+import suisseCantons from "@/assets/work/suisse-cantons.webp";
 import { BootSequence } from "./BootSequence";
 import { Sigil, ThornRule } from "./Sigil";
 import { WiredCanvas } from "./WiredCanvas";
@@ -20,10 +22,11 @@ const githubUrl = "https://github.com/pablozr";
 const linkedinUrl = "https://www.linkedin.com/in/pablo-de-araujo-farina-893a8126b";
 const cvUrl = "/cv-pablo-farina.pdf";
 
-// No screenshot for Suisse Débarras yet: its card draws a typographic cover instead.
-// cloudrs shots are the same captures cloudrs.dev shows (cloudrs-site/public/assets/shots).
-const workShots: Partial<Record<WorkImage, string[]>> = {
-  cloudrs: [cloudrsShot, cloudrsHome, cloudrsJam, cloudrsTrack, cloudrsLibrary],
+// Site captures of cloudrs.dev and suisse-debarras.ch, plus the cloudrs app itself
+// (same shots cloudrs.dev shows, from cloudrs-site/public/assets/shots).
+const workShots: Record<WorkImage, string[]> = {
+  cloudrs: [cloudrsShot, cloudrsSiteJam, cloudrsHome, cloudrsJam, cloudrsTrack],
+  suisse: [suisseShot, suisseCantons],
   lifelaser: [lifelaserShot],
   conexao: [conexaoShot],
 };
@@ -443,99 +446,81 @@ export function Portfolio() {
             <p>{work.intro}</p>
           </Reveal>
           <div className="work-grid">
-            {work.items.map((item, i) => {
-              const shots = workShots[item.image];
-              return (
-                <Reveal
-                  key={item.name}
-                  delay={(i % 2) * 0.08}
-                  className={`work-card work-${item.status}`}
-                >
-                  <article>
-                    <div className="work-screen">
-                      <div className="work-chrome" aria-hidden="true">
-                        <span className="work-lights">
-                          <span />
-                          <span />
-                          <span />
-                        </span>
-                        <span className="work-url">{item.domain}</span>
-                      </div>
-                      <div className="work-shot">
-                        {shots ? (
-                          <WorkShots shots={shots} label={work.shots} />
-                        ) : (
-                          <div className={`work-cover work-cover-${item.image}`} aria-hidden="true">
-                            <span className="work-cover-kicker">
-                              débarras &amp; nettoyage · suisse romande
-                            </span>
-                            <span className="work-cover-title">{item.name}</span>
-                            <span className="work-cover-domain">{item.domain}</span>
-                          </div>
-                        )}
-                        <span className="work-index" aria-hidden="true">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                      </div>
+            {work.items.map((item, i) => (
+              <Reveal
+                key={item.name}
+                delay={(i % 2) * 0.08}
+                className={`work-card work-${item.status}`}
+              >
+                <article>
+                  <div className="work-screen">
+                    <div className="work-chrome" aria-hidden="true">
+                      <span className="work-lights">
+                        <span />
+                        <span />
+                        <span />
+                      </span>
+                      <span className="work-url">{item.domain}</span>
                     </div>
-                    <div className="work-body">
-                      <div className="work-meta">
-                        <StatusChip status={item.status} label={ui.statusLabels[item.status]} />
-                        <span>
-                          {item.kind} · {item.year}
-                        </span>
-                      </div>
-                      <h3>
-                        <Glitch text={item.name} />
-                      </h3>
-                      <p>{item.body}</p>
-                      <ul className="work-highlights">
-                        {item.highlights.map((h) => (
-                          <li key={h}>{h}</li>
-                        ))}
-                      </ul>
-                      <div className="chips">
-                        {item.stack.map((s) => (
-                          <span key={s}>{s}</span>
-                        ))}
-                      </div>
-                      <div className="work-links">
-                        {item.url && (
-                          <a
-                            className="wire-button"
-                            href={item.url}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {work.visit} <ArrowUpRight size={16} />
-                          </a>
-                        )}
-                        {item.pdfUrl && (
-                          <a
-                            className="wire-button"
-                            href={item.pdfUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <FileText size={16} /> {work.proposal}
-                          </a>
-                        )}
-                        {item.repoUrl && (
-                          <a
-                            className="wire-button ghost"
-                            href={item.repoUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {ui.repo} <ArrowUpRight size={16} />
-                          </a>
-                        )}
-                      </div>
+                    <div className="work-shot">
+                      <WorkShots shots={workShots[item.image]} label={work.shots} />
+                      <span className="work-index" aria-hidden="true">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                     </div>
-                  </article>
-                </Reveal>
-              );
-            })}
+                  </div>
+                  <div className="work-body">
+                    <div className="work-meta">
+                      <StatusChip status={item.status} label={ui.statusLabels[item.status]} />
+                      <span>
+                        {item.kind} · {item.year}
+                      </span>
+                    </div>
+                    <h3>
+                      <Glitch text={item.name} />
+                    </h3>
+                    <p>{item.body}</p>
+                    <ul className="work-highlights">
+                      {item.highlights.map((h) => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                    <div className="chips">
+                      {item.stack.map((s) => (
+                        <span key={s}>{s}</span>
+                      ))}
+                    </div>
+                    <div className="work-links">
+                      {item.url && (
+                        <a className="wire-button" href={item.url} target="_blank" rel="noreferrer">
+                          {work.visit} <ArrowUpRight size={16} />
+                        </a>
+                      )}
+                      {item.pdfUrl && (
+                        <a
+                          className="wire-button"
+                          href={item.pdfUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <FileText size={16} /> {work.proposal}
+                        </a>
+                      )}
+                      {item.repoUrl && (
+                        <a
+                          className="wire-button ghost"
+                          href={item.repoUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {ui.repo} <ArrowUpRight size={16} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </section>
 
