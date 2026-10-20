@@ -25,11 +25,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
+      # Retry registry fetches so a dropped connection doesn't fail the deploy.
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --fetch-retries=5 --fetch-retry-mintimeout=20000 --fetch-retry-maxtimeout=120000
 
       - name: Build static files for Pages
         run: npm run build:pages
